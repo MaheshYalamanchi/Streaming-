@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h2>Supervisor SDK</h2>
+<p>The JavaScript library is a software client of the ProctorEdu proctoring system
+and can be used for integration with e-learning system.</p>
+<h3>How to use</h3>
+<p>An example of using with JWT authorization:</p>
+<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;https://demo.proctoring.online/sdk/supervisor.js&quot;>&lt;/script>
+&lt;script>
+  // create Supervisor instance
+  var supervisor = new Supervisor({ url: 'https://demo.proctoring.online' });
+  // log in and initialize the session
+  supervisor
+    .init({
+      // set your provider name
+      provider: 'jwt',
+      // get JWT string from your server
+      token: fetch('/api/token').then(function(response) {
+        if (response.ok) return response.text();
+        else throw Error('Failed to get JWT');
+      })
+    })
+    .then(function() {
+      // start the session only after initialization
+      return supervisor.start();
+    })
+    .catch(function(err) {
+      // show alert with an error
+      alert(err.toString());
+      // redirect to home page
+      location.href = '/';
+    });
+  // stop the session after testing in e-learning system is over
+  // supervisor.stop();
+&lt;/script>
+</code></pre>
+<p>Do not forget to change URL &quot;demo.proctoring.online&quot; to your dedicated instance
+of the proctoring server.</p>
+<h3>Requirements and limitations</h3>
+<p>For correct operation of the system required to comply with the minimum system
+requirements listed below.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Minimum requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Windows 7, macOS 10.12 &quot;Sierra&quot;, Linux</td>
+</tr>
+<tr>
+<td>Browsers</td>
+<td>Chrome 72, Opera 59, Firefox 66, Edge 79</td>
+</tr>
+<tr>
+<td>Mobiles</td>
+<td>Android 4.4 (Chrome), iOS 12 (Safari)</td>
+</tr>
+<tr>
+<td>Required protocols</td>
+<td>HTTPS, WebSockets, WebRTC</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>2 cores</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>512 MB</td>
+</tr>
+<tr>
+<td>Network bandwidth</td>
+<td>256 kbps</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td>640x480, 15 fps</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>any</td>
+</tr>
+</tbody>
+</table>
+<p>You should also consider the following limitations:</p>
+<ol>
+<li>
+<p>Your e-learning system must be hosted on a server with valid SSL certificate
+(via HTTPS protocol). Otherwise the video and audio capture will not work.</p>
+</li>
+<li>
+<p>Your web page with SDK should not be fully reloaded while the library is
+running. For example, when switching between test questions. If the reload
+occurs in less than a minute, the proctoring results will not be saved.</p>
+</li>
+</ol></article>
+    </section>
+
+
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>supervisor.js</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Supervisor SDK Library.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li><a href="mailto:">LntProctor</a></li>
+        </ul>
+    </dd>
+    
+
+    
+    <dt class="tag-copyright">Copyright:</dt>
+    <dd class="tag-copyright"><ul class="dummy"><li><a href="http://LntProctor.com">LntProctor</a></li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Supervisor.html">Supervisor</a></li></ul><h3>Events</h3><ul><li><a href="Supervisor.html#event:chat">chat</a></li><li><a href="Supervisor.html#event:face">face</a></li><li><a href="Supervisor.html#event:metrics">metrics</a></li><li><a href="Supervisor.html#event:start">start</a></li><li><a href="Supervisor.html#event:stop">stop</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-conference.html">conference</a></li><li><a href="tutorial-generator.html">generator</a></li><li><a href="tutorial-iframe.html">iframe</a></li><li><a href="tutorial-proctoring.html">proctoring</a></li><li><a href="tutorial-tracking.html">tracking</a></li></ul><h3>Global</h3><ul><li><a href="global.html#check">check</a></li><li><a href="global.html#close">close</a></li><li><a href="global.html#emit">emit</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#lookup">lookup</a></li><li><a href="global.html#off">off</a></li><li><a href="global.html#on">on</a></li><li><a href="global.html#profile">profile</a></li><li><a href="global.html#qrcode">qrcode</a></li><li><a href="global.html#snapshot">snapshot</a></li><li><a href="global.html#start">start</a></li><li><a href="global.html#stop">stop</a></li><li><a href="global.html#sync">sync</a></li><li><a href="global.html#upload">upload</a></li><li><a href="global.html#VERSION">VERSION</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Dec 22 2020 13:15:04 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

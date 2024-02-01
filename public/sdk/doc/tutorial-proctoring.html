@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Tutorial: proctoring</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Tutorial: proctoring</h1>
+
+    <section>
+
+<header>
+    
+
+    <h2>proctoring</h2>
+</header>
+
+<article>
+    <style type="text/css">
+  header > h2 {
+    display: none;
+  }
+
+  .tutorial-content input,
+  .tutorial-content label,
+  .tutorial-content button,
+  .tutorial-content textarea {
+    display: block;
+    margin: 5px 0;
+  }
+
+  .tutorial-content textarea {
+    width: 100%;
+  }
+
+  .tutorial-content input {
+    width: 250px;
+  }
+
+  .tutorial-content > div {
+    padding-bottom: 50px;
+  }
+</style>
+
+<div class="tutorial-content">
+  <h3>Create Supervisor instance</h3>
+  <div>
+    <label>var url = </label>
+    <input type="text" id="url" value="" />
+    <pre
+      class="prettyprint source lang-javascript"
+    ><code>var supervisor = new Supervisor({ url });</code></pre>
+    <button onclick="createInstance(this)">Execute</button>
+  </div>
+
+  <h3>Initialize the session</h3>
+  <div>
+    <label>Secret key:</label>
+    <input type="text" id="secret" value="secret" />
+    <label>Payload:</label>
+    <textarea id="payload" rows="12" cols="80" placeholder="JSON"></textarea>
+    <label>var provider = </label>
+    <input type="text" id="provider" value="jwt" />
+    <label>var token = </label>
+    <textarea id="token" rows="5" cols="80"></textarea>
+    <pre
+      class="prettyprint source lang-javascript"
+    ><code>supervisor.init({ provider, token });</code></pre>
+    <button
+      onclick="log(this, supervisor.init({ provider: UI.getVal('provider'), token: UI.getVal('token') }))"
+    >
+      Execute
+    </button>
+  </div>
+
+  <h3>Start the session</h3>
+  <div>
+    <pre
+      class="prettyprint source lang-javascript"
+    ><code>supervisor.start();</code></pre>
+    <button onclick="log(this, supervisor.start())">Execute</button>
+  </div>
+
+  <h3>Stop the session</h3>
+  <div>
+    <pre
+      class="prettyprint source lang-javascript"
+    ><code>supervisor.stop();</code></pre>
+    <button onclick="log(this, supervisor.stop())">Execute</button>
+  </div>
+
+  <h3>Log out</h3>
+  <div>
+    <pre
+      class="prettyprint source lang-javascript"
+    ><code>supervisor.logout();</code></pre>
+    <button onclick="log(this, supervisor.logout())">Execute</button>
+  </div>
+</div>
+
+<script type="text/javascript" src="../supervisor.js"></script>
+<script
+  type="text/javascript"
+  src="//kjur.github.io/jsrsasign/jsrsasign-all-min.js"
+></script>
+
+<script>
+  // Prepare UI
+  var UI = prepareUI();
+  var supervisor;
+
+  // Create Supervisor instance
+  function createInstance(e) {
+    if (supervisor) return;
+    supervisor = new Supervisor({
+      url: UI.getVal('url')
+    });
+    // Event handlers
+    supervisor.on(['start', 'stop', 'face', 'metrics', 'chat'], function(data) {
+      console.log('event', data);
+    });
+    e.disabled = true;
+    console.log('supervisor created');
+  }
+
+  // Log wrapper for display output
+  function log(e, promise) {
+    if (!promise) return alert('SUCCESS');
+    e.disabled = true;
+    promise
+      .then(function(data) {
+        console.log('response', data);
+        e.disabled = false;
+      })
+      .catch(function(err = new Error('Unknown error')) {
+        console.error(err);
+        alert(err.toString());
+        e.disabled = false;
+      });
+  }
+
+  // Generate token (jsrsasign)
+  // https://github.com/kjur/jsrsasign/wiki/Tutorial-for-JWT-generation
+  function getToken(secret, payload) {
+    var header = {
+      alg: 'HS256',
+      typ: 'JWT'
+    };
+    return KJUR.jws.JWS.sign(null, header, payload, secret);
+  }
+
+  // UUID generator RFC4122 v4 (random).
+  function uuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (Math.random() * 16) | 0,
+        v = c == 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+
+  // UI helper
+  function prepareUI() {
+    var $ui = {
+      url: null,
+      provider: null,
+      token: null,
+      secret: null,
+      payload: null
+    };
+    for (var k in $ui) $ui[k] = document.getElementById(k);
+    $ui.url.value = window.location.origin;
+    var updateToken = function() {
+      var secret = $ui.secret.value;
+      var payload = $ui.payload.value;
+      try {
+        $ui.token.value = getToken(secret, JSON.parse(payload));
+        localStorage.setItem('proctoring.payload', payload);
+      } catch (e) {
+        if (!payload) localStorage.removeItem('proctoring.payload');
+      }
+    };
+    var iat = ~~(Date.now() / 1000); // issued at
+    var exp = iat + 12 * 60 * 60; // expires after 12 hours
+    $ui.payload.value =
+      localStorage.getItem('proctoring.payload') ||
+      JSON.stringify(
+        {
+          // JWT fields
+          iat: iat,
+          exp: exp,
+          // user fields
+          username: uuid(),
+          nickname: 'Dwayne Johnson',
+          // session fields
+          template: 'default',
+          id: uuid(),
+          subject: document.title,
+          tags: ['Dwayne Johnson']
+        },
+        null,
+        '  '
+      );
+    $ui.secret.onkeyup = updateToken;
+    $ui.payload.onkeyup = updateToken;
+    updateToken();
+    return {
+      setVal: function(key, value) {
+        $ui[key].value = value;
+      },
+      getVal: function(key) {
+        try {
+          return JSON.parse($ui[key].value);
+        } catch (e) {
+          return $ui[key].value;
+        }
+      }
+    };
+  }
+</script>
+
+</article>
+
+</section>
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Supervisor.html">Supervisor</a></li></ul><h3>Events</h3><ul><li><a href="Supervisor.html#event:chat">chat</a></li><li><a href="Supervisor.html#event:face">face</a></li><li><a href="Supervisor.html#event:metrics">metrics</a></li><li><a href="Supervisor.html#event:start">start</a></li><li><a href="Supervisor.html#event:stop">stop</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-conference.html">conference</a></li><li><a href="tutorial-generator.html">generator</a></li><li><a href="tutorial-iframe.html">iframe</a></li><li><a href="tutorial-proctoring.html">proctoring</a></li><li><a href="tutorial-tracking.html">tracking</a></li></ul><h3>Global</h3><ul><li><a href="global.html#check">check</a></li><li><a href="global.html#close">close</a></li><li><a href="global.html#emit">emit</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#lookup">lookup</a></li><li><a href="global.html#off">off</a></li><li><a href="global.html#on">on</a></li><li><a href="global.html#profile">profile</a></li><li><a href="global.html#qrcode">qrcode</a></li><li><a href="global.html#snapshot">snapshot</a></li><li><a href="global.html#start">start</a></li><li><a href="global.html#stop">stop</a></li><li><a href="global.html#sync">sync</a></li><li><a href="global.html#upload">upload</a></li><li><a href="global.html#VERSION">VERSION</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Dec 22 2020 13:15:04 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

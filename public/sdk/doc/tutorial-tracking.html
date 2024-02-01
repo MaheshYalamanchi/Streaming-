@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Tutorial: tracking</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Tutorial: tracking</h1>
+
+    <section>
+
+<header>
+    
+
+    <h2>tracking</h2>
+</header>
+
+<article>
+    <style type="text/css">
+  header > h2 {
+    display: none;
+  }
+
+  .tutorial-content {
+    overflow: hidden;
+  }
+
+  .tutorial-content form,
+  .tutorial-content label,
+  .tutorial-content button {
+    display: block;
+    margin: 5px 0;
+  }
+
+  .tutorial-content > div {
+    padding-bottom: 50px;
+  }
+
+  .tutorial-content input {
+    vertical-align: middle;
+  }
+
+  .tutorial-content input[type='number'] {
+    width: 50px;
+    padding: 0 3px;
+  }
+
+  .box {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    overflow: hidden;
+    z-index: 1;
+    /* margin: auto; */
+  }
+
+  .box .cell,
+  .box .axis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-sizing: border-box;
+    cursor: default;
+    overflow: hidden;
+    font-size: 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .box .cell {
+    color: white;
+  }
+
+  .box .axis {
+    color: gray;
+  }
+
+  .box .cell:hover {
+    border: 1px solid #999;
+  }
+
+  .box .cell:hover::before {
+    content: '';
+    position: absolute;
+    background-color: #999;
+    top: 0;
+    bottom: 0;
+    width: 24px;
+    z-index: -1;
+  }
+
+  .box .cell:hover::after {
+    content: '';
+    position: absolute;
+    background-color: #999;
+    left: 0;
+    right: 0;
+    height: 24px;
+    z-index: -1;
+  }
+</style>
+
+<div class="tutorial-content">
+  <h3>Tracking metrics</h3>
+  <div>
+    <div class="box"></div>
+    <label>Set weights and select metrics:</label>
+    <form id="metrics-form">
+      <input type="number" name="b1" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="b1" checked /> <b>b1</b> - Browser not
+      supported. <br />
+      <input type="number" name="b2" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="b2" checked /> <b>b2</b> - Focus changed to a
+      different window. <br />
+      <input type="number" name="b3" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="b3" checked /> <b>b3</b> - Full-screen mode
+      is disabled. <br />
+      <input type="number" name="c1" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="c1" checked /> <b>c1</b> - Webcam is
+      disabled. <br />
+      <input type="number" name="c2" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="c2" checked /> <b>c2</b> - Face invisible or
+      not looking into the camera. <br />
+      <input type="number" name="c3" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="c3" checked /> <b>c3</b> - Several faces in
+      front of the camera. <br />
+      <input type="number" name="c4" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="c4" checked /> <b>c4</b> - Unidentified face
+      in front of the camera. <br />
+      <input type="number" name="c5" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="c5" checked /> <b>c5</b> - Found similar
+      profile. <br />
+      <input type="number" name="k1" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="k1" checked /> <b>k1</b> - Atypical keyboard
+      handwriting. <br />
+      <input type="number" name="m1" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="m1" checked /> <b>m1</b> - Microphone muted
+      or its volume is low. <br />
+      <input type="number" name="m2" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="m2" checked /> <b>m2</b> - Conversation or
+      noise in the background. <br />
+      <input type="number" name="n1" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="n1" checked /> <b>n1</b> - No network
+      connection. <br />
+      <input type="number" name="n2" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="n2" checked /> <b>n2</b> - No connection to a
+      mobile camera. <br />
+      <input type="number" name="s1" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="s1" checked /> <b>s1</b> - Screen activities
+      are not shared. <br />
+      <input type="number" name="s2" min="0" step="0.01" value="1" />
+      <input type="checkbox" name="s2" checked /> <b>s2</b> - Second display is
+      used. <br />
+    </form>
+    <button onclick="start(this)">START</button>
+  </div>
+</div>
+
+<script type="text/javascript" src="../supervisor.js"></script>
+
+<script>
+  var el = document.querySelector('.box');
+  var cols = 30;
+  var supervisor;
+  draw(el, [], [], cols);
+
+  function start(ev) {
+    if (supervisor) return;
+    var elements = document.getElementById('metrics-form').elements;
+    var metrics = [];
+    var weights = [];
+    for (var i = 0; i < elements.length; i += 2) {
+      var w = elements[i];
+      var m = elements[i + 1];
+      if (m.checked) {
+        metrics.push(m.name);
+        weights.push(w.value);
+      }
+    }
+    var data = [];
+    var id = Date.now();
+    supervisor = new Supervisor();
+    supervisor.on('metrics', function(obj) {
+      metrics.forEach(function(k, i) {
+        var w = weights[i] || 1;
+        var m = obj.metrics[k] || 0;
+        data.push(w * m);
+        if (data.length > metrics.length * cols) data.shift();
+      });
+      draw(el, data, metrics, cols);
+    });
+    supervisor
+      .init({
+        provider: 'plain',
+        username: id,
+        id: id,
+        subject: document.title,
+        timeout: 10,
+        metrics: metrics,
+        weights: weights,
+        addons: ['track', 'preview', 'screen'],
+        url: ''
+      })
+      .then(function() {
+        return supervisor.start();
+      });
+
+    draw(el, data, metrics, cols);
+    ev.disabled = true;
+  }
+
+  function draw(el, data, metrics, cols) {
+    var r = metrics.length;
+    var s = data.length / r;
+    var c = cols;
+    var n = r * c;
+    var w = 24;
+    el.innerHTML = '';
+    el.style.width = (c + 2) * w + 'px';
+    el.style.height = (r + 2) * w + 'px';
+    var avg = new Array(r).fill(0);
+    var sum;
+    for (var x = 0; x < c + 2; x++) {
+      sum = null;
+      for (var y = 0; y < r + 2; y++) {
+        var div = document.createElement('div');
+        div.className = 'cell';
+        if (y === r) {
+          div.className = 'axis';
+          if (x < c) div.innerHTML = `<div>${x + 1}</div>`;
+        }
+        if (x === c) {
+          div.className = 'axis';
+          if (y < r) div.innerHTML = `<div>${metrics[y]}</div>`;
+        }
+        if (x < c && y < r) {
+          var index = x * r + y;
+          if (typeof data[index] === 'number') {
+            var v = ~~data[index];
+            if (sum === null) sum = 100;
+            sum -= v;
+            if (sum < 0) sum = 0;
+            if (!avg[y]) avg[y] = 0;
+            avg[y] += v / s;
+            div.innerHTML = `<div>${v}</div>`;
+            div.style.backgroundColor = `hsla(${100 - v},60%,60%,0.8)`;
+          } else {
+            div.style.backgroundColor = `rgba(230,230,230,0.8)`;
+          }
+        }
+        if (y === r + 1 && x < c) {
+          if (typeof sum === 'number') {
+            div.innerHTML = `<div>${sum}</div>`;
+            div.style.backgroundColor = `hsla(${sum},60%,60%,0.8)`;
+          } else {
+            div.style.backgroundColor = `rgba(230,230,230,0.8)`;
+          }
+        }
+        if (x === c + 1 && y < r) {
+          var v = Math.round(avg[y]);
+          div.innerHTML = `<div>${v}</div>`;
+          div.style.backgroundColor = `hsla(${100 - v},60%,60%,0.8)`;
+        }
+        if (x === c + 1 && y === r + 1) {
+          var v = 100;
+          for (var k in avg) {
+            v -= avg[k];
+            if (v < 0) {
+              v = 0;
+              break;
+            }
+          }
+          v = Math.round(v);
+          div.innerHTML = `<div>${v}</div>`;
+          div.style.backgroundColor = `hsla(${v},60%,60%,0.8)`;
+        }
+        el.appendChild(div);
+      }
+    }
+  }
+</script>
+
+</article>
+
+</section>
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Supervisor.html">Supervisor</a></li></ul><h3>Events</h3><ul><li><a href="Supervisor.html#event:chat">chat</a></li><li><a href="Supervisor.html#event:face">face</a></li><li><a href="Supervisor.html#event:metrics">metrics</a></li><li><a href="Supervisor.html#event:start">start</a></li><li><a href="Supervisor.html#event:stop">stop</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-conference.html">conference</a></li><li><a href="tutorial-generator.html">generator</a></li><li><a href="tutorial-iframe.html">iframe</a></li><li><a href="tutorial-proctoring.html">proctoring</a></li><li><a href="tutorial-tracking.html">tracking</a></li></ul><h3>Global</h3><ul><li><a href="global.html#check">check</a></li><li><a href="global.html#close">close</a></li><li><a href="global.html#emit">emit</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#lookup">lookup</a></li><li><a href="global.html#off">off</a></li><li><a href="global.html#on">on</a></li><li><a href="global.html#profile">profile</a></li><li><a href="global.html#qrcode">qrcode</a></li><li><a href="global.html#snapshot">snapshot</a></li><li><a href="global.html#start">start</a></li><li><a href="global.html#stop">stop</a></li><li><a href="global.html#sync">sync</a></li><li><a href="global.html#upload">upload</a></li><li><a href="global.html#VERSION">VERSION</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Dec 22 2020 13:15:04 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

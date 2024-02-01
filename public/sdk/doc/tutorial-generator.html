@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Tutorial: generator</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Tutorial: generator</h1>
+
+    <section>
+
+<header>
+    
+
+    <h2>generator</h2>
+</header>
+
+<article>
+    <style type="text/css">
+  header > h2 {
+    display: none;
+  }
+
+  .tutorial-content input,
+  .tutorial-content label,
+  .tutorial-content button,
+  .tutorial-content textarea {
+    display: block;
+    margin: 5px 0;
+  }
+
+  .tutorial-content textarea {
+    width: 100%;
+  }
+
+  .tutorial-content input {
+    width: 250px;
+  }
+
+  .tutorial-content > div {
+    padding-bottom: 10px;
+  }
+</style>
+
+<script src="../supervisor.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jsrsasign/8.0.12/jsrsasign-all-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+
+<div class="tutorial-content">
+  <div>
+    <label>Server:</label>
+    <input id="server_origin" type="text" onchange="onChange(event)" />
+  </div>
+  <div>
+    <label>Provider:</label>
+    <input
+      id="jwt_provider"
+      type="text"
+      value="jwt"
+      onchange="onChange(event)"
+    />
+  </div>
+  <div>
+    <label>Key:</label>
+    <input id="jwt_key" type="text" value="secret" onchange="onChange(event)" />
+  </div>
+  <div>
+    <label>Input Data:</label>
+    <textarea
+      id="input_csv"
+      rows="12"
+      cols="80"
+      onchange="onChange(event)"
+      placeholder="template;id;subject;url;username;nickname"
+    ></textarea>
+    <input type="file" onchange="importCSV(event)" accept="text/*" />
+  </div>
+  <div>
+    <label>Output Data:</label>
+    <textarea
+      id="output_csv"
+      rows="12"
+      cols="80"
+      placeholder="template;id;subject;url;username;nickname;link"
+      readonly
+    ></textarea>
+    <button onclick="exportCSV(event)">Download CSV</button>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var $server_origin = document.getElementById('server_origin');
+  var $jwt_provider = document.getElementById('jwt_provider');
+  var $jwt_key = document.getElementById('jwt_key');
+  var $input_csv = document.getElementById('input_csv');
+  var $output_csv = document.getElementById('output_csv');
+  $server_origin.value = location.origin;
+
+  function onChange() {
+    var config = {
+      header: true,
+      dynamicTyping: true,
+      skipEmptyLines: true,
+      delimiter: ';'
+    };
+    var json = Papa.parse($input_csv.value, config).data;
+    var origin = $server_origin.value;
+    var provider = $jwt_provider.value;
+    var key = $jwt_key.value;
+    json.forEach(function(item) {
+      if (!item.id) item.id = uuid();
+      if (!item.username) item.username = uuid();
+      var token = getToken(key, item);
+      item.link = origin + '/api/auth/' + provider + '?token=' + token;
+    });
+    var csv = Papa.unparse(json, config);
+    $output_csv.value = csv;
+  }
+
+  function importCSV(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function() {
+      $input_csv.value = reader.result;
+      onChange();
+    };
+    reader.readAsText(file);
+  }
+
+  function exportCSV(event) {
+    var csv = $output_csv.value;
+    var blob = new Blob([csv], { type: 'octet/stream' });
+    var url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download =
+      new Date()
+        .toJSON()
+        .substring(0, 19)
+        .replace(/:/g, '-')
+        .replace('T', '_') + '.csv';
+    document.body.appendChild(a);
+    a.click();
+    URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  }
+
+  // Generate token (jsrsasign)
+  // https://github.com/kjur/jsrsasign/wiki/Tutorial-for-JWT-generation
+  function getToken(secret, payload) {
+    var header = {
+      alg: 'HS256',
+      typ: 'JWT'
+    };
+    return KJUR.jws.JWS.sign(null, header, payload, secret);
+  }
+
+  // UUID generator RFC4122 v4 (random).
+  function uuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (Math.random() * 16) | 0,
+        v = c == 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+</script>
+
+</article>
+
+</section>
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Supervisor.html">Supervisor</a></li></ul><h3>Events</h3><ul><li><a href="Supervisor.html#event:chat">chat</a></li><li><a href="Supervisor.html#event:face">face</a></li><li><a href="Supervisor.html#event:metrics">metrics</a></li><li><a href="Supervisor.html#event:start">start</a></li><li><a href="Supervisor.html#event:stop">stop</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-conference.html">conference</a></li><li><a href="tutorial-generator.html">generator</a></li><li><a href="tutorial-iframe.html">iframe</a></li><li><a href="tutorial-proctoring.html">proctoring</a></li><li><a href="tutorial-tracking.html">tracking</a></li></ul><h3>Global</h3><ul><li><a href="global.html#check">check</a></li><li><a href="global.html#close">close</a></li><li><a href="global.html#emit">emit</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#lookup">lookup</a></li><li><a href="global.html#off">off</a></li><li><a href="global.html#on">on</a></li><li><a href="global.html#profile">profile</a></li><li><a href="global.html#qrcode">qrcode</a></li><li><a href="global.html#snapshot">snapshot</a></li><li><a href="global.html#start">start</a></li><li><a href="global.html#stop">stop</a></li><li><a href="global.html#sync">sync</a></li><li><a href="global.html#upload">upload</a></li><li><a href="global.html#VERSION">VERSION</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Dec 22 2020 13:15:04 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

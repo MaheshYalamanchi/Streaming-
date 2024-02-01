@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streaming
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streaming
+  template:
+    metadata:
+      labels:
+        app: streaming
+    spec:
+      containers:
+        - name: streaming
+          image: proctordev.azurecr.io/streaming:$tag
+          imagePullPolicy: Always
+          env:
+          - name: MONGO_URI
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: MONGO_URI
+          - name: MINIO_URI
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: MINIO_URI
+          - name: SESSION_KEY
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: SESSION_KEY
+          - name: proctorAiService
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: proctorAiService
+          - name: port
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: port
+          
+          - name: PROCTOR_BACKEND
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: PROCTOR_BACKEND
+          - name: RECOGNIZER
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: RECOGNIZER
+          - name: MINIO_ACCESSKEY
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: MINIO_ACCESSKEY
+          - name: MINIO_SECRETKEY
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: MINIO_SECRETKEY
+          - name: MINIO_ENDPOINT
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: MINIO_ENDPOINT
+          - name: proctorui
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: proctorui
+          - name: AI_SERVICE
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: AI_SERVICE
+          - name: OBJECT_DETECTION
+            valueFrom:
+              secretKeyRef:
+                name: proctor-qa-env
+                key: OBJECT_DETECTION
+          - name: Tao_SERVICE
+            valueFrom:
+              secretKeyRef:
+                name: proctor-dev-env
+                key: Tao_SERVICE
+          ports:
+          - containerPort: 6000
+      imagePullSecrets:
+        - name: mysecret
