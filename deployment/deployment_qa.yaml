@@ -89,6 +89,6 @@ spec:
                 name: proctor-dev-env
                 key: Tao_SERVICE
           ports:
-          - containerPort: 6000
+          - containerPort: 8000
       imagePullSecrets:
         - name: mysecret

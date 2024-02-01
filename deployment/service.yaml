@@ -9,6 +9,6 @@ spec:
   selector:
     app: streaming
   ports:
-    - port: 6000
-      targetPort: 6000
+    - port: 8000
+      targetPort: 8000
   type: LoadBalancer
