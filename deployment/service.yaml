@@ -3,7 +3,8 @@ kind: Service
 metadata:
   name: streaming
   annotations:
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+    service.beta.kubernetes.io/azure-dns-label-name: streaming
+  name: streaming
 spec:
   sessionAffinity: ClientIP
   selector:
