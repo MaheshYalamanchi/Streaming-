@@ -115,6 +115,23 @@
                         for (var t = atob(e.split(",")[1]), r = e.substring("data:".length, e.indexOf(";base64")), n = new Uint8Array(t.length), i = 0, o = t.length; i < o; i++) n[i] = t.charCodeAt(i);
                         return new Blob([n], { type: r });
                     }
+                    function uu(e) {
+                        return new Promise((t, r) => {
+                            const n = new FileReader();
+                            n.readAsArrayBuffer(e),
+                                (n.onload = function () {
+                                    t(n.result);
+                                }),
+                                (n.onerror = function () {
+                                    r(n.error);
+                                });
+                        });
+                    }
+                    function vv(e) {
+                        for (var t = atob(e.split(",")[1]), r = e.substring("data:".length, e.indexOf(";base64")), n = new Uint8Array(t.length), i = 0, o = t.length; i < o; i++) n[i] = t.charCodeAt(i);
+                        return new Blob([n], { type: r });
+                    }
+
                     function p(e, t) {
                         const r = v(e);
                         return new File([r], t, { type: r.type });
@@ -2738,24 +2755,24 @@
                                                     const e = l.sort((e, t) => t.det.q - e.det.q)[0] || {},
                                                         t = st(e.image, e.det);
                                                     (l = []),
-                                                    objectDetect(t).then((e) => {
-                                                            const i = e.metadata || {},
-                                                            // o = i.confidence,
-                                                            // s = i.distance,
-                                                            // a = i.threshold,
-                                                            // c = i.similar,
-                                                            // d = void 0 === c ? [] : c,
-                                                            // l = i.success,
-                                                            u = { message: e.message,  verified:  e.success };
-                                                            Object.defineProperty(u, "file", {
-                                                                get: function () {
-                                                                    return p(this.dataUrl, "face.jpg");
-                                                                },
-                                                                enumerable: !0,
-                                                                configurable: !0,
-                                                            }),
-                                                                setTimeout(n.bind(null, r, u), 0);
-                                                        });
+                                                    // objectDetect(t).then((e) => {
+                                                    //         const i = e.metadata || {},
+                                                    //         // o = i.confidence,
+                                                    //         // s = i.distance,
+                                                    //         // a = i.threshold,
+                                                    //         // c = i.similar,
+                                                    //         // d = void 0 === c ? [] : c,
+                                                    //         // l = i.success,
+                                                    //         u = { message: e.message,  verified:  e.success };
+                                                    //         Object.defineProperty(u, "file", {
+                                                    //             get: function () {
+                                                    //                 return p(this.dataUrl, "face.jpg");
+                                                    //             },
+                                                    //             enumerable: !0,
+                                                    //             configurable: !0,
+                                                    //         }),
+                                                    //             setTimeout(n.bind(null, r, u), 0);
+                                                    //     });
                                                         at(t).then((e) => {
                                                             const i = e.metadata || {},
                                                                 o = i.confidence,
@@ -2774,7 +2791,7 @@
                                                             }),
                                                                 setTimeout(n.bind(null, r, u), 0);
                                                         });
-                                                }
+                                                } 
                                                 setTimeout(n.bind(null, r, e), 0), (d = !1);
                                             });
                                             rt = setInterval(function () {
@@ -2808,6 +2825,95 @@
                                             n();
                                     })
                                     .catch(i);
+                                uu(vv(tt))
+                                .then((i) => {
+                                    !(function (e, t, r, n) {
+                                        const i = r.interval,
+                                            o = r.count,
+                                            s = r.threshold;
+                                        let a,
+                                            c,
+                                            d,
+                                            l = [];
+                                        const u = et(t, r.detection, (e) => {
+                                            if ((1 === (e = e.filter((e) => e.q > s)).length && l.push({ image: a.canvas, det: e[0] }), l.length >= o)) {
+                                                const e = l.sort((e, t) => t.det.q - e.det.q)[0] || {},
+                                                    t = st(e.image, e.det);
+                                                (l = []),
+                                                objectDetect(t).then((e) => {
+                                                        const i = e.metadata || {},
+                                                        // o = i.confidence,
+                                                        // s = i.distance,
+                                                        // a = i.threshold,
+                                                        // c = i.similar,
+                                                        // d = void 0 === c ? [] : c,
+                                                        // l = i.success,
+                                                        u = { message: e.message,  verified:  e.success };
+                                                        Object.defineProperty(u, "file", {
+                                                            get: function () {
+                                                                return p(this.dataUrl, "face.jpg");
+                                                            },
+                                                            enumerable: !0,
+                                                            configurable: !0,
+                                                        }),
+                                                            setTimeout(n.bind(null, r, u), 0);
+                                                    });
+                                            } else if ((0 === (e = e.filter((e) => e.q > s)).length && l.push({ image: a.canvas, det: {r: 180, c: 298, s: 185, q: 231.6051329659822, a: 0} }), l.length >= o)) {
+                                                const e = l.sort((e, t) => t.det.q - e.det.q)[0] || {},
+                                                    t = st(e.image, e.det);
+                                                (l = []),
+                                                objectDetect(t).then((e) => {
+                                                        const i = e.metadata || {},
+                                                        // o = i.confidence,
+                                                        // s = i.distance,
+                                                        // a = i.threshold,
+                                                        // c = i.similar,
+                                                        // d = void 0 === c ? [] : c,
+                                                        // l = i.success,
+                                                        u = { message: e.message,  verified:  e.success };
+                                                        Object.defineProperty(u, "file", {
+                                                            get: function () {
+                                                                return p(this.dataUrl, "face.jpg");
+                                                            },
+                                                            enumerable: !0,
+                                                            configurable: !0,
+                                                        }),
+                                                            setTimeout(n.bind(null, r, u), 0);
+                                                    });
+                                            }
+                                            setTimeout(n.bind(null, r, e), 0), (d = !1);
+                                        });
+                                        rt = setInterval(function () {
+                                            if (d) return;
+                                            if (((d = !0), !e.videoWidth || !e.videoHeight)) return (d = !1), setTimeout(n.bind(null, r, !1), 0);
+                                            if (e.paused) {
+                                                const t = e.play();
+                                                t && "undefined" != typeof Promise && t instanceof Promise && t.catch(function () {});
+                                            }
+                                            a = it(e, e.videoWidth, e.videoHeight);
+                                            const t = a.getImageData(0, 0, a.canvas.width, a.canvas.height);
+                                            if (
+                                                (function () {
+                                                    let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [],
+                                                        t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
+                                                    var r = !0,
+                                                        n = e.length;
+                                                    t.length > e.length && (n = t.length);
+                                                    for (var i = 0; i < n; i++)
+                                                        if (e[i] !== t[i]) {
+                                                            r = !1;
+                                                            break;
+                                                        }
+                                                    return r;
+                                                })(c, t.data)
+                                            )
+                                                return (d = !1), setTimeout(n.bind(null, r, !1), 0);
+                                            (c = t.data), u(t);
+                                        }, 200 * 1.1);
+                                    })(t, i, e, r),
+                                        n();
+                                })
+                                .catch(i);
                             }),
                         stop: () =>
                             new Promise((e) => {
@@ -3640,8 +3746,13 @@
                         render() {
                             return document.createElement("DIV");
                         }
+                        // mount(e) {
+                        //     return e instanceof HTMLElement && !this.el.parentNode && (e.appendChild(this.el), this.mounted()), !!this.el.parentNode;
+                        // }
                         mount(e) {
-                            return e instanceof HTMLElement && !this.el.parentNode && (e.appendChild(this.el), this.mounted()), !!this.el.parentNode;
+                            return e instanceof HTMLElement && !this.el.parentNode && (e.appendChild(this.el),
+                            this.mounted()),
+                            !!this.el.parentNode
                         }
                         remove() {
                             return this.el.parentNode && (this.el.remove(), this.removed()), !this.el.parentNode;
