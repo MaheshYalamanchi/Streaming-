@@ -5722,7 +5722,7 @@
                             window.localStorage.setItem('userToken',e.token)
                             //connect to microphone
                             //speech to text conversion
-                            var speech = true;
+                            /*var speech = true;
                             const grammar = '#JSGF V1.0; grammar colors; public <color> = aqua | azure | beige | bisque | black | blue | brown | chocolate | coral | crimson | cyan | fuchsia | ghostwhite | gold | goldenrod | gray | green | indigo | ivory | khaki | lavender | lime | linen | magenta | maroon | moccasin | navy | olive | orange | orchid | peru | pink | plum | purple | red | salmon | sienna | silver | snow | tan | teal | thistle | tomato | turquoise | violet | white | yellow ;'
                             window.SpeechRecognition = window.SpeechRecognition
                                             || window.webkitSpeechRecognition;
@@ -5766,7 +5766,7 @@
                             if (speech == true) {
                                 recognition.start();
                                 recognition.addEventListener('end', recognition.start);
-                            }
+                            }*/
                             //end of microphone
                             return m(Object.assign({ provider: "jwt" }, e)).then((e) =>
                                 qe.login(e).then((e) => {
