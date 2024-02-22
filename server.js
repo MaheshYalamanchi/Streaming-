@@ -1053,6 +1053,17 @@ const upload = multer({ storage: storage });
       }),
         s.post("/start", async (req, res, E) => {
           try {
+            /**
+             * const c = { user: A.user.id, room: A.query.id, ipaddress: A.ip, useragent: A.get("user-agent"), seb: A.headers["X-SafeExamBrowser-ConfigKeyHash"] && A.headers["X-SafeExamBrowser-RequestHash"] };
+                        Y.start(c, function (w, Q) {
+                            if (w) return E(w);
+                            g.start({ user: A.user, room: Q }, function () {
+                                B.json(Q);
+                                const A = Q.getMemberIDs();
+                                A.length && I.send(A, "room:start", Q);
+                            });
+                        });
+             */
             var jsonData = {
               authorization: req.headers.authorization,
               ipAddress: req.body.ipaddress
@@ -1060,6 +1071,10 @@ const upload = multer({ storage: storage });
             let responseData = await invoke.makeHttpCall("post", '/api/room/start?id=' + req.query.id, jsonData);
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
+              let memberId=[]
+              memberId=responseData.data.members
+              let A=memberId.push(responseData.data.student)
+              memberId.length && I.send(memberId, "room:start", responseData.data);
               let reportbody = {
                 starttime: responseData.data.startedAt,
                 room: responseData.data.id,
@@ -1082,6 +1097,10 @@ const upload = multer({ storage: storage });
             let responseData = await invoke.makeHttpCall("post", '/api/stop/' + req.query.id, req.headers);
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
+              let memberId=[]
+              memberId=responseData.data.members
+              let A=memberId.push(responseData.data.student)
+              memberId.length && I.send(memberId, "room:stop", responseData.data);
             } else {
               res.send("response not found")
             }
@@ -1100,6 +1119,10 @@ const upload = multer({ storage: storage });
               let responseData = await invoke.makeHttpCall("post", '/api/room/submit?id=' + req.query.id, req.body);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
+                let memberId=[]
+                memberId=responseData.data.members
+                let A=memberId.push(responseData.data.student)
+                memberId.length && I.send(memberId, "room:stop", responseData.data);
                 let reportbody = {
                   submittime: responseData.data.stoppedAt,
                   room: responseData.data.id,
@@ -1520,10 +1543,10 @@ const upload = multer({ storage: storage });
               // let resized = await sharp(req.file.buffer).resize(5000, 5000).jpeg({ quality: 90 }).toBuffer()
               let uploadImg = await uploadImgAndVerifyObject(req.file.buffer)
               if (uploadImg.success) {
-                // let uploadImage = JSON.parse(uploadImg.message)
-                // var find = _.find(uploadImage.message, { key: 'cell phone' })
-                // var findHeadphone = _.find(uploadImage.message, { key: 'Headphones' })
-                // if (find || findHeadphone) {
+                // let uploadImage = uploadImg.message
+                var find = _.find(uploadImg.message, { key: 'cell phone' })
+                var findHeadphone = _.find(uploadImg.message, { key: 'Headphones' })
+                if (find || findHeadphone) {
                   res.status(200).send({ success: true, message: 'Phone detected' })
                   let responseData = await invoke.makeHttpCall("get", "/api/verifymobile/" + req.headers.authorization);
                   if (responseData && responseData.data) {
@@ -1571,9 +1594,9 @@ const upload = multer({ storage: storage });
                   } else {
                     res.send("response not found")
                   }
-                // } else {
-                //   res.status(200).send({ success: false, message: 'There is no object detected' })
-                // }
+                } else {
+                  res.status(200).send({ success: false, message: 'There is no object detected' })
+                }
               } else {
                   res.status(200).send({ success: false, message: 'There is no object detected' })
               }
