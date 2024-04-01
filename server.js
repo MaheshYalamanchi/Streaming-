@@ -40,6 +40,10 @@ var userService = require('./routes/index.js');
 var webinarService = require('./routes/webinar');
 const axios = require("axios");
 const sharp = require('sharp');
+const jwt_decode = require('jwt-decode');
+const FormData = require('form-data');
+
+
 var minioClient = new minio.Client({
   endPoint: process.env.MINIO_ENDPOINT,
   port: 443,
@@ -312,6 +316,9 @@ const upload = multer({ storage: storage });
         ),
         w.post("/login", async (req, res) => {
           try {
+            if(req.query.tenantId){
+              req.body.tenantId = req.query.tenantId;
+            }
             let responseData = await invoke.makeHttpCall("post", "/api/auth/" + req.body.provider + "", req.body);
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
@@ -333,7 +340,7 @@ const upload = multer({ storage: storage });
         w.get("/", async (req, res) => {
           try {
             var jsonData = {
-              authorization: req.headers.authorization
+              authorization: req.headers.authorization,
             }
             let responseData = await invoke.makeHttpCall("post", "/api/auth", jsonData);
             if (responseData && responseData.data) {
@@ -483,7 +490,7 @@ const upload = multer({ storage: storage });
       w.get("/:roomId", async (req, res, E) => {
         try {
           if (req.params.roomId && req.query.limit && req.query.skip && req.query.filter && req.query.filter.type) {
-            let responseData = await invoke.makeHttpCall("get", "/api/chat/" + req.params.roomId + "?limit=" + req.query.limit + "&skip=" + req.query.skip + "&filter[type]=" + req.query.filter.type + "");
+            let responseData = await invoke.makeHttpCall("get", "/api/chat/" + req.params.roomId + "?limit=" + req.query.limit + "&skip=" + req.query.skip + "&filter[type]=" + req.query.filter.type +"");
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
             } else {
@@ -504,7 +511,7 @@ const upload = multer({ storage: storage });
               res.send("response not found")
             }
           } else if (req.query && req.query.sort && req.query.sort.id) {
-            let responseData = await invoke.makeHttpCall("get", "/api/chat/" + req.params.roomId + "?sort[id]=" + req.query.sort.id);
+            let responseData = await invoke.makeHttpCall("get", "/api/chat/" + req.params.roomId + "?sort[id]=" + req.query.sort.id+"");
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
             } else {
@@ -524,7 +531,13 @@ const upload = multer({ storage: storage });
       }),
         w.get("/screen/:roomId/", async (req, res, E) => {
           try {
-            let responseData = await invoke.makeHttpCallUser_service("get", "/api/chat/screen/" + req.params.roomId);
+            let jsonData;
+            if(req && req.headers && req.headers.authorization){
+              jsonData = {
+                authorization: req.headers.authorization
+              }
+            }
+            let responseData = await invoke.makeHttpCallUser_service("post", "/api/chat/screen/" + req.params.roomId, jsonData);
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
             } else {
@@ -559,10 +572,15 @@ const upload = multer({ storage: storage });
             peak: req.body.peak,
             time: new Date(),
             room: responseData.data.id,
+            authorization: req.headers.authorization
             // student:responseData.data.student
           }
-          let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody)
-          res.json({ success: true, message: 'Log inserted successfully' });
+          let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody);
+          if (report && report.data){
+            res.json({ success: true, message: 'Log inserted successfully' });
+          } else {
+            res.json({ success: false, message: 'Log inserted not successfully' });
+          }
         }),
         w.post("/:roomId",upload.array('upload',16), async (req, res, E) => {
           try {
@@ -594,6 +612,7 @@ const upload = multer({ storage: storage });
                 switch (responseData.data.type) {
                   case "message":
                     if (responseData.data.room == "sendToAll") {
+                      responseData.data.tenantId = req.query.tenantId
                       let response = invoke.makeHttpCall("post", '/api/broadcast/sendToAll', responseData.data);
                     }
                     g.send(String(responseData.data.room), "chat:message", responseData.data);
@@ -602,7 +621,8 @@ const upload = multer({ storage: storage });
                       messagetime: responseData.data.createdAt,
                       room: responseData.data.room,
                       student: responseData.data.user.id,
-                      role: responseData.data.user.role
+                      role: responseData.data.user.role,
+                      authorization: req.headers.authorization
                     }
                     let messagereport = await invoke.makeHttpCallUser_service("post", "/api/reportlog", msgreport)
                     break;
@@ -629,7 +649,8 @@ const upload = multer({ storage: storage });
                           peak: iterator.peak,
                           time: iterator.createdAt,
                           room: responseData.data.room,
-                          student: responseData.data.user.id
+                          student: responseData.data.user.id,
+                          authorization: req.headers.authorization
                         }
                         let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody);
                       }
@@ -797,7 +818,8 @@ const upload = multer({ storage: storage });
       w.get("/:model", async (req, res, E) => {
         try {
           let jsonData = {
-            query: req.query
+            query: req.query,
+            authorization: req.headers.authorization
           }
           let responseData = await invoke.makeHttpCallsync("put", '/api/csv/' + req.params.model + '', jsonData);
           if (responseData && responseData.data) {
@@ -1078,7 +1100,8 @@ const upload = multer({ storage: storage });
               let reportbody = {
                 starttime: responseData.data.startedAt,
                 room: responseData.data.id,
-                student: responseData.data.student
+                student: responseData.data.student,
+                authorization: req.headers.authorization
               }
               let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody)
             } else {
@@ -1115,7 +1138,7 @@ const upload = multer({ storage: storage });
         s.post("/submit", async (req, res, E) => {
           try {
             if (req.body) {
-              req.body.authorization = req.headers.authorization
+              req.body.authorization = req.headers.authorization;
               let responseData = await invoke.makeHttpCall("post", '/api/room/submit?id=' + req.query.id, req.body);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
@@ -1128,7 +1151,8 @@ const upload = multer({ storage: storage });
                   room: responseData.data.id,
                   student: responseData.data.student.id,
                   status: responseData.data.status,
-                  comment: responseData.data.comment
+                  comment: responseData.data.comment,
+                  authorization: req.headers.authorization
                 }
                 let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody)
               } else {
@@ -1227,15 +1251,21 @@ const upload = multer({ storage: storage });
         }),
         s.get("/:userId", async (req, res, E) => {
           try {
+            let jsonData;
+            if(req && req.headers && req.headers.authorization){
+              jsonData = {
+                authorization: req.headers.authorization
+              }
+            }
             if (req.params.userId && req.query.populate && req.query.populate[0] && req.query.populate[1]) {
-              let responseData = await invoke.makeHttpCall("get", "/api/room/" + req.params.userId + "?populate=" + req.query.populate[0] + "&populate=" + req.query.populate[1] + "");
+              let responseData = await invoke.makeHttpCall("post", "/api/room/" + req.params.userId + "?populate=" + req.query.populate[0] + "&populate=" + req.query.populate[1] +"",jsonData);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
                 res.send("response not found")
               }
             } else if (req.params.userId) {
-              let responseData = await invoke.makeHttpCall("get", "/api/room/" + req.params.userId + "");
+              let responseData = await invoke.makeHttpCall("post", "/api/room/" + req.params.userId + "",jsonData);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
@@ -1309,7 +1339,7 @@ const upload = multer({ storage: storage });
         s.delete("/:UserId", async (req, res, E) => {
           try {
             if (req.params.UserId) {
-              let responseData = await invoke.makeHttpCall("delete", "/api/room/" + req.params.UserId);
+              let responseData = await invoke.makeHttpCall("delete", "/api/room/" + req.params.UserId+"");
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
@@ -1526,6 +1556,45 @@ const upload = multer({ storage: storage });
             }
           }
         }),
+        w.post("/facephoto", upload.single('upload'), async (req, res, E) => {
+          try {
+            if(!req.file.buffer){
+              res.status(200).send("upload proper file")
+            } else {
+              var decodedValue;
+              const header = req.headers.authorization.split(" ");
+              const authorization = header[1];
+              // var decodeToken = jwt_decode(authorization);
+              if(authorization !== null || authorization !== undefined){
+                const base64String = authorization.split('.')[1];
+                decodedValue = JSON.parse(Buffer.from(base64String,    
+                                     'base64').toString('ascii'));
+               }
+              // const containerName = 'training';
+              // const folderName = decodedValue.id; // Folder name to create
+              // const fileName = req.file.originalname+".png"
+              let uploadImg = await uploadTrainedImg(req.file.buffer,req.file.originalname,decodedValue.id)
+              if (uploadImg.success) {
+                res.status(200).send({success:true,mesage:'uploaded','counter':uploadImg.message.counter});
+                //train photo
+                if(uploadImg&&uploadImg.message&&uploadImg.message.counter&&(uploadImg.message.counter==31)){
+                  let uploadImg = await uploadTrainedApiCall(decodedValue.id)   
+                }
+              }else{
+                res.status(200).send({success:false,mesage:'failed to upload'});
+              }
+              
+              
+            }
+          } catch (error) {
+            console.log(error)
+            if (error && error.message) {
+              res.status(400).send(error);
+            } else {
+              res.status(400).send(error);
+            }
+          }
+        }),
         w.post('/verifymobile', upload.single('upload'), async (req, res) => {
           try {
             // var jsondata;
@@ -1641,6 +1710,7 @@ const upload = multer({ storage: storage });
                   peak: response.data.metadata.peak,
                   time: response.data.createdAt,
                   room: responseData.data.id,
+                  authorization: req.headers.authorization
                 }
                 let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody)
                 if (response && response.data) {
@@ -1677,6 +1747,28 @@ const upload = multer({ storage: storage });
                 if (secondResponse && secondResponse.data.success) {
                   if (responseData && responseData.data && responseData.data.message && responseData.data.message.id) {
                     res.status(200).send(responseData.data.message);
+                    //validate photo
+                    let validatePhto = await validatePhoto(responseData.data.message.user,req.file.buffer)
+                    console.log(JSON.stringify(validatePhto))
+                    if(validatePhto&&validatePhto.success&&(validatePhto.message.length)){
+                    //update record into db
+                      let jsonData={
+                        id:responseData.data.message.user,
+                        verified:true,
+                        tenantId:responseData.data.decodeToken.tenantId
+                      }
+                      let sendDataToBackend = await invoke.makeHttpCall('post', 'updatephotostatus', jsonData)
+                     //console.log(sendDataToBackend)
+                    }else{
+                      //update record into db
+                      let jsonData={
+                        id:responseData.data.message.user,
+                        verified:false,
+                        tenantId:responseData.data.decodeToken.tenantId
+                      }
+                      let sendDataToBackend = await invoke.makeHttpCall('post', 'updatephotostatus', jsonData)
+                     // console.log(sendDataToBackend)
+                    }
                     minioClient.putObject("storage", responseData.data.message.id, req.file.buffer, req.file.size, async function (err3, etag) {
                       if (err3) {
                         return res.status(500).send(err3);
@@ -1685,6 +1777,8 @@ const upload = multer({ storage: storage });
                         // res.status(200).send(responseData.data.message);
                       }
                     })
+             
+                    
                   } else {
                     res.send({ success: false, message: "response not found" });
                   }
@@ -1735,7 +1829,13 @@ const upload = multer({ storage: storage });
       w.get("/users", async (req, res, E) => {
         try {
           if (req.query && req.query.filter && req.query.filter.role) {
-            let responseData = await invoke.makeHttpCall("get", "/api/suggest/users?filter[role]=" + req.query.filter.role + "&filter[value]=" + req.query.filter.value);
+            let jsonData;
+            if(req && req.headers && req.headers.authorization){
+              jsonData = {
+                authorization: req.headers.authorization
+              }
+            }
+            let responseData = await invoke.makeHttpCall("post", "/api/suggest/users?filter[role]=" + req.query.filter.role + "&filter[value]=" + req.query.filter.value, jsonData);
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
             } else {
@@ -1770,14 +1870,14 @@ const upload = multer({ storage: storage });
               res.send("response not found")
             }
           } else if (req.query.limit && req.query.filter && req.query.start && req.query.count && req.query.continue) {
-            let responseData = await invoke.makeHttpCall("get", "/api/user?limit=" + req.query.limit + "&filter=" + req.query.filter + "&start=" + req.query.start + "&count=" + req.query.count + "&continue=" + req.query.continue + "");
+            let responseData = await invoke.makeHttpCall("get", "/api/user?limit=" + req.query.limit + "&filter=" + req.query.filter + "&start=" + req.query.start + "&count=" + req.query.count + "&continue=" + req.query.continue +"");
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
             } else {
               res.send("response not found")
             }
           } else if (req.query.limit && req.query.filter) {
-            let responseData = await invoke.makeHttpCall("get", "/api/user?limit=" + req.query.limit + "&filter=" + req.query.filter + "");
+            let responseData = await invoke.makeHttpCall("get", "/api/user?limit=" + req.query.limit + "&filter=" + req.query.filter +"");
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
             } else {
@@ -1791,14 +1891,14 @@ const upload = multer({ storage: storage });
               res.send("response not found")
             }
           } else if (req.query.limit && req.query.start && req.query.count && req.query.continue) {
-            let responseData = await invoke.makeHttpCall("get", "/api/user?limit=" + req.query.limit + "&start=" + req.query.start + "&count=" + req.query.count + "&continue=" + req.query.continue + "");
+            let responseData = await invoke.makeHttpCall("get", "/api/user?limit=" + req.query.limit + "&start=" + req.query.start + "&count=" + req.query.count + "&continue=" + req.query.continue +"");
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
             } else {
               res.send("response not found")
             }
           } else if (req.query.limit) {
-            let responseData = await invoke.makeHttpCall("get", "/api/user?limit=" + req.query.limit);
+            let responseData = await invoke.makeHttpCall("get", "/api/user?limit=" + req.query.limit+"");
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
             } else {
@@ -1816,7 +1916,7 @@ const upload = multer({ storage: storage });
         w.get("/me", async (req, res, E) => {
           try {
             var jsonData = {
-              authorization: req.headers.authorization
+              authorization: req.headers.authorization,
             }
             let responseData = await invoke.makeHttpCall("post", "/api/user/me", jsonData);
             if (responseData && responseData.data) {
@@ -1864,7 +1964,7 @@ const upload = multer({ storage: storage });
         w.get("/:username", async (req, res) => {
           try {
             if (req.params.username) {
-              let responseData = await invoke.makeHttpCall("get", "/api/user/" + req.params.username + "");
+              let responseData = await invoke.makeHttpCall("get", "/api/user/" + req.params.username +"");
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
@@ -1883,7 +1983,7 @@ const upload = multer({ storage: storage });
           try {
             if (req.body) {
               var A = req.get("user-agent")
-              req.body.bower = A
+              req.body.bower = A;
               let responseData = await invoke.makeHttpCall("post", '/api/user', req.body);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
@@ -1922,7 +2022,7 @@ const upload = multer({ storage: storage });
         w.delete("/:UserId", async (req, res, E) => {
           try {
             if (req.params.UserId) {
-              let responseData = await invoke.makeHttpCall("delete", "/api/user/" + req.params.UserId);
+              let responseData = await invoke.makeHttpCall("delete", "/api/user/" + req.params.UserId +"");
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
@@ -2152,6 +2252,76 @@ let uploadImgAndVerify = async (fileBuffer) => {
 
   })
 };
+
+let uploadTrainedImg= async (fileBuffer,filename,folderName) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      // console.log('/upload?filename='+filename+'&folderName='+folderName)
+      await axios.post(process.env.OBJECT_DETECTION + '/upload?filename='+filename+'&folderName='+folderName, fileBuffer, {
+        headers: {
+          'Content-Type': 'application/octet-stream',
+        },
+      })
+        .then((response) => {
+          resolve({ success: true, message: response.data })
+        })
+        .catch((error) => {
+          resolve({ success: false, message: error })
+        });
+    } catch (error) {
+      reject({ success: false, message: error })
+    }
+
+  })
+};
+let uploadTrainedApiCall=async(userName,fileBuffer)=>{
+  return new Promise(async (resolve, reject) => {
+    try {
+      // console.log('/upload?filename='+filename+'&folderName='+folderName)
+      await axios.post(process.env.OBJECT_DETECTION + '/train?model=hog&userName='+userName, {
+        headers: {
+          'Content-Type': 'application/octet-stream',
+        },
+      })
+        .then((response) => {
+          resolve({ success: true, message: response.data })
+        })
+        .catch((error) => {
+          resolve({ success: false, message: error })
+        });
+    } catch (error) {
+      reject({ success: false, message: error })
+    }
+
+  })
+}
+let validatePhoto=async(userName,imageBuffer)=>{
+  return new Promise(async (resolve, reject) => {
+    try {
+      const formData = new FormData();
+      formData.append('file', imageBuffer, {
+        filename: 'image.jpg',
+        contentType: 'image/jpeg' // Change content type accordingly
+      });
+    
+      // console.log('/upload?filename='+filename+'&folderName='+folderName)
+      await axios.post(process.env.OBJECT_DETECTION + '/recognize?userName='+userName, formData,{
+        headers: {
+          'Content-Type': 'application/octet-stream',
+        },
+      })
+        .then((response) => {
+          resolve({ success: true, message: response.data })
+        })
+        .catch((error) => {
+          resolve({ success: false, message: error })
+        });
+    } catch (error) {
+      reject({ success: false, message: error })
+    }
+
+  })
+}
 let uploadImgAndVerifyObject = async (fileBuffer) => {
   return new Promise(async (resolve, reject) => {
 
