@@ -201,15 +201,8 @@ router.post('/menucreate', async(req, res, next) => {
 }); 
 router.get('/menuget', async(req, res, next) => {
   try {
-    if (req && req.query) {
-      let jsonData;
-      if(req.headers.authorization){
-        jsonData = {
-          authorization: req.headers.authorization,
-          role: req.query.role
-        } 
-      }
-      let responseData = await invoke.makeHttpCallUser_service("post", "/user/menuget", jsonData);
+    if (req) {
+      let responseData = await invoke.makeHttpCallUser_service("get", "/user/menuget?role="+req.query.role);
       if (responseData && responseData.data) {
         res.status(200).send({ success :true ,message:responseData.data.message});
       } else {
@@ -348,41 +341,12 @@ router.get('/reportlog/:roomId/:userId', async(req, res, next) => {
 });
 router.get('/overview', async(req, res, next) => {
   try {
-    let jsonData;
-    if(req.headers.authorization){
-      jsonData = {
-        authorization: req.headers.authorization
-      }
-    }
-    let responseData = await invoke.makeHttpCallUser_service("post", "/user/overview",jsonData);
-    if (responseData && responseData.data) {
-      res.status(200).send({ success :true ,message:responseData.data.message});
-    } else {
-      res.status(200).send({ success :false ,message:"response not found"});
-    }
-  } catch (error) {
-    if (error && error.message) {
-        res.status(400).send(error);
-    } else {
-        res.status(400).send(error);
-    }
-  }
-});
-router.post('/getSessionsStatus', async(req, res, next) => {
-  try {
-    if (req && req.body ) {
-      if(req.headers.authorization){
-        req.body.authorization = req.headers.authorization
-      }
-      let responseData = await invoke.makeHttpCallUser_service("post", "/user/getSessionsStatus",req.body);
-      if (responseData && responseData.data&&responseData.data.success) {
+      let responseData = await invoke.makeHttpCallUser_service("get", "/user/overview");
+      if (responseData && responseData.data) {
         res.status(200).send({ success :true ,message:responseData.data.message});
       } else {
-        res.status(200).send({ success :false ,message:"Data not found"});
+        res.status(200).send({ success :false ,message:"response not found"});
       }
-    } else {
-      res.status(200).send({ success :false ,message:"Room id missing"});
-    }
     }catch (error) {
     if (error && error.message) {
         res.status(400).send(error);
@@ -391,13 +355,12 @@ router.post('/getSessionsStatus', async(req, res, next) => {
     }
     }
 });
-router.post('/createdatabasemaster', async(req, res, next) => {
+router.post('/getSessionsStatus', async(req, res, next) => {
   try {
     if (req && req.body ) {
-      let responseData = await invoke.makeHttpCallsync("post", "/createdatabasemaster",req.body);
+      let responseData = await invoke.makeHttpCallUser_service("post", "/user/getSessionsStatus",req.body);
       if (responseData && responseData.data&&responseData.data.success) {
-        let response = await invoke.makeHttpCallsync("post", "/import",req.body);
-        res.status(200).send({ success :true ,message:response.data.message});
+        res.status(200).send({ success :true ,message:responseData.data.message});
       } else {
         res.status(200).send({ success :false ,message:"Data not found"});
       }
