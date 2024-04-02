@@ -20,73 +20,83 @@ spec:
           - name: MONGO_URI
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: MONGO_URI
           - name: MINIO_URI
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: MINIO_URI
           - name: SESSION_KEY
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: SESSION_KEY
           - name: proctorAiService
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: proctorAiService
           - name: port
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: port
           
           - name: PROCTOR_BACKEND
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: PROCTOR_BACKEND
           - name: RECOGNIZER
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: RECOGNIZER
           - name: MINIO_ACCESSKEY
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: MINIO_ACCESSKEY
           - name: MINIO_SECRETKEY
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: MINIO_SECRETKEY
           - name: MINIO_ENDPOINT
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: MINIO_ENDPOINT
           - name: proctorui
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: proctorui
           - name: AI_SERVICE
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: AI_SERVICE
+          - name: SYNC
+            valueFrom:
+              secretKeyRef:
+                name: proctor-dev-env
+                key: SYNC
+          - name: USER_SERVICE
+            valueFrom:
+              secretKeyRef:
+                name: proctor-dev-env
+                key: USER_SERVICE
           - name: OBJECT_DETECTION
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: OBJECT_DETECTION
           - name: Tao_SERVICE
             valueFrom:
               secretKeyRef:
-                name: proctor-qa-env
+                name: proctor-dev-env
                 key: Tao_SERVICE
           ports:
           - containerPort: 8000
