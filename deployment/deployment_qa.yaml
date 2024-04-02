@@ -86,7 +86,7 @@ spec:
           - name: Tao_SERVICE
             valueFrom:
               secretKeyRef:
-                name: proctor-dev-env
+                name: proctor-qa-env
                 key: Tao_SERVICE
           ports:
           - containerPort: 8000
