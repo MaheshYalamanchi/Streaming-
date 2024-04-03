@@ -40,6 +40,7 @@ var userService = require('./routes/index.js');
 var webinarService = require('./routes/webinar');
 const axios = require("axios");
 const sharp = require('sharp');
+const jwt_decode = require('jwt-decode');
 const FormData = require('form-data');
 
 
@@ -1087,9 +1088,9 @@ const upload = multer({ storage: storage });
              */
             var jsonData = {
               authorization: req.headers.authorization,
-              ipAddress: req.body.ipaddress
+              // ipAddress: req.body.ipaddress
             }
-            let responseData = await invoke.makeHttpCall("post", '/api/room/start?id=' + req.query.id, jsonData);
+            let responseData = await invoke.makeHttpCall("post", "/api/room/start?id=" + req.query.id, jsonData);
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
               let memberId=[]
@@ -1257,14 +1258,14 @@ const upload = multer({ storage: storage });
               }
             }
             if (req.params.userId && req.query.populate && req.query.populate[0] && req.query.populate[1]) {
-              let responseData = await invoke.makeHttpCall("post", "/api/room/" + req.params.userId + "?populate=" + req.query.populate[0] + "&populate=" + req.query.populate[1] +"",jsonData);
+              let responseData = await invoke.makeHttpCall("patch", "/api/room/" + req.params.userId + "?populate=" + req.query.populate[0] + "&populate=" + req.query.populate[1] +"",jsonData);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
                 res.send("response not found")
               }
             } else if (req.params.userId) {
-              let responseData = await invoke.makeHttpCall("post", "/api/room/" + req.params.userId + "",jsonData);
+              let responseData = await invoke.makeHttpCall("pacth", "/api/room/" + req.params.userId + "",jsonData);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
