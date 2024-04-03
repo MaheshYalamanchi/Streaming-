@@ -23,6 +23,7 @@
     "http-proxy": "^1.18.1",
     "ims-lti": "^3.0.2",
     "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^4.0.0",
     "minio": "^7.0.17",
     "moment-timezone": "^0.5.32",
     "mongoose": "^5.11.7",
