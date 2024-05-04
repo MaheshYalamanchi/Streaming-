@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const invoke = require("../lib/http/invoke");
+var multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+var minio = require("minio");
+var minioClient = new minio.Client({
+  endPoint: process.env.MINIO_ENDPOINT,
+  port: 443,
+  useSSL: true,
+  accessKey: process.env.MINIO_ACCESSKEY,
+  secretKey: process.env.MINIO_SECRETKEY
+});
 /* GET home page. */
 router.post('/rolecreation', async(req, res, next) => {
   try {
@@ -412,4 +423,87 @@ router.post('/createdatabasemaster', async(req, res, next) => {
     }
     }
 });
+router.get('/gettenant', async(req, res, next) => {
+  try {
+      let responseData = await invoke.makeHttpCallsync("get", "/gettenant");
+      if (responseData && responseData.data&&responseData.data.success) {
+        res.status(200).send({ success :true ,message:responseData.data.message});
+      } else {
+        res.status(200).send({ success :false ,message:"Data not found"});
+      }
+  
+    }catch (error) {
+    if (error && error.message) {
+        res.status(400).send(error);
+    } else {
+        res.status(400).send(error);
+    }
+    }
+});
+router.post('/createtenant', upload.single('upload'),async(req, res, next) => {
+  try {
+    var logoId;
+    if (req && req.body ) {
+      let uploadImg=await validatePhoto(req.body,req.file)
+      req.body.logo=uploadImg.message
+      let responseData = await invoke.makeHttpCallsync("post", "/createtenant",req.body);
+      if (responseData && responseData.data&&responseData.data.success) {
+        res.status(200).send(responseData.data);
+      } else {
+        res.status(200).send(responseData.data);
+      }
+    } else {
+      res.status(200).send({ success :false ,message:"Room id missing"});
+    }
+    }catch (error) {
+    if (error && error.message) {
+        res.status(400).send(error);
+    } else {
+        res.status(400).send(error);
+    }
+    }
+});
+let validatePhoto=async(body,imageBuffer)=>{
+  return new Promise(async (resolve, reject) => {
+    try {
+      minioClient.putObject("storage", body.tenantId, imageBuffer.buffer, imageBuffer.size, async function (err3, etag) {
+        if (err3) {
+          reject({ success: false, message: err3 })
+        } else if (etag) {
+          resolve({ success: true, message: etag })
+        }
+      })
+    }catch(error){
+      reject({ success: false, message: error })
+    }
+  })
+}
+
+router.post('/getBranding', async(req, res, next) => {
+  try {
+    if(req && req.headers && req.headers.authorization){
+      req.body.authorization = req.headers.authorization;
+    }
+    let responseData = await invoke.makeHttpCallsync("post", "/getBranding",req.body);
+    if (responseData && responseData.data&&responseData.data.success) {
+      res.status(200).send(responseData.data);
+    } else {
+      res.status(200).send(responseData.data);
+    }
+    }catch (error) {
+    if (error && error.message) {
+        res.status(400).send(error);
+    } else {
+        res.status(400).send(error);
+    }
+    }
+});
+router.post('/deletetenant',async(req,res)=>{
+  try {
+    let responseData = await invoke.makeHttpCallsync("post", "/deletetenant",req.body);
+    res.status(200).send(responseData.data);
+  } catch (error) {
+    return ({success:false,message:'Something went wrong connect to admin.'})
+  }
+})
 module.exports = router;

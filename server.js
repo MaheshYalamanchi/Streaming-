@@ -1265,7 +1265,7 @@ const upload = multer({ storage: storage });
                 res.send("response not found")
               }
             } else if (req.params.userId) {
-              let responseData = await invoke.makeHttpCall("pacth", "/api/room/" + req.params.userId + "",jsonData);
+              let responseData = await invoke.makeHttpCall("patch", "/api/room/" + req.params.userId + "",jsonData);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
@@ -1283,6 +1283,7 @@ const upload = multer({ storage: storage });
         s.post("/", async (req, res, E) => {
           try {
             if (req.body) {
+              req.body.authorization = req.headers.authorization;
               let responseData = await invoke.makeHttpCall("post", '/api/room', req.body);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
@@ -1303,6 +1304,7 @@ const upload = multer({ storage: storage });
         s.put("/:userId", async (req, res, E) => {
           try {
             if (req && req.body) {
+              req.body.authorization = req.headers.authorization;
               let responseData = await invoke.makeHttpCall("put", "/api/room/" + req.params.userId + "", req.body);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
@@ -1984,6 +1986,7 @@ const upload = multer({ storage: storage });
             if (req.body) {
               var A = req.get("user-agent")
               req.body.bower = A;
+              req.body.authorization = req.headers.authorization;
               let responseData = await invoke.makeHttpCall("post", '/api/user', req.body);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
@@ -2004,6 +2007,7 @@ const upload = multer({ storage: storage });
         w.put("/:userId", async (req, res, E) => {
           try {
             if (req && req.body) {
+              req.body.authorization = req.headers.authorization;
               let responseData = await invoke.makeHttpCall("put", "/api/user/" + req.params.userId + "", req.body);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
