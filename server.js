@@ -1341,7 +1341,7 @@ const upload = multer({ storage: storage });
         s.delete("/:UserId", async (req, res, E) => {
           try {
             if (req.params.UserId) {
-              let responseData = await invoke.makeHttpCall("delete", "/api/room/" + req.params.UserId+"");
+              let responseData = await invoke.makeHttpCall("delete", "/api/room/" + req.params.UserId+"?authorization="+req.headers.authorization+"");
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
@@ -1361,7 +1361,29 @@ const upload = multer({ storage: storage });
         s.get("/notification/:userId", async (req, res, E) => {
           try {
             if (req.params.userId) {
-              let responseData = await invoke.makeHttpCall("get", "/api/room/notification/" + req.params.userId);
+              let JsonData = {
+                authorization:req.headers.authorization
+              }
+              let responseData = await invoke.makeHttpCall("post", "/api/room/notification/" + req.params.userId,JsonData);
+              if (responseData && responseData.data) {
+                res.status(200).send(responseData.data);
+              } else {
+                res.send("response not found")
+              }
+            }
+          } catch (error) {
+            if (error && error.message) {
+              res.status(400).send(error);
+            } else {
+              res.status(400).send(error);
+            }
+          }
+        }),
+        s.patch("/notification", async (req, res, E) => {
+          try {
+            if (req.body) {
+              req.body.authorization = req.headers.authorization;
+              let responseData = await invoke.makeHttpCall("patch", "/api/room/notification/unread",req.body);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
@@ -1751,9 +1773,10 @@ const upload = multer({ storage: storage });
                     res.status(200).send(responseData.data.message);
                     //validate photo
                     let validatePhto = await validatePhoto(responseData.data.message.user,req.file.buffer)
-                    console.log(JSON.stringify(validatePhto))
-                    if(validatePhto&&validatePhto.success&&(validatePhto.message.length)){
+                    // console.log(JSON.stringify(validatePhto))
+                    if(validatePhto.message.length){
                     //update record into db
+                    console.log(JSON.stringify(validatePhto),'inside if')
                       let jsonData={
                         id:responseData.data.message.user,
                         verified:true,
@@ -1763,6 +1786,7 @@ const upload = multer({ storage: storage });
                      //console.log(sendDataToBackend)
                     }else{
                       //update record into db
+                      console.log(JSON.stringify(validatePhto),'inside else')
                       let jsonData={
                         id:responseData.data.message.user,
                         verified:false,
@@ -2026,7 +2050,7 @@ const upload = multer({ storage: storage });
         w.delete("/:UserId", async (req, res, E) => {
           try {
             if (req.params.UserId) {
-              let responseData = await invoke.makeHttpCall("delete", "/api/user/" + req.params.UserId +"");
+              let responseData = await invoke.makeHttpCall("delete", "/api/user/" + req.params.UserId +"?authorization="+req.headers.authorization+"");
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
