@@ -33975,7 +33975,7 @@ button.webix_alert_btn:hover {
   position: absolute;
   box-sizing: border-box;
   border: 1px solid #fff;
-  /* padding:10%; */
+  padding-top:15%;
 }
 
 .webix_supervision_level1.webix_selected {
@@ -34521,6 +34521,7 @@ a:active {
   flex-wrap: wrap-reverse;
   width: 5%;
   width: 48px;
+
 }
 
 .webix_supervision_violation {
