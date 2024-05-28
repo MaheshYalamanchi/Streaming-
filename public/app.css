@@ -33974,7 +33974,7 @@ button.webix_alert_btn:hover {
 .webix_supervision_level1 {
   position: absolute;
   box-sizing: border-box;
-  border: 1px solid #7e0c0c;
+  border: 1px solid #fff;
   /* padding:10%; */
 }
 
@@ -34045,6 +34045,7 @@ button.webix_alert_btn:hover {
   opacity: 0.9;
   cursor: pointer;
   text-align: center;
+  color: red;
 }
 
 .webix_supervision_button:hover {
@@ -34389,7 +34390,7 @@ a:active {
 }
 
 .mdi {
-  vertical-align: middle
+  vertical-align: middle;
 }
 
 .webix_cell .cell_progress_outer {
