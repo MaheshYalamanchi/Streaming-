@@ -33966,6 +33966,7 @@ button.webix_alert_btn:hover {
   background : black;
   width: 100% !important;
   height: 100% !important;
+  overflow-y:auto;
   /* left :10% !important; */
   /* height:90%; */
   /* background: repeating-linear-gradient( 45deg, #eee, #eee 15px, #fff 15px, #fff 30px); */
