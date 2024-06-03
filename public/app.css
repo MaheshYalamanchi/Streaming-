@@ -33999,7 +33999,7 @@ button.webix_alert_btn:hover {
   /* left:30%; */
   /* top: 0; */
   right: 0;
-  background-color: rgba(52, 152, 219, 0.7);
+  background-color: #000;
   height: 32px;
   overflow: hidden;
   display: flex;
@@ -34008,7 +34008,7 @@ button.webix_alert_btn:hover {
   width: 100%;
   z-index: 2;
   line-height: 32px;
-  opacity: 0.8;
+  opacity: 65%;
   /*opacity: 0;*/
   /*transition: opacity 0.3s ease-out 2s;*/
 }
@@ -34046,7 +34046,7 @@ button.webix_alert_btn:hover {
   opacity: 0.9;
   cursor: pointer;
   text-align: center;
-  color: red;
+  color: white;
 }
 
 .webix_supervision_button:hover {
