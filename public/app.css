@@ -33997,7 +33997,7 @@ button.webix_alert_btn:hover {
   position: absolute;
   bottom: 0;
   /* left:30%; */
-  top: 0;
+  /* top: 0; */
   right: 0;
   background-color: rgba(52, 152, 219, 0.7);
   height: 32px;
