@@ -3877,7 +3877,8 @@ div.webix_modal_cover {
   clear: both;
   height: auto;
   position: relative;
-  width: 100%
+  width: 100%;
+  margin-top: -14px;
 }
 
 .webix_scroll_touch_ie {
