@@ -1249,6 +1249,26 @@ const upload = multer({ storage: storage });
             }
           }
         }),
+        s.post("/stream",async(req,res,E)=>{
+          try {
+            var jsonData = {
+              authorization: req.headers.authorization,
+              rooms:req.body.rooms
+            }
+            let responseData = await invoke.makeHttpCall("post", "/api/stream",jsonData);
+            if (responseData && responseData.data) {
+              res.status(200).send(responseData.data);
+            } else {
+              res.send("response not found")
+            }
+          } catch (error) {
+            if (error && error.message) {
+              res.status(400).send(error);
+            } else {
+              res.status(400).send(error);
+            }
+          }
+        })
         s.get("/:userId", async (req, res, E) => {
           try {
             let jsonData;
