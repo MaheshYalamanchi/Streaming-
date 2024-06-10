@@ -506,4 +506,21 @@ router.post('/deletetenant',async(req,res)=>{
     return ({success:false,message:'Something went wrong connect to admin.'})
   }
 })
+router.get('/getScheduleList', async(req, res, next) => {
+  try {
+      let responseData = await invoke.makeHttpCallUser_service("post", "/user/getScheduleList",req.headers);
+      if (responseData && responseData.data&&responseData.data.success) {
+        res.status(200).send({ success :true ,message:responseData.data.message});
+      } else {
+        res.status(200).send({ success :false ,message:"Data not found"});
+      }
+  
+    }catch (error) {
+    if (error && error.message) {
+        res.status(400).send(error);
+    } else {
+        res.status(400).send(error);
+    }
+    }
+});
 module.exports = router;
