@@ -33968,7 +33968,7 @@ button.webix_alert_btn:hover {
 }
 
 .webix_supervision {
-  /* position: relative; */
+  position: relative;
   box-sizing: border-box;
   /* margin-left: -301px !important; */
   margin-top: -12px !important;
@@ -33981,7 +33981,7 @@ button.webix_alert_btn:hover {
 }
 
 .webix_supervision_level1 {
-  /* position: absolute; */
+  position: absolute;
   box-sizing: border-box;
   border: 2px solid #ebebeb;
 }
