@@ -4245,7 +4245,7 @@ body:not(:-moz-handler-blocked) .webix_el_select select {
   padding: 5px 9pt;
   resize: none;
   position: relative !important;
-  left: 385px !important;
+  left: 785px !important;
 }
 
 .webix_el_textarea .webix_inp_label {
