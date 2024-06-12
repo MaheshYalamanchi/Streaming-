@@ -3892,7 +3892,7 @@ div.webix_modal_cover {
 }
 
 .webix_secondary .webix_button:focus, .webix_secondary .webix_button:hover {
-  background-color: #e7e9f2
+  background-color: #27BBEE 0% 0% no-repeat padding-box
 }
 
 .webix_secondary .webix_button:active {
