@@ -34721,11 +34721,11 @@ a:active {
   background: #ff5c4c;
   color: #fff;
   float: left !important;
-  margin-left: 50px !important;
-  width: 74px !important;
-  height: 30px !important;
-  border-radius: 10% !important;
-  margin-top: -90px !important;
+  margin-left: 176px !important;
+  width: 100px !important;
+  height: 44px !important;
+  border-radius: 3% !important;
+  margin-top: -95px !important;
 }
 .webix_layout_line {
   /* position: relative !important;
