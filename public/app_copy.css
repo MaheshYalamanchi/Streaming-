@@ -3887,8 +3887,8 @@ div.webix_modal_cover {
   background: #3e3d3d;
   border-radius: 10px;
   color: linear-gradient(to right, #00b0ed 0, #53aa34 100%);
-  height: 35px;
-  
+  height: 56px;
+  width:80px 
 }
 
 .webix_secondary .webix_button:focus, .webix_secondary .webix_button:hover {
@@ -34714,6 +34714,7 @@ a:active {
 
 .webix_secondary {
   float: left !important;
+  width:90px !important
 }
 
 .webix_danger {
@@ -34724,7 +34725,7 @@ a:active {
   width: 74px !important;
   height: 30px !important;
   border-radius: 10% !important;
-  margin-top: 10px !important;
+  margin-top: -90px !important;
 }
 .webix_layout_line {
   /* position: relative !important;
