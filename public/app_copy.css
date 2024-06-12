@@ -3884,7 +3884,7 @@ div.webix_modal_cover {
 
 .webix_secondary .webix_button {
   /* background: #f4f5f9; */
-  background: #3e3d3d;
+  background: #27BBEE 0% 0% no-repeat padding-box;
   border-radius: 10px;
   color: linear-gradient(to right, #00b0ed 0, #53aa34 100%);
   height: 56px;
@@ -3902,6 +3902,7 @@ div.webix_modal_cover {
 .webix_secondary .webix_button .webix_icon, .webix_secondary .webix_button .webix_icon_btn, .webix_secondary .webix_button .webix_img_btn_text {
   color: linear-gradient(to right, #00b0ed 0, #53aa34 100%);
   position: relative;
+  color:white;
   /* bottom: 3px; */
 }
 
