@@ -3872,7 +3872,10 @@ div.webix_modal_cover {
   clear: both;
   height: auto;
   position: relative;
-  width: 100%
+  width: 100%;
+  padding: 23%;
+  margin-left: 32%;
+
 }
 
 .webix_scroll_touch_ie {
