@@ -33966,19 +33966,19 @@ button.webix_alert_btn:hover {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
 }
-
 .webix_supervision {
   position: relative;
   box-sizing: border-box;
   /* margin-left: -301px !important; */
   margin-top: -12px !important;
-  width: 317px !important;
-  height: 165px !important;
+  width: 667px !important;
+  /* height: 165px !important; */
   border-radius: 12px !important;
-  /* background: repeating-linear-gradient( 45deg, #eee, #eee 15px, #fff 15px, #fff 30px); */
+  /* background: repeating-linear-gradient(45deg, #eee, #eee 15px, #fff 15px, #fff 30px); */
   /* background: black; */
   background: #262626;
 }
+
 
 .webix_supervision_level1 {
   position: absolute;
