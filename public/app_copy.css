@@ -3907,7 +3907,7 @@ div.webix_modal_cover {
 }
 
 .webix_secondary .webix_pressed .webix_button {
-  background-color: #daddeb
+  background-color: green
 }
 
 .webix_primary .webix_button .webix_icon, .webix_primary .webix_button .webix_icon_btn, .webix_primary .webix_button .webix_img_btn_text {
