@@ -34719,7 +34719,7 @@ a:active {
 }
 
 .webix_danger {
-  background: #ff5c4c;
+  background: #C20000 0% 0% no-repeat padding-box;
   color: #fff;
   float: left !important;
   margin-left: 176px !important;
