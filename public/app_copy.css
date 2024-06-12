@@ -6440,7 +6440,8 @@ body.webix_print {
   position: relative;
   text-align: center;
   position: relative !important;
-  top: 15% !important;
+  top: 0% !important;
+  height: 44px !important;
 }
 
 .webix_icon_button .webix_icon {
