@@ -5328,26 +5328,26 @@
                             var t = this.$(en.body),
                                 r = t.firstChild;
                             f("/api/chat/".concat(He.get("id"), "?filter[type]=message&limit=20&skip=").concat(e)).then((n) => {
-                                if (n.length) {
+                                if (n.data.length) {
                                     if (
                                         ((function (e) {
                                             e.sort(function (e, t) {
                                                 return e.createdAt === t.createdAt ? 0 : e.createdAt > t.createdAt ? 1 : -1;
                                             });
-                                        })(n),
+                                        })(n.data),
                                         e && r)
                                     )
-                                        n.forEach((e) => {
+                                        n.data.forEach((e) => {
                                             t.insertBefore(this.renderMessage(e), r);
                                         }),
                                             this.scrollDown(30);
                                     else
                                         (t.innerHTML = ""),
-                                            n.forEach((e) => {
+                                            n.data.forEach((e) => {
                                                 t.appendChild(this.renderMessage(e));
                                             }),
-                                            new Date() - new Date(n[n.length - 1].createdAt) < 6e4 && this.show();
-                                    this.state.count += n.length;
+                                            new Date() - new Date(n.data[n.data.length - 1].createdAt) < 6e4 && this.show();
+                                    this.state.count += n.data.length;
                                 }
                             });
                         }
@@ -6653,7 +6653,7 @@
                             g +
                             ");background-size:auto;transform:none}.SX065LLhcSQmGnFQ17AtD video[data-off]{background-image:url(" +
                             m +
-                            ");transform:none}.SX065LLhcSQmGnFQ17AtD a{display:inline;cursor:pointer;text-decoration:none;color:var(--primary-color)}.SX065LLhcSQmGnFQ17AtD a:active{color:var(--danger-color)}.SX065LLhcSQmGnFQ17AtD button{display:inline;cursor:default;background-color: #59b1ec;border-radius:3px;text-align:center;padding:8px;}.SX065LLhcSQmGnFQ17AtD button>span{color:var(--primary-color);-webkit-filter:grayscale(1) invert(1) brightness(2);filter:grayscale(1) invert(1) brightness(2)}.SX065LLhcSQmGnFQ17AtD button:disabled{-webkit-filter:grayscale(1);filter:grayscale(1)}.SX065LLhcSQmGnFQ17AtD button:not(:disabled):hover{opacity:.8;cursor:pointer}.SX065LLhcSQmGnFQ17AtD ._34X75heDED4uZnex9Tc1sX{display:inline-block;visibility:visible;width:32px;height:32px;background-image:url(" +
+                            ");transform:none}.SX065LLhcSQmGnFQ17AtD a{display:inline;cursor:pointer;text-decoration:none;}.SX065LLhcSQmGnFQ17AtD a:active{color:var(--danger-color)}.SX065LLhcSQmGnFQ17AtD button{display:inline;cursor:default;background-color: #59b1ec;border-radius:3px;text-align:center;padding:8px;}.SX065LLhcSQmGnFQ17AtD button>span{color:var(--primary-color);-webkit-filter:grayscale(1) invert(1) brightness(2);filter:grayscale(1) invert(1) brightness(2)}.SX065LLhcSQmGnFQ17AtD button:disabled{-webkit-filter:grayscale(1);filter:grayscale(1)}.SX065LLhcSQmGnFQ17AtD button:not(:disabled):hover{opacity:.8;cursor:pointer}.SX065LLhcSQmGnFQ17AtD ._34X75heDED4uZnex9Tc1sX{display:inline-block;visibility:visible;width:32px;height:32px;background-image:url(" +
                             f +
                             ");background-size:contain;background-color:initial;background-repeat:no-repeat;margin-left:10px;padding:0;vertical-align:middle}",
                         "",
