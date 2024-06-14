@@ -5241,7 +5241,7 @@
                                               .concat(e.id, "?token=")
                                               .concat(f.token, '"\n            alt="')
                                               .concat(e.filename, '">\n          </div>')
-                                        : /application\//.test(e.mimetype)
+                                        : e.mimetype
                                         ? '<div class="'
                                               .concat(en.attach, '">\n          <span class="')
                                               .concat(en.attach_icon, '"></span>\n          <a class="')
