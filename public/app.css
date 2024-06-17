@@ -34716,7 +34716,7 @@ a:active {
 } */
 .webix_layout_toolbar {
   width: 100% !important;
-  height: 7% !important;
+  height:9% !important;
   background-color: black !important;
 }
 .webix_icon.mdi.mdi-email {
