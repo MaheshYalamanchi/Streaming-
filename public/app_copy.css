@@ -34723,12 +34723,17 @@ a:active {
   background: #C20000 0% 0% no-repeat padding-box;
   color: #fff;
   float: left !important;
-  margin-left: 176px !important;
-  width: 100px !important;
+  /* margin-left: 176px !important; */
+  /* width: 100px !important; */
   height: 44px !important;
   border-radius: 3% !important;
-  margin-top: -95px !important;
+  margin-bottom: 0 !important;
+  padding: 3%;
+  position: relative;
+  top: -126px;
+  left: 36px;
 }
+
 .webix_layout_line {
   /* position: relative !important;
   left : 1038px !important;
