@@ -3975,9 +3975,7 @@ div.webix_modal_cover {
   letter-spacing: 0;
   outline: 0;
   padding: 6px 6px;
-  width: 121px;
-  right: 230%;
-  position: absolute;
+  width: 121px
 }
 
 .webix_el_button .webix_el_box, .webix_el_toggle .webix_el_box {
@@ -34734,7 +34732,6 @@ a:active {
   position: relative;
   top: -75px;
   right: 215px;
-  left: 0px;
 }
 
 .webix_layout_line {
