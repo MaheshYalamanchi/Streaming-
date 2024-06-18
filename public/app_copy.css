@@ -34716,7 +34716,7 @@ a:active {
 
 .webix_secondary {
   float: left !important;
-  width:90px !important
+  width:67px !important
 }
 
 .webix_danger {
@@ -34728,10 +34728,10 @@ a:active {
   height: 44px !important;
   border-radius: 3% !important;
   margin-bottom: 0 !important;
-  padding: 3%;
+  padding: 0%;
   position: relative;
-  top: -126px;
-  left: 36px;
+  top: -75px;
+  right: 215px;
 }
 
 .webix_layout_line {
