@@ -3874,7 +3874,7 @@ div.webix_modal_cover {
   position: relative;
   width: 100%;
   padding: 23%;
-  margin-left: 24%;
+  margin-left: 32%;
 
 }
 
@@ -3965,17 +3965,17 @@ div.webix_modal_cover {
 
 .webix_button, .webixbutton {
   -webkit-appearance: none;
-  border-radius: 8px;
+  border-radius: 2px;
   color: linear-gradient(to right, #00b0ed 0, #53aa34 100%);
   cursor: pointer;
   font-family: Roboto, sans-serif;
   font-size: 1pc;
   font-weight: 500;
-  height: 56px;
+  height: 100%;
   letter-spacing: 0;
   outline: 0;
   padding: 6px 6px;
-  width: 121px
+  width: 100%
 }
 
 .webix_el_button .webix_el_box, .webix_el_toggle .webix_el_box {
@@ -34731,7 +34731,7 @@ a:active {
   padding: 3%;
   position: relative;
   top: -126px;
-  left: 7px;
+  left: 36px;
 }
 
 .webix_layout_line {
