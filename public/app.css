@@ -139,7 +139,7 @@
   margin-left: -24%;
   height: 14%;
   width: 16%;
-
+  position: fixed;
 }
 .eduTechLogo {
   width: 100% !important;
@@ -2190,7 +2190,7 @@ x\:ui {
 
 .webix_win_content {
   height: auto;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: auto
 }
 
