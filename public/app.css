@@ -136,6 +136,10 @@
   text-transform: uppercase;
   font-weight: lighter;
   font-size: 15px !important;
+  margin-left: -24%;
+  height: 14%;
+  width: 16%;
+
 }
 .eduTechLogo {
   width: 100% !important;
