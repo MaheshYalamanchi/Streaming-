@@ -20,6 +20,7 @@
         window.localStorage.setItem("build", true);
         window.localStorage.setItem("counter", 0);
         window.localStorage.removeItem("branding");
+        window.localStorage.setItem("chatId", 'undefined');
         getIpAddress();
         function getIpAddress() {
             try {
@@ -223,6 +224,9 @@
                                 d.append("type", t.body.type);
                                 d.append("metadata", JSON.stringify(t.body.metadata));
                                 d.append("createdAtEvent", t.body.createdAtEvent);
+                                if(localStorage.getItem("chatId") && t.body.type === 'event'){
+                                    d.append('chatId',localStorage.getItem("chatId"));
+                                }
                                 i = d
                             const l = new XMLHttpRequest();
                             l.open(o, "".concat(f.url).concat(e), !0);
@@ -234,6 +238,9 @@
                                         if (200 !== this.status) return n(new Error(this.statusText || "Request error"));
                                         try {
                                             let e = JSON.parse(this.responseText);
+                                            if(e && e.type && (e.type === "event")){
+                                                window.localStorage.setItem("chatId",e.id)
+                                            }
                                             return r(e);
                                         } catch (e) {
                                             return r(this.responseText);
@@ -5241,7 +5248,7 @@
                                               .concat(e.id, "?token=")
                                               .concat(f.token, '"\n            alt="')
                                               .concat(e.filename, '">\n          </div>')
-                                        : /application\//.test(e.mimetype)
+                                        : e.mimetype
                                         ? '<div class="'
                                               .concat(en.attach, '">\n          <span class="')
                                               .concat(en.attach_icon, '"></span>\n          <a class="')
