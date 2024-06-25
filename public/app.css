@@ -136,10 +136,6 @@
   text-transform: uppercase;
   font-weight: lighter;
   font-size: 15px !important;
-  margin-left: -24%;
-  height: 14%;
-  width: 16%;
-  position: fixed;
 }
 .eduTechLogo {
   width: 100% !important;
@@ -2190,7 +2186,7 @@ x\:ui {
 
 .webix_win_content {
   height: auto;
-  /* overflow: hidden; */
+  overflow: hidden;
   width: auto
 }
 
@@ -3881,8 +3877,7 @@ div.webix_modal_cover {
   clear: both;
   height: auto;
   position: relative;
-  width: 100%;
-  margin-top: -14px;
+  width: 100%
 }
 
 .webix_scroll_touch_ie {
@@ -33971,7 +33966,6 @@ button.webix_alert_btn:hover {
   background : black;
   width: 100% !important;
   height: 100% !important;
-  overflow-y:auto;
   /* left :10% !important; */
   /* height:90%; */
   /* background: repeating-linear-gradient( 45deg, #eee, #eee 15px, #fff 15px, #fff 30px); */
@@ -33980,8 +33974,8 @@ button.webix_alert_btn:hover {
 .webix_supervision_level1 {
   position: absolute;
   box-sizing: border-box;
-  border: 1px solid #fff;
-  padding:6%;
+  border: 1px solid #7e0c0c;
+  /* padding:10%; */
 }
 
 .webix_supervision_level1.webix_selected {
@@ -34000,11 +33994,11 @@ button.webix_alert_btn:hover {
 
 .webix_supervision_footer {
   position: absolute;
-  bottom: 0;
-  /* left:30%; */
-  /* top: 0; */
+  /* bottom: 0; */
+  left:30%;
+  top: 0;
   right: 0;
-  background-color: #000;
+  /* background-color: rgba(52, 152, 219, 0.7); */
   height: 32px;
   overflow: hidden;
   display: flex;
@@ -34013,7 +34007,7 @@ button.webix_alert_btn:hover {
   width: 100%;
   z-index: 2;
   line-height: 32px;
-  opacity: 65%;
+  opacity: 0.8;
   /*opacity: 0;*/
   /*transition: opacity 0.3s ease-out 2s;*/
 }
@@ -34051,7 +34045,6 @@ button.webix_alert_btn:hover {
   opacity: 0.9;
   cursor: pointer;
   text-align: center;
-  color: white;
 }
 
 .webix_supervision_button:hover {
@@ -34396,7 +34389,7 @@ a:active {
 }
 
 .mdi {
-  vertical-align: middle;
+  vertical-align: middle
 }
 
 .webix_cell .cell_progress_outer {
@@ -34527,7 +34520,6 @@ a:active {
   flex-wrap: wrap-reverse;
   width: 5%;
   width: 48px;
-
 }
 
 .webix_supervision_violation {
@@ -34536,7 +34528,7 @@ a:active {
   justify-content: center;
   align-items: center;
   margin: 5px;
-  width: 77%;
+  width: 35%;
   height:35%;
   border-radius: 20%;
   opacity: .8;
@@ -34720,7 +34712,7 @@ a:active {
 } */
 .webix_layout_toolbar {
   width: 100% !important;
-  height:9% !important;
+  height: 7% !important;
   background-color: black !important;
 }
 .webix_icon.mdi.mdi-email {
@@ -34860,7 +34852,4 @@ a:active {
   background-color: #ebedf0;
   width: 100% !important;
   height: 95% !important;
-}
-::-webkit-scrollbar {
-  width: 3px;
 }
