@@ -33994,11 +33994,11 @@ button.webix_alert_btn:hover {
 
 .webix_supervision_footer {
   position: absolute;
-  /* bottom: 0; */
-  left:30%;
-  top: 0;
+  bottom: 0;
+  /* left:30%;
+  top: 0; */
   right: 0;
-  /* background-color: rgba(52, 152, 219, 0.7); */
+  background-color: rgba(52, 152, 219, 0.7);
   height: 32px;
   overflow: hidden;
   display: flex;
