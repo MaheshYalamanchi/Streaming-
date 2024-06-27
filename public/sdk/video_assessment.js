@@ -5737,6 +5737,7 @@
                                 this._objectDetectHandler || ((this._objectDetectHandler = this.objectDetectHandler.bind(this)), b.on("detectobject", this._objectDetectHandler)),
                                 this._headphoneDetect || ((this._headphoneDetect = this.headphoneDetect.bind(this)), b.on("headphone", this._headphoneDetect)),
                                 this._snapshotHandler || ((this._snapshotHandler = this.snapshotHandler.bind(this)), b.on("snapshot", this._snapshotHandler)),
+                                this._approveHandler || ((this._approveHandler = this.approveHandler.bind(this)), w.on("approval", this._approveHandler)),
                                 this._faceHandler || ((this._faceHandler = this.faceHandler.bind(this)), b.on("face", this._faceHandler));
                         }
                         removed() {
@@ -5749,6 +5750,7 @@
                                 this._objectDetectHandler && (b.off("detectobject", this._objectDetectHandler), delete this._objectDetectHandler),
                                 this._headphoneDetect && (b.off("headphone", this._headphoneDetect), delete this._headphoneDetect),
                                 this._snapshotHandler && (b.off("snapshot", this._snapshotHandler), delete this._snapshotHandler),
+                                this._approveHandler || ((this._approveHandler = this.approveHandler.bind(this)), w.on("approval", this._approveHandler))
                                 this._faceHandler && (b.off("face", this._faceHandler), delete this._faceHandler);
                         }
                         close() {
@@ -5848,6 +5850,11 @@
                                     .then(() => {
                                         this._dialog = new an({ el: this.el, title: Ht("duplicate.title"), label: Ht("duplicate.label"), text: Ht("duplicate.text") });
                                     });
+                        }
+                        approveHandler() {
+                            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                            const t = e.id;
+                            return t;
                         }
                         stopHandler() {
                             let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
