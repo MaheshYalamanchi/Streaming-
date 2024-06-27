@@ -1140,6 +1140,26 @@ const upload = multer({ storage: storage });
             }
           }
         }),
+        s.post("/fetchuserwithroom", async (req, res, E) => {
+          try {
+            var jsonData = {
+              authorization: req.headers.authorization,
+              "roomid":req.body.roomId
+            }
+            let responseData = await invoke.makeHttpCall("post", "fetchuserwithroom" , jsonData);
+            if (responseData && responseData.data) {
+              res.status(200).send(responseData.data);
+            } else {
+              res.send({ success: false, message: "response not found" })
+            }
+          } catch (error) {
+            if (error && error.message) {
+              res.status(400).send(error);
+            } else {
+              res.status(400).send(error);
+            }
+          }
+        }),
         s.post("/stop", async (req, res, E) => {
           try {
             let responseData = await invoke.makeHttpCall("post", '/api/stop/' + req.query.id, req.headers);
