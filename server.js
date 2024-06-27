@@ -1132,8 +1132,8 @@ const upload = multer({ storage: storage });
                 console.log(memberId,'member id ')
                 let A=memberId.push(responseData.data.student)
                 console.log(A,'mermber id after')
-                memberId.length && I.send(memberId, "room:stop", responseData.data);
-                I.send(req.body.roomId, "approval", responseData.data);
+                memberId.length && I.send(memberId, "approval", responseData.data);
+              
                 res.status(200).send({success:true,message:'Candidate approved successfully.'});
               }else{
                 res.status(200).send({success:false,message:'Candidate approved failed.'});
