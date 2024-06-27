@@ -1128,11 +1128,11 @@ const upload = multer({ storage: storage });
             if (responseData && responseData.data) {
               if(responseData&&responseData.data.success){
                 let memberId=[]
-                memberId=responseData.data.members
+                memberId=responseData.data.data.members
                 console.log(memberId,'member id ')
-                let A=memberId.push(responseData.data.student)
+                let A=memberId.push(responseData.data.data.student)
                 console.log(A,'mermber id after')
-                memberId.length && I.send(memberId, "approval", responseData.data);
+                memberId.length && I.send(memberId, "approval", responseData.data.data);
               
                 res.status(200).send({success:true,message:'Candidate approved successfully.'});
               }else{
