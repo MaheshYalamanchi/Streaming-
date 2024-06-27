@@ -1124,15 +1124,20 @@ const upload = multer({ storage: storage });
               "verified":req.body.verified
             }
             let responseData = await invoke.makeHttpCall("post", "approvecandidate" , jsonData);
+            console.log(JSON.stringify(responseData,'response .................'))
             if (responseData && responseData.data) {
-              if(responseData&&responseData.success){
-                // let memberId=[]
-                // memberId=responseData.data.members
-                // let A=memberId.push(responseData.data.student)
-                // memberId.length && I.send(memberId, "room:stop", responseData.data);
+              if(responseData&&responseData.data.success){
+                let memberId=[]
+                memberId=responseData.data.members
+                console.log(memberId,'member id ')
+                let A=memberId.push(responseData.data.student)
+                console.log(A,'mermber id after')
+                memberId.length && I.send(memberId, "room:stop", responseData.data);
                 I.send(req.body.roomId, "approval", responseData.data);
+                res.status(200).send({success:true,message:'Candidate approved successfully.'});
+              }else{
+                res.status(200).send({success:false,message:'Candidate approved failed.'});
               }
-              res.status(200).send(responseData.data);
             } else {
               res.send({ success: false, message: "response not found" })
             }
