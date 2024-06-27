@@ -6084,6 +6084,10 @@
                                     let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
                                     He.get("id") === e.room && b.dispatchEvent("chat", e);
                                 });
+                                w.on("approval", function() {
+                                    let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                                    He.get("id") === e.room && b.dispatchEvent("chat", e);
+                                });
                         }
                         on(e, t) {
                             return b.on(e, t);
