@@ -1142,6 +1142,7 @@ const upload = multer({ storage: storage });
               res.send({ success: false, message: "response not found" })
             }
           } catch (error) {
+            console.log(error)
             if (error && error.message) {
               res.status(400).send(error);
             } else {
