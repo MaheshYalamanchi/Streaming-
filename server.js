@@ -1125,6 +1125,9 @@ const upload = multer({ storage: storage });
             }
             let responseData = await invoke.makeHttpCall("post", "approvecandidate" , jsonData);
             if (responseData && responseData.data) {
+              if(responseData&&responseData.success){
+                I.send(req.body.roomId, "approval", responseData.data);
+              }
               res.status(200).send(responseData.data);
             } else {
               res.send({ success: false, message: "response not found" })
