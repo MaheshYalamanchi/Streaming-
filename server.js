@@ -1115,6 +1115,28 @@ const upload = multer({ storage: storage });
             }
           }
         }),
+        s.post("/approvecandidate", async (req, res, E) => {
+          try {
+            var jsonData = {
+              authorization: req.headers.authorization,
+              "roomid":req.body.roomId,
+              "status":req.body.status,
+              "verified":req.body.verified
+            }
+            let responseData = await invoke.makeHttpCall("post", "approvecandidate" , jsonData);
+            if (responseData && responseData.data) {
+              res.status(200).send(responseData.data);
+            } else {
+              res.send({ success: false, message: "response not found" })
+            }
+          } catch (error) {
+            if (error && error.message) {
+              res.status(400).send(error);
+            } else {
+              res.status(400).send(error);
+            }
+          }
+        }),
         s.post("/stop", async (req, res, E) => {
           try {
             let responseData = await invoke.makeHttpCall("post", '/api/stop/' + req.query.id, req.headers);
