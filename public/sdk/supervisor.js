@@ -3300,7 +3300,7 @@
                     const Qt = Rt.Z.locals || {},
                         Gt = {
                             en: JSON.parse(
-                                '{"wizard":{"title":{"rules":"Rules of the event","check":"Equipment check ","face":"Taking a face photo","passport":"Uploading an identity document","qrcode":"Mobile camera connection"},"button":{"next":"Next"},"page":"Step %{page} of %{total}"},"check":{"text":"Please wait while the system checks your computer and the network so that possible technical issues do not interfere with the exam.","empty":"Equipment check is not required.","stage":{"browser":"Browser check","camera":"Webcam check","microphone":"Microphone check","screen":"Screen check","network":"Network check","webrtc":"WebRTC check"},"button":{"retry":"Retry"},"error":{"Error":" Unknown error. Please try again.","Unsupported":"Browser not supported. Try to update it or use a different browser.","WrongSize":"Your browser window is not in the fullscreen mode. Please switch it to the full screen mode.","NoRecorder":"MediaRecorder API is not supported or disabled. Please enable this API (for iOS: Settings > Safari > Advanced > Experimental Features > MediaRecorder) or use a different browser.","NoPicture":"No video from the camera. Try to close all other applications and disable your antivirus.","NoVideo":"Webcam is disabled or no webcam. Connect your webcam or enable the webcam access.","LowVolume":"Microphone has low volume or not working. Correct the volume or change your microphone.","NoAudio":"Microphone muted or disabled. Connect your microphone and enable the browser access to the microphone.","NoCapture":"No video from your screen. Enable the browser access to your camera.","Multiscreen":"Part of your screen is hidden. Enable the browser access to the entire screen and unplug any additional displays.","NoScreen":"Access to your screen is disabled or a part of your screen is blocked. Enable the browser access to the entire screen.","NoConnection":"WebSocket connection is blocked. Try to disable ad blocker like AdBlock or other similar browser extensions.","RtcError":"Unable to establish WebRTC connection. Try to turn off your firewall and antivirus, or connect to a different network."}},"face":{"text":"Take a photo with your face fitting into the oval frame on the screen. Make sure that there is enough light in the room. If the photo is not verified, please take a new photo.","button":{"retry":"Retry","take":"Take photo","retake":"Retake"},"msg":{"loading":"<p><b>Loading...</b></p>","nocamera":"<p><b>Problem with webcam detected :(</b></p><p>Try this:</p><ul><li>Connect your camera to the computer</li><li>Close all third-party applications that can use the camera.</li><li>Allow access to your camera in the browser</li></ul>","noface":"<p><b>Did not find you in the photo :(</b></p><p>Possible reasons:</p><ul><li>Your face is out of the frame</li><li>Poor lighting</li><li>The face is not clearly visible due to your hair or clothing.</li><li>The camera is on the side or too far away from you</li><li>The light source is behind you or on the side</li></ul><p>Try to take the photo again.</p>","unverified":"<p><b>Access denied :(</b></p><p>Your photo does not match with the photo in the member profile.</p>","done":"<p><b>Snapshot saved.</b></p><p>You can retake the picture if this photo does not suit you.</p>"}},"passport":{"text":{"photo":"Take a picture of your ID that clearly shows your photo and name.","scan":"Upload a scan of your ID that clearly shows your photo and name.","both":"Take a picture or upload a scan of your ID that clearly shows your photo and name."},"button":{"retry":"Retry","take":"Take a picture","upload":"Upload"},"msg":{"loading":"<p><b>Loading...</b></p>","nocamera":"<p><b>Problem with webcam detected :(</b></p><p>Please try the following:</p><ul><li>Connect the camera to your computer</li><li>Close all third-party applications that can use the camera</li><li>Allow access to the camera in browser</li></ul>","nophoto":"<p><b>Document is not detected in the picture :(</b></p><p>Possible reasons:</p><ul><li>The document does not completely fit into the frame</li><li>The document is not horizontal</li><li>The photo is not clear in the document</li><li>The text in the document is not recognisable</li></ul><p>Try to take the picture again.</p>","ready":"<p><b>Please follow the requirements:</b></p><ul><li>File format JPEG or PNG</li><li>File size must not exceed 5 MB</li><li>Image resolution is not less than 1 Mpix</li><li>Horizontal file</li><li>The document must contain one photo</li><li>Text and photo should be clearly recognisable</li></ul>","noscan":"<p><b>The document is not detected in the scan :(</b></p><p>Possible reasons:</p><ul><li>The file is not JPEG or PNG format</li><li>File size is more than 5 MB</li><li>Image resolution is less than 1 Mpix</li><li>Document is not horizontal</li><li>Document page is not fully visible</li><li>The photo or text in the document is not clear</li></ul><p>Try to upload a different file.</p>","taken":"<p><b>The picture has been saved.</b></p><p>If unhappy with the picture, you can retake the picture.</p>","uploaded":"<p><b>The scanned document has been uploaded.</b></p><p>If unhappy with the image, you can upload the file again.</p>"}},"qrcode":{"text":"Scan the QR code using your smartphone and then open the received link in a browser on your smartphone. Use the Chrome browser on Android or the Safari browser on iOS.","expires":"The link is valid until %{timeleft}"},"chat":{"title":"Chat","inputPlaceholder":"Enter your message..."},"conference":{"guest":"Guest","microphone":"Microphone","camera":"Camera","screen":"Screen sharing","mute":"Sound on/off","single":"Display modes","maximize":"Block size"},"vision":{"qrcode":"Connect your mobile camera","events":{"b1":"Browser not supported","b2":"Focus switched to a different window","b3":"Full-screen mode disabled","c1":"Webcam disabled","c2":"Face invisible or not looking into the camera","c3":"Several faces in front of the camera","c4":"Face does not match the profile","c5":"Found similar profile","h1":"headphone use","k1":"Atypical keyboard handwriting","m1":"Microphone muted or not working","m2":"There is conversation or background noise","m3":"Mobile use","n1":"No network connection","n2":"No connection to mobile camera","n3":"Low Network Signal Detected, Please Switch to a Stable Network Connection","s1":"Screen activities not shared","s2":"Second display is used"},"button":{"ok":"OK"}},"duplicate":{"title":"Session is blocked","label":"Attention!","text":"This page was opened elsewhere, close this tab."},"finish":{"title":"Session complete","label":"Attention!","text":{"auto":"The session was terminated automatically.","proctor":"The session was terminated by the proctor."},"button":{"ok":"OK"}},"confirm":{"title":"Completion of the session","label":"Finish the session?","text":"Once completed, you will not be able to continue.","button":{"ok":"Yes","cancel":"No"}},"iframe":{"button":{"home":"Home page","finish":"Finish"}}}'
+                                '{"wizard":{"title":{"rules":"Rules of the event","approve":"User approval","check":"Equipment check ","face":"Taking a face photo","passport":"Uploading an identity document","qrcode":"Mobile camera connection"},"button":{"next":"Next"},"page":"Step %{page} of %{total}"},"check":{"text":"Please wait while the system checks your computer and the network so that possible technical issues do not interfere with the exam.","empty":"Equipment check is not required.","stage":{"browser":"Browser check","camera":"Webcam check","microphone":"Microphone check","screen":"Screen check","network":"Network check","webrtc":"WebRTC check"},"button":{"retry":"Retry"},"error":{"Error":" Unknown error. Please try again.","Unsupported":"Browser not supported. Try to update it or use a different browser.","WrongSize":"Your browser window is not in the fullscreen mode. Please switch it to the full screen mode.","NoRecorder":"MediaRecorder API is not supported or disabled. Please enable this API (for iOS: Settings > Safari > Advanced > Experimental Features > MediaRecorder) or use a different browser.","NoPicture":"No video from the camera. Try to close all other applications and disable your antivirus.","NoVideo":"Webcam is disabled or no webcam. Connect your webcam or enable the webcam access.","LowVolume":"Microphone has low volume or not working. Correct the volume or change your microphone.","NoAudio":"Microphone muted or disabled. Connect your microphone and enable the browser access to the microphone.","NoCapture":"No video from your screen. Enable the browser access to your camera.","Multiscreen":"Part of your screen is hidden. Enable the browser access to the entire screen and unplug any additional displays.","NoScreen":"Access to your screen is disabled or a part of your screen is blocked. Enable the browser access to the entire screen.","NoConnection":"WebSocket connection is blocked. Try to disable ad blocker like AdBlock or other similar browser extensions.","RtcError":"Unable to establish WebRTC connection. Try to turn off your firewall and antivirus, or connect to a different network."}},"face":{"text":"Take a photo with your face fitting into the oval frame on the screen. Make sure that there is enough light in the room. If the photo is not verified, please take a new photo.","button":{"retry":"Retry","take":"Take photo","retake":"Retake"},"msg":{"loading":"<p><b>Loading...</b></p>","nocamera":"<p><b>Problem with webcam detected :(</b></p><p>Try this:</p><ul><li>Connect your camera to the computer</li><li>Close all third-party applications that can use the camera.</li><li>Allow access to your camera in the browser</li></ul>","noface":"<p><b>Did not find you in the photo :(</b></p><p>Possible reasons:</p><ul><li>Your face is out of the frame</li><li>Poor lighting</li><li>The face is not clearly visible due to your hair or clothing.</li><li>The camera is on the side or too far away from you</li><li>The light source is behind you or on the side</li></ul><p>Try to take the photo again.</p>","unverified":"<p><b>Access denied :(</b></p><p>Your photo does not match with the photo in the member profile.</p>","done":"<p><b>Snapshot saved.</b></p><p>You can retake the picture if this photo does not suit you.</p>"}},"passport":{"text":{"photo":"Take a picture of your ID that clearly shows your photo and name.","scan":"Upload a scan of your ID that clearly shows your photo and name.","both":"Take a picture or upload a scan of your ID that clearly shows your photo and name."},"button":{"retry":"Retry","take":"Take a picture","upload":"Upload"},"msg":{"loading":"<p><b>Loading...</b></p>","nocamera":"<p><b>Problem with webcam detected :(</b></p><p>Please try the following:</p><ul><li>Connect the camera to your computer</li><li>Close all third-party applications that can use the camera</li><li>Allow access to the camera in browser</li></ul>","nophoto":"<p><b>Document is not detected in the picture :(</b></p><p>Possible reasons:</p><ul><li>The document does not completely fit into the frame</li><li>The document is not horizontal</li><li>The photo is not clear in the document</li><li>The text in the document is not recognisable</li></ul><p>Try to take the picture again.</p>","ready":"<p><b>Please follow the requirements:</b></p><ul><li>File format JPEG or PNG</li><li>File size must not exceed 5 MB</li><li>Image resolution is not less than 1 Mpix</li><li>Horizontal file</li><li>The document must contain one photo</li><li>Text and photo should be clearly recognisable</li></ul>","noscan":"<p><b>The document is not detected in the scan :(</b></p><p>Possible reasons:</p><ul><li>The file is not JPEG or PNG format</li><li>File size is more than 5 MB</li><li>Image resolution is less than 1 Mpix</li><li>Document is not horizontal</li><li>Document page is not fully visible</li><li>The photo or text in the document is not clear</li></ul><p>Try to upload a different file.</p>","taken":"<p><b>The picture has been saved.</b></p><p>If unhappy with the picture, you can retake the picture.</p>","uploaded":"<p><b>The scanned document has been uploaded.</b></p><p>If unhappy with the image, you can upload the file again.</p>"}},"qrcode":{"text":"Scan the QR code using your smartphone and then open the received link in a browser on your smartphone. Use the Chrome browser on Android or the Safari browser on iOS.","expires":"The link is valid until %{timeleft}"},"approve":{"text":"This document outlines the criteria and process for approving candidates to read specific content during their examination. This allowance is provided to ensure that candidates have fair access to necessary information while maintaining the integrity of the exam.","expires":"The link is valid until %{timeleft}"},"chat":{"title":"Chat","inputPlaceholder":"Enter your message..."},"conference":{"guest":"Guest","microphone":"Microphone","camera":"Camera","screen":"Screen sharing","mute":"Sound on/off","single":"Display modes","maximize":"Block size"},"vision":{"qrcode":"Connect your mobile camera","events":{"b1":"Browser not supported","b2":"Focus switched to a different window","b3":"Full-screen mode disabled","c1":"Webcam disabled","c2":"Face invisible or not looking into the camera","c3":"Several faces in front of the camera","c4":"Face does not match the profile","c5":"Found similar profile","h1":"headphone use","k1":"Atypical keyboard handwriting","m1":"Microphone muted or not working","m2":"There is conversation or background noise","m3":"Mobile use","n1":"No network connection","n2":"No connection to mobile camera","n3":"Low Network Signal Detected, Please Switch to a Stable Network Connection","s1":"Screen activities not shared","s2":"Second display is used"},"button":{"ok":"OK"}},"duplicate":{"title":"Session is blocked","label":"Attention!","text":"This page was opened elsewhere, close this tab."},"finish":{"title":"Session complete","label":"Attention!","text":{"auto":"The session was terminated automatically.","proctor":"The session was terminated by the proctor."},"button":{"ok":"OK"}},"confirm":{"title":"Completion of the session","label":"Finish the session?","text":"Once completed, you will not be able to continue.","button":{"ok":"Yes","cancel":"No"}},"iframe":{"button":{"home":"Home page","finish":"Finish"}}}'
                             ),
                             fr: JSON.parse(
                                 '{"wizard":{"title":{"rules":"Règles de l\'événement","check":"Vérification de l\'équipement","face":"Prendre une photo de visage","passport":"Télécharger une pièce d\'identité","qrcode":"Connexion à une caméra mobile"},"button":{"next":"Suivant"},"page":"Étape %{page} of %{total}"},"check":{"text":"Attendez pendant que le système vérifie l\'ordinateur et le réseau afin que d\'éventuels problèmes techniques n\'empêchent pas l\'examen.","empty":"La vérification n\'est pas nécessaire.","stage":{"browser":"Vérification du navigateur","camera":"Vérification de la webcam","microphone":"Vérification du microphone","screen":"Vérification d\'écran","network":"Vérification du réseau","webrtc":"Vérification WebRTC"},"button":{"retry":"Réessayer"},"error":{"Error":" Erreur inconnue. Veuillez réessayer.","Unsupported":"Votre navigateur n\'est pas supporté. Mettez votre navigateur à jour ou utilisez un autre navigateur.","WrongSize":"La fenêtre du navigateur n\'est pas en mode plein écran. Veuillez passer en mode plein écran.","NoRecorder":"L\'API de MediaRecorder n\'est pas prise en charge ou désactivée. Veuillez activer cette API ou utiliser un autre navigateur.","NoPicture":"Pas de vidéo de la caméra. Essayez de fermer toutes les autres applications et de désactiver l\'antivirus.","NoVideo":"Webcam désactivée ou pas de webcam. Connectez votre webcam ou activez l\'accès à la webcam.","LowVolume":"Le microphone a un faible volume ou ne fonctionne pas. Corrigez le volume ou changez de microphone.","NoAudio":"Le microphone est coupé ou désactivé. Connectez le microphone et activez l\'accès au microphone par le navigateur.","NoCapture":"Pas de vidéo à l\'écran. Activer l\'accès à la caméra par le navigateur.","Multiscreen":"Une partie de l\'écran est bloquée. Activez l\'accès du navigateur à l\'ensemble de l\'écran et désactivez tout affichage supplémentaire.","NoScreen":"L\'accès à l\'écran est désactivé ou une partie de l\'écran est bloquée. Activez l\'accès au navigateur pour tout l\'écran.","NoConnection":"La connexion WebSocket est bloquée. Essayez de désactiver le bloqueur de publicité comme AdBlock ou des extensions de navigateur similaires.","RtcError":"Impossible d\'établir la connexion WebRTC. Essayez de désactiver votre pare-feu et votre antivirus, ou connectez-vous à un autre réseau."}},"face":{"text":"Prenez une photo avec votre visage s\'inscrivant dans le cadre ovale à l\'écran. Assurez-vous qu\'il y a suffisamment de lumière dans la pièce. Si la photo n\'est pas vérifiée, veuillez prendre une nouvelle photo.","button":{"retry":"Réessayer","take":"Prenez une photo","retake":"Reprenez"},"msg":{"loading":"<p><b>Chargement...</b></p>","nocamera":"<p><b>Un problème de webcam détecté :(</b></p><p>Essayez ça :</p><ul><li>Connectez l\'appareil photo à l\'ordinateur</li><li>Fermez toutes les applications tierces qui peuvent utiliser l\'appareil photo.</li><li>Autoriser l\'accès à la caméra dans le navigateur</li></ul>","noface":"<p><b>Impossible de vous trouver sur la photo :(</b></p><p>Les raisons possibles :</p><ul><li>Visage hors cadre</li><li>Faible éclairage</li><li>Le visage n\'est pas clairement visible à cause des cheveux ou des vêtements.</li><li>La caméra est sur le côté ou trop éloignée de vous</li><li>La source de lumière est derrière vous ou sur le côté</li></ul><p>Essayez à nouveau de prendre une photo.</p>","unverified":"<p><b>Accès refusé :(</b></p><p>Votre photo ne correspond pas à la photo du profil du membre.</p>","done":"<p><b>Instantané sauvegardé.</b></p><p>Vous pouvez reprendre la photo si elle ne vous convient pas.</p>"}},"passport":{"text":{"photo":"Prenez une photo de votre pièce d\'identité qui montre clairement votre photo et votre nom.","scan":"Téléchargez un scan de votre pièce d\'identité qui montre clairement votre photo et votre nom.","both":"Prenez une photo ou téléchargez une numérisation de votre pièce d\'identité qui montre clairement votre photo et votre nom."},"button":{"retry":"Réessayer","take":"Prenez une photo","upload":"Télécharger"},"msg":{"loading":"<p><b>Chargement...</b></p>","nocamera":"<p><b>Problème de webcam détecté :(</b></p><p>S\'il vous plaît essayez ce qui suit:</p><ul><li>Connectez l\'appareil photo à votre ordinateur</li><li>Fermez toutes les applications tierces pouvant utiliser la caméra</li><li>Autoriser l\'accès à la caméra dans le navigateur</li></ul>","nophoto":"<p><b>Le document n\'est pas détecté dans l\'image :(</b></p><p>Raisons possibles:</p><ul><li>Le document ne rentre pas complètement dans le cadre</li><li>Le document n\'est pas horizontal</li><li>La photo n\'est pas claire dans le document</li><li>Le texte du document n\'est pas reconnaissable</li></ul><p>Essayez de reprendre la photo.</p>","ready":"<p><b>Veuillez suivre les exigences:</b></p><ul><li>Format de fichier JPEG ou PNG</li><li>La taille du fichier ne doit pas dépasser 5 MB</li><li>La résolution d\'image n\'est pas inférieure à 1 Mpix</li><li>Fichier horizontal</li><li>Le document doit contenir une photo</li><li>Le texte et la photo doivent être clairement reconnaissables</li></ul>","noscan":"<p><b>Le document n\'est pas détecté lors de la numérisation :(</b></p><p>Raisons possibles:</p><ul><li>Le fichier n\'est pas au format JPEG ou PNG</li><li>La taille du fichier est supérieure à 5 MB</li><li>La résolution d\'image est inférieure à 1 Mpix</li><li>Le document n\'est pas horizontal</li><li>La page du document n\'est pas entièrement visible</li><li>La photo ou le texte du document n\'est pas clair</li></ul><p>Essayez de télécharger un autre fichier.</p>","taken":"<p><b>L\'image a été enregistrée.</b></p><p>Si vous n\'êtes pas satisfait de la photo, vous pouvez la reprendre.</p>","uploaded":"<p><b>Le document numérisé a été téléchargé.</b></p><p>Si vous n\'êtes pas satisfait de l\'image, vous pouvez télécharger à nouveau le fichier.</p>"}},"qrcode":{"text":"Scannez le code QR avec le lien de votre smartphone et ouvrez le lien reçu dans un navigateur sur votre smartphone. Utilisez Chrome sur Android ou Safari sur iOS.","expires":"Le lien est valide jusqu\'à %{timeleft}"},"chat":{"title":"Discussion","inputPlaceholder":"Saisissez votre message..."},"conference":{"guest":"Invité","microphone":"Microphone","camera":"Appareil photo","screen":"Le partage d\'écran","mute":"Marche/arrêt volume","single":"Mode affichage","maximize":"Taille de bloc"},"vision":{"qrcode":"Connectez l\'appareil photo","ok":"OK","events":{"b1":"Navigateur non supporté","b2":"L\'accent est passé à une autre fenêtre","b3":"Le mode plein écran est désactivé","c1":"La webcam est désactivée","c2":"Visage invisible ou ne regardant pas dans la caméra","c3":"Plusieurs visages devant la caméra","c4":"Le visage ne correspond pas au profil","c5":"Trouvé un profil similaire","k1":"Une écriture atypique au clavier","m1":"Le microphone est coupé ou son volume est faible","m2":"Conversation ou bruit en arrière-plan","n1":"Pas de connexion au réseau","n2":"Pas de connexion à une caméra mobile","s1":"Les activités d\'écran ne sont pas partagées","s2":"Le deuxième écran est utilisé"}},"duplicate":{"title":"Session bloquée","label":"Attention!","text":"Cette page a été ouverte ailleurs, fermez cet onglet."},"finish":{"title":"Session terminée","label":"Attention!","text":{"auto":"La session s\'est terminée automatiquement.","proctor":"La session a été interrompue par le surveillant."},"button":{"ok":"OK"}},"confirm":{"title":"Clôture de la session","label":"Terminer la session?","text":"Une fois terminé, vous ne pourrez plus continuer.","button":{"ok":"Oui","cancel":"Non"}},"iframe":{"button":{"home":"Page d\'accueil","finish":"Terminer"}}}'
@@ -3773,6 +3773,84 @@
                             }),
                     };
                     class hr {
+                        constructor(e) {
+                            (this.params = e || {}), (this.state = this.data()), (this.el = this.render(JSON.parse(window.localStorage.getItem("branding")))), this.listen(this.on());
+                        }
+                        render() {
+                            return document.createElement("DIV");
+                        }
+                        // mount(e) {
+                        //     return e instanceof HTMLElement && !this.el.parentNode && (e.appendChild(this.el), this.mounted()), !!this.el.parentNode;
+                        // }
+                        mount(e) {
+                            return e instanceof HTMLElement && !this.el.parentNode && (e.appendChild(this.el),
+                            this.mounted()),
+                            !!this.el.parentNode
+                        }
+                        remove() {
+                            return this.el.parentNode && (this.el.remove(), this.removed()), !this.el.parentNode;
+                        }
+                        listen(e) {
+                            for (let t in e) {
+                                const r = e[t];
+                                this.el.addEventListener(
+                                    t,
+                                    function (e) {
+                                        const t = gr(e);
+                                        e: for (let n = 0; n < t.length; n++) {
+                                            const i = t[n],
+                                                o = i.classList;
+                                            if (o)
+                                                for (let t = 0; t < o.length; t++) {
+                                                    const n = o[t],
+                                                        s = r[n];
+                                                    if ("function" == typeof s) {
+                                                        s(e, i);
+                                                        break e;
+                                                    }
+                                                }
+                                        }
+                                    },
+                                    !0
+                                );
+                            }
+                        }
+                        on() {
+                            return {};
+                        }
+                        data() {
+                            return {};
+                        }
+                        getState(e) {
+                            const t = this.state;
+                            if (!e || !t) return {};
+                            return e.split(".").reduce(
+                                function (e, t) {
+                                    if (e.value) return { value: e.value[t], key: t, target: e.value };
+                                },
+                                { value: t }
+                            );
+                        }
+                        setState(e, t) {
+                            const r = this.state;
+                            if (!e || !r) return {};
+                            const n = this.getState(e),
+                                i = n.value,
+                                o = n.key,
+                                s = n.target;
+                            return void 0 !== t ? (s[o] = t) : delete s[o], t !== i && this.updated(e, t, i), { value: i, key: o, target: s };
+                        }
+                        $(e, t) {
+                            return (t = t || this.el).querySelector(".".concat(e));
+                        }
+                        $$(e, t) {
+                            return (t = t || this.el).querySelectorAll(".".concat(e));
+                        }
+                        mounted() {}
+                        updated() {}
+                        removed() {}
+                    }
+                    class zrr {
                         constructor(e) {
                             (this.params = e || {}), (this.state = this.data()), (this.el = this.render(JSON.parse(window.localStorage.getItem("branding")))), this.listen(this.on());
                         }
@@ -4961,6 +5039,47 @@
                             return { data: null };
                         }
                     }
+                    var Wrr = r(1060),
+                        Brr = { insert: "head", singleton: !1 };
+                    Ot()(Wrr.Z, Brr);
+                    const Krr = Wrr.Z.locals || {};
+                    class Zrr extends zrr {
+                        constructor() {
+                            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                            super(e),this.mount(e.el);
+                        }
+                        render() {
+                            var e = document.createElement("DIV");
+                            return (
+                                (e.className = Krr.approve),
+                                (e.innerHTML = '\n    <div dataafser="test024" class="'.concat(Krr.description, '"><div datatest="test025">').concat(Ht("approve.text"), '</div></div>\n    <div datatest="test026" class="').concat(Krr.body, '"><div id="loader"class="').concat(Krr.loader,'"><style>@keyframes spin {0% { transform: rotate(0deg); }100% { transform: rotate(360deg); }}</style></div></div>\n    ')),
+                                e
+                            );
+                        }
+                        updated(e, t) {
+                        }
+                        mounted() {
+                            let aa = this.$(Krr.body);
+                            let mm = this;
+                            w.on("approval", function () {
+                                let ee = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                                if((He.get("id") === ee.student.roomid) && (ee.student.verified)){
+                                    aa.innerHTML = '<div class="'.concat(Krr.success,'"></div>');
+                                    mm.params.onComplete(!0);
+                                } else {
+                                    aa.innerHTML = '<div class="'.concat(Krr.wrong,'">&#10006;</div>');
+                                }
+                            });
+                        }
+                        approval(){
+
+                        }
+                        removed() {
+                        }
+                        data() {
+                            return { url: He.get("approve") || "" };
+                        }
+                    }
                     class Fr extends Ar {
                         constructor() {
                             let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
@@ -5013,6 +5132,7 @@
                                     face: He.hasAddon("face") ? Yr : null,
                                     passport: He.hasAddon(["passport", "scan"]) ? Zr : null,
                                     qrcode: He.hasAddon("qrcode") ? Hr : null,
+                                    approve: He.hasAddon("approve") ? Zrr : null,
                                 },
                                 t = Object.keys(e).filter((t) => !!e[t]);
                             return { views: e, stages: t, getPage: () => t.indexOf(this.state.stage) + 1, total: t.length, complete: !1 };
@@ -5038,6 +5158,8 @@
                                         }else if(this.state.stage=='passport'){
                                             He.next().then(() => this.setState("complete", e));
                                         }else if(this.state.stage=='check'){
+                                            He.next().then(() => this.setState("complete", e));
+                                        }else if(this.state.stage=='approve'){
                                             He.next().then(() => this.setState("complete", e));
                                         }
                                       },
@@ -5623,6 +5745,7 @@
                                 this._objectDetectHandler || ((this._objectDetectHandler = this.objectDetectHandler.bind(this)), b.on("detectobject", this._objectDetectHandler)),
                                 this._headphoneDetect || ((this._headphoneDetect = this.headphoneDetect.bind(this)), b.on("headphone", this._headphoneDetect)),
                                 this._snapshotHandler || ((this._snapshotHandler = this.snapshotHandler.bind(this)), b.on("snapshot", this._snapshotHandler)),
+                                this._approveHandler || ((this._approveHandler = this.approveHandler.bind(this)), w.on("approval", this._approveHandler)),
                                 this._faceHandler || ((this._faceHandler = this.faceHandler.bind(this)), b.on("face", this._faceHandler));
                         }
                         removed() {
@@ -5635,6 +5758,7 @@
                                 this._objectDetectHandler && (b.off("detectobject", this._objectDetectHandler), delete this._objectDetectHandler),
                                 this._headphoneDetect && (b.off("headphone", this._headphoneDetect), delete this._headphoneDetect),
                                 this._snapshotHandler && (b.off("snapshot", this._snapshotHandler), delete this._snapshotHandler),
+                                this._approveHandler || ((this._approveHandler = this.approveHandler.bind(this)), w.on("approval", this._approveHandler))
                                 this._faceHandler && (b.off("face", this._faceHandler), delete this._faceHandler);
                         }
                         close() {
@@ -5734,6 +5858,11 @@
                                     .then(() => {
                                         this._dialog = new an({ el: this.el, title: Ht("duplicate.title"), label: Ht("duplicate.label"), text: Ht("duplicate.text") });
                                     });
+                        }
+                        approveHandler() {
+                            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                            const t = e.id;
+                            return t;
                         }
                         stopHandler() {
                             let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
@@ -5960,6 +6089,10 @@
                                     He.get("id") === e.id && b.dispatchEvent("stop", e);
                                 }),
                                 w.on("chat:message", function () {
+                                    let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                                    He.get("id") === e.room && b.dispatchEvent("chat", e);
+                                });
+                                w.on("approval", function() {
                                     let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
                                     He.get("id") === e.room && b.dispatchEvent("chat", e);
                                 });
@@ -6681,6 +6814,21 @@
                         "",
                     ]),
                         (i.locals = { qrcode: "_2afu9Ur8uOK9rB7DEt6Ji_", description: "_2zqtlkpkzSzcrJu1LyrCZZ", body: "luvMKedDbHX7wAgDGVhM9", img: "_2h6An8GfMlBVX44gullV2O" });
+                    const o = i;
+                },
+                1060: (e, t, r) => {
+                    "use strict";
+                    r.d(t, { Z: () => o });
+                    var n = r(2609),
+                        i = r.n(n)()(function (e) {
+                            return e[1];
+                        });
+                    i.push([
+                        e.id,
+                        ".loader{width:47%;height: 256px;border: 5px solid #f3f3f3;border-top: 5px solid #3498db;border-radius: 50%;animation: spin 2s linear infinite;display: flex;justify-content: center;align-items: center;font-size: 24px;color: white;position: relative;left:30%;}@media only screen and (min-width: 1540px){.loader{width:32%;}}.success {height: 90%; width: 40px;border-bottom: 10px solid green;border-right: 10px solid green; transform: rotate(45deg); margin-left: 30%;}.wrong{height:50%;width:30%;color:red;font-size: 172px;position: relative;top: 45%;left: 30%;}@media only screen and (min-width: 1540px){.wrong{height: 50%;width: 30%;color: red;font-size: 150px;position: relative;top: 40%;left: 30%;}}._2afu9Ur8uOK9rB7DEt6Ji_{display:flex;padding:20px;height:100%;overflow:auto}._2zqtlkpkzSzcrJu1LyrCZZ{width:40%;margin-right:20px;border-right:1px solid var(--secondary-color)}._2zqtlkpkzSzcrJu1LyrCZZ>div{padding-right:20px;display:block}.luvMKedDbHX7wAgDGVhM9{flex:1;display:flex}.luvMKedDbHX7wAgDGVhM9 ._2h6An8GfMlBVX44gullV2O{flex:1;border:none;object-fit:contain;height: 280px;}@media only screen and (orientation:portrait){._2zqtlkpkzSzcrJu1LyrCZZ{display:none}}",
+                        "",
+                    ]),
+                        (i.locals = { approve: "_2afu9Ur8uOK9rB7DEt6Ji_", description: "_2zqtlkpkzSzcrJu1LyrCZZ", body: "luvMKedDbHX7wAgDGVhM9", img: "_2h6An8GfMlBVX44gullV2O",loader:"loader",success:"success",wrong:"wrong"});
                     const o = i;
                 },
                 6259: (e, t, r) => {

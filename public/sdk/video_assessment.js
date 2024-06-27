@@ -4454,7 +4454,6 @@
                                 ),
                                 {}
                             );
-                            console.log("==========>>>>>",He.hasAddon("webrtc") && !y.get("uncheck.webrtc") && (e.webrtc = Et), { checks: Object.keys(e), current: "", options: e, error: !1 })
                             return He.hasAddon("webrtc") && !y.get("uncheck.webrtc") && (e.webrtc = Et), { checks: Object.keys(e), current: "", options: e, error: !1 };
                         }
                         on() {
@@ -5047,7 +5046,7 @@
                     class Zrr extends zrr {
                         constructor() {
                             let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-                            super(e), this.mount(e.el);
+                            super(e),this.mount(e.el);
                         }
                         render() {
                             var e = document.createElement("DIV");
@@ -5060,11 +5059,20 @@
                         updated(e, t) {
                         }
                         mounted() {
+                            let aa = this.$(Krr.body);
+                            let mm = this;
                             w.on("approval", function () {
-                                let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-                                He.get("id") === e.room ;
-                                this.params.onComplete(!0);
+                                let ee = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                                if((He.get("id") === ee.student.roomid) && (ee.student.verified)){
+                                    aa.innerHTML = '<div class="'.concat(Krr.success,'"></div>');
+                                    mm.params.onComplete(!0);
+                                } else {
+                                    aa.innerHTML = '<div class="'.concat(Krr.wrong,'">&#10006;</div>');
+                                }
                             });
+                        }
+                        approval(){
+
                         }
                         removed() {
                         }
@@ -6817,10 +6825,10 @@
                         });
                     i.push([
                         e.id,
-                        ".loader{width:47%;height: 256px;border: 5px solid #f3f3f3;border-top: 5px solid #3498db;border-radius: 50%;animation: spin 2s linear infinite;display: flex;justify-content: center;align-items: center;font-size: 24px;color: white;position: relative;left:30%;}@media only screen and (min-width: 1540px){.loader{width:32%;}}._2afu9Ur8uOK9rB7DEt6Ji_{display:flex;padding:20px;height:100%;overflow:auto}._2zqtlkpkzSzcrJu1LyrCZZ{width:40%;margin-right:20px;border-right:1px solid var(--secondary-color)}._2zqtlkpkzSzcrJu1LyrCZZ>div{padding-right:20px;display:block}.luvMKedDbHX7wAgDGVhM9{flex:1;display:flex}.luvMKedDbHX7wAgDGVhM9 ._2h6An8GfMlBVX44gullV2O{flex:1;border:none;object-fit:contain;height: 280px;}@media only screen and (orientation:portrait){._2zqtlkpkzSzcrJu1LyrCZZ{display:none}}",
+                        ".loader{width:47%;height: 256px;border: 5px solid #f3f3f3;border-top: 5px solid #3498db;border-radius: 50%;animation: spin 2s linear infinite;display: flex;justify-content: center;align-items: center;font-size: 24px;color: white;position: relative;left:30%;}@media only screen and (min-width: 1540px){.loader{width:32%;}}.success {height: 90%; width: 40px;border-bottom: 10px solid green;border-right: 10px solid green; transform: rotate(45deg); margin-left: 30%;}.wrong{height:50%;width:30%;color:red;font-size: 172px;position: relative;top: 45%;left: 30%;}@media only screen and (min-width: 1540px){.wrong{height: 50%;width: 30%;color: red;font-size: 150px;position: relative;top: 40%;left: 30%;}}._2afu9Ur8uOK9rB7DEt6Ji_{display:flex;padding:20px;height:100%;overflow:auto}._2zqtlkpkzSzcrJu1LyrCZZ{width:40%;margin-right:20px;border-right:1px solid var(--secondary-color)}._2zqtlkpkzSzcrJu1LyrCZZ>div{padding-right:20px;display:block}.luvMKedDbHX7wAgDGVhM9{flex:1;display:flex}.luvMKedDbHX7wAgDGVhM9 ._2h6An8GfMlBVX44gullV2O{flex:1;border:none;object-fit:contain;height: 280px;}@media only screen and (orientation:portrait){._2zqtlkpkzSzcrJu1LyrCZZ{display:none}}",
                         "",
                     ]),
-                        (i.locals = { approve: "_2afu9Ur8uOK9rB7DEt6Ji_", description: "_2zqtlkpkzSzcrJu1LyrCZZ", body: "luvMKedDbHX7wAgDGVhM9", img: "_2h6An8GfMlBVX44gullV2O",loader:"loader" });
+                        (i.locals = { approve: "_2afu9Ur8uOK9rB7DEt6Ji_", description: "_2zqtlkpkzSzcrJu1LyrCZZ", body: "luvMKedDbHX7wAgDGVhM9", img: "_2h6An8GfMlBVX44gullV2O",loader:"loader",success:"success",wrong:"wrong"});
                     const o = i;
                 },
                 6259: (e, t, r) => {
