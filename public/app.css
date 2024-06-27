@@ -34334,7 +34334,9 @@ a:active {
   height: 18px;
   border: 1px solid #c8c8c8;
   background-color: rgba(255, 242, 219, .8);
-  overflow: hidden
+  overflow: hidden;
+  margin-left: 44%;
+  margin-top: 10%;
 }
 
 .status_template {
@@ -34868,7 +34870,7 @@ a:active {
   margin-right: 5px;
 }
 
-.approve-btn {
+.approve-btn{
   background-color: #007bff;
   color: white;
   border: none;
@@ -34876,7 +34878,9 @@ a:active {
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
+  margin-left: 37%;
   transition: background-color 0.3s ease;
+  margin-top: 1%;
 }
 
 .approve-btn:hover {
