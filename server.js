@@ -1124,7 +1124,7 @@ const upload = multer({ storage: storage });
               "verified":req.body.verified
             }
             let responseData = await invoke.makeHttpCall("post", "approvecandidate" , jsonData);
-            console.log(JSON.stringify(responseData,'response .................'))
+            console.log(responseData.data,'response .................')
             if (responseData && responseData.data) {
               if(responseData&&responseData.data.success){
                 let memberId=[]
