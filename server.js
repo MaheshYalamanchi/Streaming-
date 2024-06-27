@@ -149,7 +149,9 @@ const upload = multer({ storage: storage });
                   C.emit('chat:message', A.data);
                   process.end();
                   //C.broadcast.emit('chat:message',A.data); // Send message to everyone BUT sender
-                } else {
+                } else if(A && A.event && (A.event=="approval")){
+                  C.emit("approval", A.data);
+                }else {
                   // console.log('send to one to one')
                   C.to(B).emit(A.event, A.data);
                   A.data.type = 'notifymessage'
