@@ -5063,11 +5063,13 @@
                             let mm = this;
                             w.on("approval", function () {
                                 let ee = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-                                if((He.get("id") === ee.student.roomid) && (ee.student.verified)){
-                                    aa.innerHTML = '<div class="'.concat(Krr.success,'"></div>');
-                                    mm.params.onComplete(!0);
-                                } else {
-                                    aa.innerHTML = '<div class="'.concat(Krr.wrong,'">&#10006;</div>');
+                                if((He.get("id") === ee.student.roomid)){
+                                    if((ee.student.verified)){
+                                        aa.innerHTML = '<div class="'.concat(Krr.success,'"></div>');
+                                        mm.params.onComplete(!0);
+                                    } else {
+                                        aa.innerHTML = '<div class="'.concat(Krr.wrong,'">&#10006;</div>');
+                                    }
                                 }
                             });
                         }
