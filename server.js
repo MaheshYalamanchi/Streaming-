@@ -1218,7 +1218,7 @@ const upload = multer({ storage: storage });
                 //teminate test in tao end
                 console.log(responseData.data)
                 let payload={
-                  Delivery_Id:responseData?.data?.proctor?.deliveryId,
+                  Delivery_Id:responseData?.data?.deliveryId,
                   email:responseData?.data?.student?.nickname
                 }
                 console.log(payload,'payload...............')
