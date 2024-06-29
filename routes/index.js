@@ -532,7 +532,7 @@ router.post('/scheduleInfo', async(req, res, next) => {
     if (responseData && responseData.data&&responseData.data.success) {
       res.status(200).send({ success :true ,message:responseData.data.message});
     } else {
-      res.status(200).send({ success :false ,message:"Data not found"});
+      res.status(200).send({ success :false ,message:responseData.data.message});
     }
   
     }catch (error) {
