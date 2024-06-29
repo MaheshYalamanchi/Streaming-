@@ -1224,7 +1224,7 @@ const upload = multer({ storage: storage });
                 // console.log(payload,'payload...............')
                 let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody)
                 let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
-                console.log(taoTerminateTest)
+                console.log(taoTerminateTest.data)
               } else {
                 res.send({ success: false, message: "response not found" })
               }
