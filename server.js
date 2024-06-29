@@ -1205,7 +1205,7 @@ const upload = multer({ storage: storage });
                 memberId=responseData.data.members
                 console.log(memberId,'member id ')
                 let A=memberId.push(responseData.data.student)
-                console.log(A,'member id after',responseData.data.student)
+                console.log(A,'member id after',responseData.data)
                 memberId.length && I.send(memberId, "room:stop", responseData.data);
                 let reportbody = {
                   submittime: responseData.data.stoppedAt,
@@ -1215,6 +1215,12 @@ const upload = multer({ storage: storage });
                   comment: responseData.data.comment,
                   authorization: req.headers.authorization
                 }
+                //teminate test in tao end
+                // let payload={
+                //   Delivery_Id:"",
+                //   email:responseData?.data?.student?.nickname
+                // }
+                // let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
                 let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody)
               } else {
                 res.send({ success: false, message: "response not found" })
