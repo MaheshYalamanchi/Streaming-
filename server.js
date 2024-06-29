@@ -1216,10 +1216,12 @@ const upload = multer({ storage: storage });
                   authorization: req.headers.authorization
                 }
                 //teminate test in tao end
+                console.log(responseData.data)
                 let payload={
                   Delivery_Id:responseData?.data?.proctor?.deliveryId,
                   email:responseData?.data?.student?.nickname
                 }
+                console.log(payload,'payload...............')
                 let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody)
                 let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
                 console.log(taoTerminateTest)
