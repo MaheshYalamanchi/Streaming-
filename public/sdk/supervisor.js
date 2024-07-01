@@ -5870,6 +5870,7 @@
                             let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
                                 t = e.id,
                                 r = e.proctor;
+                                window.postMessage({room:e.id,message:"stop"},'*')
                             if (this._started && He.get("id") === t)
                                 return new Promise((e) => e())
                                     .then(() => this.close())
