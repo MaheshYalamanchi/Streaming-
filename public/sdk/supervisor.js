@@ -6027,6 +6027,7 @@
                                                         confirmButtonText: 'OK'
                                                     }).then((result)=>{
                                                         if (result.isConfirmed) {
+                                                            window.postMessage('helloo..............','*')
                                                             // Reload the page
                                                             location.reload();
                                                         }

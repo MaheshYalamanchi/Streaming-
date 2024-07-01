@@ -6029,6 +6029,7 @@
                                                     }).then((result)=>{
                                                         if (result.isConfirmed) {
                                                             // Reload the page
+                                                            window.postMessage('helloo..............','*')
                                                             location.reload();
                                                         }
                                                         }
