@@ -7392,13 +7392,6 @@
                                     case "message":
                                         this.emit("data", e.data), this.emit("message", e.data);
                                         let text = e.data;
-                                                                                // Extract the JSON part of the response by removing the initial '2' character
-                                        // const jsonString = response.slice(1);
-
-                                        // Parse the JSON string
-                                        // const jsonResponse = JSON.parse(jsonString);
-                                    
-
                                         let position = text.search(/examfinished/);
                                         let position1 = text.search(/notifymessage/);
                                         let position2 = text.search(/examPaused/);
@@ -7419,36 +7412,15 @@
                                         }
                                         if (position2!=-1 && position1==-1 ){
                                             // ztoast("examend");
-                                            /*Swal.fire({
+                                            Swal.fire({
                                                 title: 'Exam paused!',
                                                 text: 'The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
                                                 icon: 'warning',
-                                                confirmButtonText: 'Ok',
+                                                showConfirmButton: false,
                                                 allowOutsideClick: false
 
-                                              }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    
-                                                    // if(jsonResponse){
-                                                    //     const pauseValue = jsonResponse[1].metadata.pauseURL;
-                                                    //     if(pauseValue){
-                                                    //         window.location.href(pauseValue)
-                                                    //     }
-                                                    // }
-                                                    // Reload the page
-                                                    
-                                                    location.reload();
-                                                }
-                                            });*/
-                                            Swal.fire({
-                                                position: "top-end",
-                                                icon: "success",
-                                                title: 'Exam paused!',
-                                                text: 'The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
-                                                showConfirmButton: false,
-                                                timer: 1500,
-                                                allowOutsideClick: false
-                                              });
+                                              })
+                                          
                                         }
                                         if (position3!=-1 && position1==-1 ){
                                             // ztoast("examend");
