@@ -7397,8 +7397,9 @@
                                         let position2 = text.search(/examPaused/);
                                         let position3 = text.search(/examStarted/)
                                         if (position!=-1 && position1==-1 ){
+                                            console.log('exam finish..........')
                                             // ztoast("examend");
-                                            Swal.fire({
+                                            /*Swal.fire({
                                                 title: 'Exam finished!',
                                                 text: 'The test has been finished by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
                                                 icon: 'error',
@@ -7408,7 +7409,7 @@
                                                     // Reload the page
                                                     location.reload();
                                                 }
-                                            });
+                                            });*/
                                         }
                                         if (position2!=-1 && position1==-1 ){
                                             // ztoast("examend");

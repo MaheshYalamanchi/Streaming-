@@ -5867,6 +5867,7 @@
                             return t;
                         }
                         stopHandler() {
+                            
                             let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
                                 t = e.id,
                                 r = e.proctor;
@@ -6027,8 +6028,8 @@
                                                         confirmButtonText: 'OK'
                                                     }).then((result)=>{
                                                         if (result.isConfirmed) {
-                                                            window.postMessage('helloo..............','*')
                                                             // Reload the page
+                                                            window.postMessage('helloo..............','*')
                                                             location.reload();
                                                         }
                                                         }
@@ -7396,8 +7397,9 @@
                                         let position2 = text.search(/examPaused/);
                                         let position3 = text.search(/examStarted/)
                                         if (position!=-1 && position1==-1 ){
+                                            console.log('exam finish..........')
                                             // ztoast("examend");
-                                            Swal.fire({
+                                            /*Swal.fire({
                                                 title: 'Exam finished!',
                                                 text: 'The test has been finished by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
                                                 icon: 'error',
@@ -7407,7 +7409,7 @@
                                                     // Reload the page
                                                     location.reload();
                                                 }
-                                            });
+                                            });*/
                                         }
                                         if (position2!=-1 && position1==-1 ){
                                             // ztoast("examend");
@@ -7415,13 +7417,11 @@
                                                 title: 'Exam paused!',
                                                 text: 'The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
                                                 icon: 'warning',
-                                                confirmButtonText: 'Ok'
-                                              }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    // Reload the page
-                                                    location.reload();
-                                                }
-                                            });
+                                                showConfirmButton: false,
+                                                allowOutsideClick: false
+
+                                              })
+                                          
                                         }
                                         if (position3!=-1 && position1==-1 ){
                                             // ztoast("examend");
