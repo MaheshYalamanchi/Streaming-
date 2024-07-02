@@ -1216,9 +1216,9 @@ const upload = multer({ storage: storage });
                   authorization: req.headers.authorization
                 }
                 //teminate test in tao end
-                // console.log(responseData.data)
+                console.log("concatURL==========>>>>>>>",responseData?.data?.rdfRef.concat(responseData?.data?.deliveryId))
                 let payload={
-                  Delivery_Id:responseData?.data?.deliveryId,
+                  Delivery_Id:responseData?.data?.rdfRef.concat(responseData?.data?.deliveryId),
                   email:responseData?.data?.student?.nickname
                 }
                 // console.log(payload,'payload...............')
