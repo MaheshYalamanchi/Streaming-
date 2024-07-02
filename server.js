@@ -1092,7 +1092,7 @@ const upload = multer({ storage: storage });
               authorization: req.headers.authorization,
               // ipAddress: req.body.ipaddress
             }
-            let responseData = await invoke.makeHttpCall("post", "/api/room/start?id=" + req.query.id, jsonData);
+            let responseData = await invoke.makeHttpCall("post", "/api/room/start?id=" + req.query.id+"&status="+req.query.status, jsonData);
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
               let memberId=[]
