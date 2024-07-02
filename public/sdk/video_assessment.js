@@ -2456,6 +2456,16 @@
                                     .then(() => L.sync(e.user))
                                     .then(() => He.sync(e.room).then((responseOfRoom)=>{
                                         console.log(responseOfRoom,'llllllllllllllllll')
+                                        if(responseOfRoom&&(responseOfRoom.status=='paused')){
+                                            Swal.fire({
+                                                title: 'Exam paused!',
+                                                text: 'The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
+                                                icon: 'warning',
+                                                showConfirmButton: false,
+                                                allowOutsideClick: false
+
+                                              })
+                                        }
                                     })) 
                                     .then(() => y.sync(e.config))
                                     .then(() => w.sync(e.socket).catch(() => {}))
