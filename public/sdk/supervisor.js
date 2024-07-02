@@ -6044,7 +6044,7 @@
                                                 if(e.filename == "webcam.webm"){
                                                     console.log("storage",new Date())
                                                 }
-                                                if(e.status == "stopped"){
+                                                /*if(e.status == "stopped"){
                                                     Swal.fire({
                                                         title: 'Exam finished!',
                                                         text: 'The test has been finished by the proctor. Please connect to our helpdesk to resume the test or use the chat option to connect with the proctor.',
@@ -6058,7 +6058,7 @@
                                                         }
                                                         }
                                                         );
-                                                }
+                                                }*/
                                                 return f("/api/chat/".concat(He.get("id"), "/").concat(t.id), { method: "PUT", body: { attach: [r] } });
                                             })
                                         )
