@@ -151,6 +151,8 @@ const upload = multer({ storage: storage });
                   //C.broadcast.emit('chat:message',A.data); // Send message to everyone BUT sender
                 } else if(A && A.event && (A.event=="approval")){
                   C.emit("approval", A.data);
+                } else if(A && A.event && (A.event=="approvalAccess")){
+                  C.emit("approvalAccess", A.data);
                 }else {
                   // console.log('send to one to one')
                   C.to(B).emit(A.event, A.data);
@@ -1251,6 +1253,10 @@ const upload = multer({ storage: storage });
               }
               let responseData = await invoke.makeHttpCall("post", '/api/room/next?id=' + req.query.id + '', jsonData);
               if (responseData && responseData.data) {
+                if(req && req.body && req.body.approve){
+                  responseData.data.approve = req.body.approve
+                  I.send(responseData.data.members, "approvalAccess", responseData.data)
+                }
                 res.status(200).send(responseData.data);
               } else {
                 res.send({ success: false, message: "response not found" })

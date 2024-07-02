@@ -2414,10 +2414,10 @@
                             sync: (e) => (void 0 !== e ? new Promise((t) => t((Be = e))) : f("/api/room/fetch").then((e) => e && (Be = e))),
                             start: () => (Ke.get("id") ? f("/api/room/start?id=".concat(Ke.get("id"))+'&status='.concat(Ke.get("status")), { method: "POST" ,body :{ipaddress: window.localStorage.getItem("ipaddress")}}).then((e) => (Be = e)) : new Promise((e, t) => t(new Error("Room ID not defined")))),
                             stop: () => (Ke.get("id") ? f("/api/room/stop?id=".concat(Ke.get("id")), { method: "POST" }).then((e) => (Be = e)) : new Promise((e, t) => t(new Error("Room ID not defined")))),
-                            next() {
+                            next(approve) {
                                 let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
                                 return Ke.get("id")
-                                    ? f("/api/room/next?id=".concat(Ke.get("id")), { method: "POST", body: { error: e ? String(e) : null } }).then((e) => {
+                                    ? f("/api/room/next?id=".concat(Ke.get("id")), { method: "POST", body: { error: e ? String(e) : null ,approve:approve} }).then((e) => {
                                           Be && (Be.error = e && e.error);
                                       })
                                     : new Promise((e, t) => t(new Error("Room ID not defined")));
@@ -5163,18 +5163,23 @@
                         nextStage() {
                             this._view && (this._view.remove(), delete this._view), this.setState("complete", !1), this.setState("stage", this.state.stages[this.state.getPage()]);
                             var e = this.state.views[this.state.stage];
+                            let approvedata; 
+                            if(this.state.stage == "approve"){
+                                let approvaldata = true
+                                He.next(approvaldata).then(() => this.setState("complete", e));
+                            }
                             e
                                 ? (this._view = new e({
                                       el: this.setBody(),
                                       onComplete: (e) => {
                                         if(this.state.stage=='face'&& (window.localStorage.getItem('counter')=='31')){
-                                            He.next().then(() => this.setState("complete", e));
+                                            He.next(approvedata).then(() => this.setState("complete", e));
                                         }else if(this.state.stage=='passport'){
-                                            He.next().then(() => this.setState("complete", e));
+                                            He.next(approvedata).then(() => this.setState("complete", e));
                                         }else if(this.state.stage=='check'){
-                                            He.next().then(() => this.setState("complete", e));
+                                            He.next(approvedata).then(() => this.setState("complete", e));
                                         }else if(this.state.stage=='approve'){
-                                            He.next().then(() => this.setState("complete", e));
+                                            He.next(approvedata).then(() => this.setState("complete", e));
                                         }
                                       },
                                       onError: (e) => He.next(e),
@@ -7449,17 +7454,24 @@
                                         }
                                         if ((position3!=-1 && position1==-1)||(position3==69 && position1==3) ){
                                             // ztoast("examend");
-                                            Swal.fire({
-                                                title: 'Exam started',
-                                                text: 'Test started plaese press ok and attain the test',
-                                                icon: 'success',
-                                                confirmButtonText: 'Ok'
-                                              }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    // Reload the page
-                                                    location.reload();
-                                                }
-                                            })
+                                            const jsonString = text.slice(1);
+                                            const jsonArray = JSON.parse(jsonString);
+                                            const eventType = jsonArray[0];
+                                            const eventData = jsonArray[1];
+                                            console.log(eventData.room);
+                                            if(window.localStorage.getItem('selectedRoomId')==eventData.room){
+                                                Swal.fire({
+                                                    title: 'Exam started',
+                                                    text: 'Test started please press ok and attain the test',
+                                                    icon: 'success',
+                                                    confirmButtonText: 'Ok'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        // Reload the page
+                                                        location.reload();
+                                                    }
+                                                })
+                                            }
                                         }
                                 }
                             else o('packet received with socket readyState "%s"', this.readyState);
