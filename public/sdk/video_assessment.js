@@ -2454,7 +2454,9 @@
                                         )
                                     )
                                     .then(() => L.sync(e.user))
-                                    .then(() => He.sync(e.room))
+                                    .then(() => He.sync(e.room).then((responseOfRoom)=>{
+                                        console.log(responseOfRoom,'llllllllllllllllll')
+                                    })) 
                                     .then(() => y.sync(e.config))
                                     .then(() => w.sync(e.socket).catch(() => {}))
                                     .then(() => ({ token: f.token }))
