@@ -2455,7 +2455,7 @@
                                     )
                                     .then(() => L.sync(e.user))
                                     .then(() => He.sync(e.room).then((responseOfRoom)=>{
-                                        console.log(responseOfRoom,'llllllllllllllllll')
+                                        // console.log(responseOfRoom,'llllllllllllllllll')
                                         if(responseOfRoom&&(responseOfRoom.status=='paused')){
                                             Swal.fire({
                                                 title: 'Exam paused!',

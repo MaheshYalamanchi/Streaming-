@@ -2454,7 +2454,19 @@
                                         )
                                     )
                                     .then(() => L.sync(e.user))
-                                    .then(() => He.sync(e.room))
+                                    .then(() => He.sync(e.room).then((responseOfRoom)=>{
+                                        // console.log(responseOfRoom,'llllllllllllllllll')
+                                        if(responseOfRoom&&(responseOfRoom.status=='paused')){
+                                            Swal.fire({
+                                                title: 'Exam paused!',
+                                                text: 'The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
+                                                icon: 'warning',
+                                                showConfirmButton: false,
+                                                allowOutsideClick: false
+
+                                              })
+                                        }
+                                    })) 
                                     .then(() => y.sync(e.config))
                                     .then(() => w.sync(e.socket).catch(() => {}))
                                     .then(() => ({ token: f.token }))
@@ -5793,48 +5805,60 @@
                                 .then(() => this.close())
                                 .then(() =>
                                     He.start().then((e) => {
-                                        this._started = !0;
-                                        const t = (this._conference = new Pr({ hidden: !0, restart: !0 })),
-                                            r = (this._chat = new tn({
-                                                el: this.el,
-                                                player: t.el,
-                                                onincident: (e) => {
-                                                    (this._incident = e), this.lock(e);
-                                                },
-                                            }));
-                                        return (
-                                            He.hasAddon("preview") &&
-                                                (this._preview = new Xr({
+                                        if(e&&(e.status=='paused')){
+                                            Swal.fire({
+                                                title: 'Exam paused!',
+                                                text: 'The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
+                                                icon: 'warning',
+                                                showConfirmButton: false,
+                                                allowOutsideClick: false
+
+                                              })
+                                        }else{
+                                            this._started = !0;
+                                            const t = (this._conference = new Pr({ hidden: !0, restart: !0 })),
+                                                r = (this._chat = new tn({
                                                     el: this.el,
-                                                    onchat: He.hasAddon("chat") ? () => r.toggle() : null,
-                                                    ontooltip: (e) => {
-                                                        "n2" === e.target.dataset.id && this.qrcode();
+                                                    player: t.el,
+                                                    onincident: (e) => {
+                                                        (this._incident = e), this.lock(e);
                                                     },
-                                                })),
-                                            He.hasAddon("content") && Promise.all([pr.start(), qt.start()]),
-                                            t
-                                                .init()
-                                                .then(() => t.start({ room: e.id, sources: He.hasAddon("screen") ? ["webcam", "screen"] : ["webcam"] }))
-                                                .then((t) => {
-                                                    const r = t[0],
-                                                        n = t[1];
-                                                    return (
-                                                        this._preview && this._preview.setContent(r),
-                                                        ur.start(r, n, { track: He.hasAddon("track"), snapshot: He.hasAddon("snapshot"), record: He.hasAddon("record"), threshold: He.get("threshold"), metrics: He.get("metrics") }),
-                                                        e.url &&
-                                                            (this._iframe = new un({
-                                                                el: this.el,
-                                                                onFinish: () => {
-                                                                    const e = L.get("referer") || "/";
-                                                                    this.stop().then(() => {
-                                                                        (window.onbeforeunload = null), window.opener && window.close(), (location.href = e);
-                                                                    });
-                                                                },
-                                                            })),
-                                                        e
-                                                    );
-                                                })
-                                        );
+                                                }));
+                                            return (
+                                                He.hasAddon("preview") &&
+                                                    (this._preview = new Xr({
+                                                        el: this.el,
+                                                        onchat: He.hasAddon("chat") ? () => r.toggle() : null,
+                                                        ontooltip: (e) => {
+                                                            "n2" === e.target.dataset.id && this.qrcode();
+                                                        },
+                                                    })),
+                                                He.hasAddon("content") && Promise.all([pr.start(), qt.start()]),
+                                                t
+                                                    .init()
+                                                    .then(() => t.start({ room: e.id, sources: He.hasAddon("screen") ? ["webcam", "screen"] : ["webcam"] }))
+                                                    .then((t) => {
+                                                        const r = t[0],
+                                                            n = t[1];
+                                                        return (
+                                                            this._preview && this._preview.setContent(r),
+                                                            ur.start(r, n, { track: He.hasAddon("track"), snapshot: He.hasAddon("snapshot"), record: He.hasAddon("record"), threshold: He.get("threshold"), metrics: He.get("metrics") }),
+                                                            e.url &&
+                                                                (this._iframe = new un({
+                                                                    el: this.el,
+                                                                    onFinish: () => {
+                                                                        const e = L.get("referer") || "/";
+                                                                        this.stop().then(() => {
+                                                                            (window.onbeforeunload = null), window.opener && window.close(), (location.href = e);
+                                                                        });
+                                                                    },
+                                                                })),
+                                                            e
+                                                        );
+                                                    })
+                                            );
+                                        }
+                                      
                                     })
                                 );
                         }
