@@ -1215,6 +1215,7 @@ const upload = multer({ storage: storage });
                   comment: responseData.data.comment,
                   authorization: req.headers.authorization
                 }
+                console.log("==========>>>>>>>>",responseData.data.status)
                 if(responseData.data.status == "stopped"){
                   let payload={
                     Delivery_Id:responseData?.data?.rdfRef.concat(responseData?.data?.deliveryId),
