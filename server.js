@@ -1253,7 +1253,7 @@ const upload = multer({ storage: storage });
               }
               let responseData = await invoke.makeHttpCall("post", '/api/room/next?id=' + req.query.id + '', jsonData);
               if (responseData && responseData.data) {
-                if(req && req.body && req.body.approve){
+                if(req && req.body && req.body.approve == true){
                   responseData.data.approve = req.body.approve
                   I.send(responseData.data.members, "approvalAccess", responseData.data)
                 }
