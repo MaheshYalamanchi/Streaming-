@@ -7466,7 +7466,7 @@
                                                 return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
                                             }).join(''));
                                             console.log(jsonPayload,'token decode')
-                                            if(window.localStorage.getItem('selectedRoomId')==eventData.room){
+                                            if(jsonPayload.id==eventData.room){
                                                 Swal.fire({
                                                     title: 'Exam started',
                                                     text: 'Test started please press ok and attain the test',
