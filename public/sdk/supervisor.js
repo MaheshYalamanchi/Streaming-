@@ -2412,7 +2412,7 @@
                                 return t;
                             },
                             sync: (e) => (void 0 !== e ? new Promise((t) => t((Be = e))) : f("/api/room/fetch").then((e) => e && (Be = e))),
-                            start: () => (Ke.get("id") ? f("/api/room/start?id=".concat(Ke.get("id")), { method: "POST" ,body :{ipaddress: window.localStorage.getItem("ipaddress")}}).then((e) => (Be = e)) : new Promise((e, t) => t(new Error("Room ID not defined")))),
+                            start: () => (Ke.get("id") ? f("/api/room/start?id=".concat(Ke.get("id"))+'&status='.concat(Ke.get("status")), { method: "POST" ,body :{ipaddress: window.localStorage.getItem("ipaddress")}}).then((e) => (Be = e)) : new Promise((e, t) => t(new Error("Room ID not defined")))),
                             stop: () => (Ke.get("id") ? f("/api/room/stop?id=".concat(Ke.get("id")), { method: "POST" }).then((e) => (Be = e)) : new Promise((e, t) => t(new Error("Room ID not defined")))),
                             next() {
                                 let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
@@ -7447,14 +7447,19 @@
                                               })
                                           
                                         }
-                                        if (position3!=-1 && position1==-1 ){
+                                        if ((position3!=-1 && position1==-1)||(position3==69 && position1==3) ){
                                             // ztoast("examend");
                                             Swal.fire({
                                                 title: 'Exam started',
                                                 text: 'Test started plaese press ok and attain the test',
                                                 icon: 'success',
                                                 confirmButtonText: 'Ok'
-                                              })
+                                              }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    // Reload the page
+                                                    location.reload();
+                                                }
+                                            })
                                         }
                                 }
                             else o('packet received with socket readyState "%s"', this.readyState);
