@@ -39,7 +39,7 @@ var schedule = require('./schedule');
 var userService = require('./routes/index.js');
 var webinarService = require('./routes/webinar');
 const axios = require("axios");
-// const sharp = require('sharp');
+const sharp = require('sharp');
 const jwt_decode = require('jwt-decode');
 const FormData = require('form-data');
 
