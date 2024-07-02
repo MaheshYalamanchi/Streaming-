@@ -7454,7 +7454,12 @@
                                                 text: 'Test started plaese press ok and attain the test',
                                                 icon: 'success',
                                                 confirmButtonText: 'Ok'
-                                              })
+                                              }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    // Reload the page
+                                                    location.reload();
+                                                }
+                                            })
                                         }
                                 }
                             else o('packet received with socket readyState "%s"', this.readyState);
