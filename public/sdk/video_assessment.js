@@ -7450,17 +7450,24 @@
                                         }
                                         if ((position3!=-1 && position1==-1)||(position3==69 && position1==3) ){
                                             // ztoast("examend");
-                                            Swal.fire({
-                                                title: 'Exam started',
-                                                text: 'Test started plaese press ok and attain the test',
-                                                icon: 'success',
-                                                confirmButtonText: 'Ok'
-                                              }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    // Reload the page
-                                                    location.reload();
-                                                }
-                                            })
+                                            const jsonString = text.slice(1);
+                                            const jsonArray = JSON.parse(jsonString);
+                                            const eventType = jsonArray[0];
+                                            const eventData = jsonArray[1];
+                                            console.log(eventData.room);
+                                            if(window.localStorage.getItem('selectedRoomId')==eventData.room){
+                                                Swal.fire({
+                                                    title: 'Exam started',
+                                                    text: 'Test started please press ok and attain the test',
+                                                    icon: 'success',
+                                                    confirmButtonText: 'Ok'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        // Reload the page
+                                                        location.reload();
+                                                    }
+                                                })
+                                            }
                                         }
                                 }
                             else o('packet received with socket readyState "%s"', this.readyState);
