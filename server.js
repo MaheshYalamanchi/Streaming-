@@ -1215,15 +1215,17 @@ const upload = multer({ storage: storage });
                   comment: responseData.data.comment,
                   authorization: req.headers.authorization
                 }
-                //teminate test in tao end
-                console.log("concatURL==========>>>>>>>",responseData?.data?.rdfRef.concat(responseData?.data?.deliveryId))
-                let payload={
-                  Delivery_Id:responseData?.data?.rdfRef.concat(responseData?.data?.deliveryId),
-                  email:responseData?.data?.student?.nickname
+                console.log("==========>>>>>>>>",responseData.data.status)
+                if(responseData.data.status == "stopped"){
+                  let payload={
+                    Delivery_Id:responseData?.data?.rdfRef.concat(responseData?.data?.deliveryId),
+                    email:responseData?.data?.student?.nickname
+                  }
+                  let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
                 }
                 // console.log(payload,'payload...............')
                 let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody)
-                let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
+                
                 console.log(taoTerminateTest.data)
               } else {
                 res.send({ success: false, message: "response not found" })
