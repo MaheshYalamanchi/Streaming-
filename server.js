@@ -1061,6 +1061,7 @@ const upload = multer({ storage: storage });
           var jsonData = {
             authorization: req.headers.authorization
           }
+          console.log(JSON.parse(jsonData),'fetch api auth')
           let responseData = await invoke.makeHttpCall("post", "/api/room/fetch", jsonData);
           if (responseData && responseData.data) {
             res.status(200).send(responseData.data);
