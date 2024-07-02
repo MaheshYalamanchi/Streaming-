@@ -5149,7 +5149,7 @@
                                     approve: He.hasAddon("approve") ? Zrr : null,
                                 },
                                 t = Object.keys(e).filter((t) => !!e[t]);
-                            return { views: e, stages: t, getPage: () => t.indexOf(this.state.stage) + 1, total: t.length, complete: !1 };
+                            return { views: e, stages: t,nextPage:t.indexOf(this.state.stage) + 1, getPage: () => t.indexOf(this.state.stage) + 1, total: t.length, complete: !1 };
                         }
                         on() {
                             return {
