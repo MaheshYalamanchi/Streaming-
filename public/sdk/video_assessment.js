@@ -7447,7 +7447,7 @@
                                               })
                                           
                                         }
-                                        if (position3!=-1 && position1==-1 ){
+                                        if ((position3!=-1 && position1==-1)||(position3==69 && position1==3) ){
                                             // ztoast("examend");
                                             Swal.fire({
                                                 title: 'Exam started',
