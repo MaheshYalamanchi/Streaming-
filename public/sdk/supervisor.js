@@ -5166,7 +5166,7 @@
                             let approvedata; 
                             if(this.state.stage == "approve"){
                                 let approvaldata = true
-                                He.next(approvaldata).then(() => this.setState("complete", e));
+                                He.next(approvaldata).then(() =>{});
                             }
                             e
                                 ? (this._view = new e({
