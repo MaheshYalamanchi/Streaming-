@@ -3872,10 +3872,7 @@ div.webix_modal_cover {
   clear: both;
   height: auto;
   position: relative;
-  width: 100%;
-  padding: 23%;
-  margin-left: 20%;
-
+  width: 100%
 }
 
 .webix_scroll_touch_ie {
@@ -3884,16 +3881,15 @@ div.webix_modal_cover {
 
 .webix_secondary .webix_button {
   /* background: #f4f5f9; */
-  background: #27BBEE 0% 0% no-repeat padding-box;
+  background: #3e3d3d;
   border-radius: 10px;
   color: linear-gradient(to right, #00b0ed 0, #53aa34 100%);
-  height: 45px;
-  width:65px; 
-  margin-left:35px;
+  height: 35px;
+  
 }
 
 .webix_secondary .webix_button:focus, .webix_secondary .webix_button:hover {
-  background-color: #27BBEE 0% 0% no-repeat padding-box
+  background-color: #e7e9f2
 }
 
 .webix_secondary .webix_button:active {
@@ -3903,12 +3899,11 @@ div.webix_modal_cover {
 .webix_secondary .webix_button .webix_icon, .webix_secondary .webix_button .webix_icon_btn, .webix_secondary .webix_button .webix_img_btn_text {
   color: linear-gradient(to right, #00b0ed 0, #53aa34 100%);
   position: relative;
-  color:white;
   /* bottom: 3px; */
 }
 
 .webix_secondary .webix_pressed .webix_button {
-  background-color: green
+  background-color: #daddeb
 }
 
 .webix_primary .webix_button .webix_icon, .webix_primary .webix_button .webix_icon_btn, .webix_primary .webix_button .webix_img_btn_text {
@@ -3966,17 +3961,17 @@ div.webix_modal_cover {
 
 .webix_button, .webixbutton {
   -webkit-appearance: none;
-  border-radius: 8px;
+  border-radius: 2px;
   color: linear-gradient(to right, #00b0ed 0, #53aa34 100%);
   cursor: pointer;
   font-family: Roboto, sans-serif;
   font-size: 1pc;
   font-weight: 500;
-  height: 56px;
+  height: 100%;
   letter-spacing: 0;
   outline: 0;
-  padding: 6px 6px;
-  width: 121px
+  padding: 0 6px;
+  width: 100%
 }
 
 .webix_el_button .webix_el_box, .webix_el_toggle .webix_el_box {
@@ -4246,7 +4241,7 @@ body:not(:-moz-handler-blocked) .webix_el_select select {
   padding: 5px 9pt;
   resize: none;
   position: relative !important;
-  left: 785px !important;
+  left: 385px !important;
 }
 
 .webix_el_textarea .webix_inp_label {
@@ -6441,8 +6436,7 @@ body.webix_print {
   position: relative;
   text-align: center;
   position: relative !important;
-  top: 0% !important;
-  height: 44px !important;
+  top: 15% !important;
 }
 
 .webix_icon_button .webix_icon {
@@ -33972,19 +33966,19 @@ button.webix_alert_btn:hover {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
 }
+
 .webix_supervision {
   position: relative;
   box-sizing: border-box;
   /* margin-left: -301px !important; */
   margin-top: -12px !important;
-  width: 667px !important;
-  /* height: 165px !important; */
+  width: 317px !important;
+  height: 165px !important;
   border-radius: 12px !important;
-  /* background: repeating-linear-gradient(45deg, #eee, #eee 15px, #fff 15px, #fff 30px); */
+  /* background: repeating-linear-gradient( 45deg, #eee, #eee 15px, #fff 15px, #fff 30px); */
   /* background: black; */
   background: #262626;
 }
-
 
 .webix_supervision_level1 {
   position: absolute;
@@ -34717,24 +34711,18 @@ a:active {
 
 .webix_secondary {
   float: left !important;
-  width:67px !important
 }
 
 .webix_danger {
-  /* background: #C20000 0% 0% no-repeat padding-box; */
+  background: #ff5c4c;
   color: #fff;
   float: left !important;
-  /* margin-left: 176px !important; */
-  /* width: 100px !important; */
-  height: 44px !important;
-  border-radius: 3% !important;
-  margin-bottom: 0 !important;
-  padding: 0%;
-  position: relative;
-  top: -75px;
-  right: 215px;
+  margin-left: 50px !important;
+  width: 74px !important;
+  height: 30px !important;
+  border-radius: 10% !important;
+  margin-top: 10px !important;
 }
-
 .webix_layout_line {
   /* position: relative !important;
   left : 1038px !important;

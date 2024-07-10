@@ -5180,6 +5180,10 @@
                                             He.next(approvedata).then(() => this.setState("complete", e));
                                         }else if(this.state.stage=='approve'){
                                             He.next(approvedata).then(() => this.setState("complete", e));
+                                        }else if(this.state.stage=='qrcode'){
+                                            He.next(approvedata).then(() => this.setState("complete", e));
+                                        }else {
+                                            He.next(approvedata).then(() => this.setState("complete", e));
                                         }
                                       },
                                       onError: (e) => He.next(e),
