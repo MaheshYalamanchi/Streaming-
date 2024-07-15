@@ -7955,29 +7955,16 @@
                         }
                         addEventListeners() {
                             console.log('always listining..............')
-                            window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+                            fetch('https://api.ipify.org?format=json')
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Your IP Address:', data.ip);
+                                window.localStorage.setItem("ipaddress", data.ip);
+                            })
+                            .catch(error => {
+                                console.error('Error fetching IP address:', error);
+                            });
 
-if (window.RTCPeerConnection) {
-    var pc = new RTCPeerConnection({iceServers:[]});
-    pc.createDataChannel(""); // create a bogus data channel
-    pc.createOffer().then(offer => {
-        pc.setLocalDescription(offer);
-    }).catch(error => {
-        console.error('Failed to create offer:', error);
-    });
-    pc.onicecandidate = function(ice){
-        if (ice && ice.candidate && ice.candidate.candidate){
-            var myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(ice.candidate.candidate);
-            if (myIP) {
-                console.log('Your IP Address:', myIP[1]);
-                window.localStorage.setItem("ipaddress", myIP[1]);
-            }
-            pc.onicecandidate = null;
-        }
-    };
-} else {
-    console.warn('WebRTC is not supported in this browser.');
-}
 
 
                             const e = this;
