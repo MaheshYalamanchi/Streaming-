@@ -21,24 +21,6 @@
         window.localStorage.setItem("counter", 0);
         window.localStorage.removeItem("branding");
         window.localStorage.setItem("chatId", 'undefined');
-        getIpAddress();
-        function getIpAddress() {
-            try {
-                $.ajax({
-                url: "https://api.ipify.io",
-                type: "GET",
-                success: function (data) {
-                    localStorage.setItem("ipaddress",data)
-                },
-                error: function (error) {
-                    console.log(`Error ${error}`);
-                },
-                });
-            } catch (e) {
-                /* Cross Domain issue */
-                console.log(e, "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-            }
-            }
         var e = {
                 2439: (e, t, r) => {
                     "use strict";
@@ -7973,6 +7955,19 @@
                         }
                         addEventListeners() {
                             console.log('always listining..............')
+                            window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+                            var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};
+                            pc.createDataChannel(""); // create a bogus data channel
+                            pc.createOffer(pc.setLocalDescription.bind(pc), noop); // create offer and set local description
+                            pc.onicecandidate = function(ice){
+                            if (ice && ice.candidate && ice.candidate.candidate){
+                                var myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(ice.candidate.candidate)[1];
+                                console.log('Your IP Address:', myIP);
+                                window.localStorage.setItem("ipaddress",myIP)
+                                pc.onicecandidate = noop;
+                            }
+                            };
+
                             const e = this;
                             (this.ws.onopen = function () {
                                 e.onOpen();
