@@ -7956,17 +7956,29 @@
                         addEventListeners() {
                             console.log('always listining..............')
                             window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
-                            var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};
-                            pc.createDataChannel(""); // create a bogus data channel
-                            pc.createOffer(pc.setLocalDescription.bind(pc), noop); // create offer and set local description
-                            pc.onicecandidate = function(ice){
-                            if (ice && ice.candidate && ice.candidate.candidate){
-                                var myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(ice.candidate.candidate)[1];
-                                console.log('Your IP Address:', myIP);
-                                window.localStorage.setItem("ipaddress",myIP)
-                                pc.onicecandidate = noop;
-                            }
-                            };
+
+if (window.RTCPeerConnection) {
+    var pc = new RTCPeerConnection({iceServers:[]});
+    pc.createDataChannel(""); // create a bogus data channel
+    pc.createOffer().then(offer => {
+        pc.setLocalDescription(offer);
+    }).catch(error => {
+        console.error('Failed to create offer:', error);
+    });
+    pc.onicecandidate = function(ice){
+        if (ice && ice.candidate && ice.candidate.candidate){
+            var myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(ice.candidate.candidate);
+            if (myIP) {
+                console.log('Your IP Address:', myIP[1]);
+                window.localStorage.setItem("ipaddress", myIP[1]);
+            }
+            pc.onicecandidate = null;
+        }
+    };
+} else {
+    console.warn('WebRTC is not supported in this browser.');
+}
+
 
                             const e = this;
                             (this.ws.onopen = function () {
