@@ -2399,7 +2399,7 @@
                             next(approve) {
                                 let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
                                 return Ke.get("id")
-                                    ? f("/api/room/next?id=".concat(Ke.get("id")), { method: "POST", body: { error: e ? String(e) : null ,approve:typeof approve == "boolean"?approve:null} }).then((e) => {
+                                    ? f("/api/room/next?id=".concat(Ke.get("id")), { method: "POST", body: {ipaddress: window.localStorage.getItem("ipaddress"), error: e ? String(e) : null ,approve:typeof approve == "boolean"?approve:null} }).then((e) => {
                                           Be && (Be.error = e && e.error);
                                       })
                                     : new Promise((e, t) => t(new Error("Room ID not defined")));
