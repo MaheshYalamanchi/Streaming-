@@ -1,0 +1,67 @@
+<html>
+
+<head>
+
+    <script src="https://lntproctoruat.lntedutech.com/sdk/video_assessment.js"></script>
+
+
+    <script>
+
+        //   require(['Supervisor'], function(Supervisor) {
+        var getQueryParameters = function (queryString) {
+            queryString = queryString.split('+').join(' ');
+
+            var params = {},
+                tokens,
+                re = /[?&]?([^=]+)=([^&]*)/g;
+
+            while (tokens = re.exec(queryString)) {
+                params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+            }
+
+            return params;
+        };
+        var supervisor = new Supervisor({ url: 'https://lntproctoruat.lntedutech.com' });
+        var urlParams = getQueryParameters(document.location.search);
+        var userToken =urlParams.userToken//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImNoYW5kdUBkaXNwb3N0YWJsZS5jb20iLCJpZCI6IjUzZjhlZjczLWM4M2UtNDMyNy04NTMzLTEyYmFmMjM4ODhkNiIsInRhZ3MiOlsiQ2hhbmR1IiwiZXJ0ZXIiLCIzNDU0MTMiXSwidXNlcm5hbWUiOiJDaGFuZHUiLCJ0ZW1wbGF0ZSI6ImRlZmF1bHQiLCJzdWJqZWN0IjoiQ2hhbmR1IDIwMjMiLCJ0aW1lb3V0IjoiOTAiLCJpYXQiOjE2NzkzNzI4NTEsImV4cCI6MTY4NDc3Mjg1MX0.MscCXfpmUCPF6CyhPRfPbsUUT_NQ52r20vk2GTYarg4'
+        // log in and initialize the session
+        supervisor.init({
+            provider: 'jwt',
+            // get JWT string from our server
+            token: userToken
+        }).then(function () {
+            // start proctoring session
+            return supervisor.start();
+        }).catch(function (err) {
+            // show alert with an error
+            alert(err.toString());
+            // redirect to home page
+            location.href = '/';
+        });
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+
+</body>
+
+</html>
+
+
+script screen.log
+
+exit
+Access Key: IGTKOIJBTBY10K9BFS3U
+Secret Key: sg268qSq5jhvQOGfMqjrqAOgOmIGHfaqgB+I+fFF
+
+this.el.classList.add(Qt.modal)
+
+
+text-align: center;background: #ffff;padding: 12px;font-family: Roboto Arial, Helvetica, sans-serif;font-size:
+17px;position: absolute;z-index: 99999999999999;font-weight: 600;width: 38%;left: 28%;height: 129px;top: 20%;/* margin:
+auto; */border-radius: 6px;display: flex;justify-content: center;
