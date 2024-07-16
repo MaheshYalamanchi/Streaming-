@@ -1225,11 +1225,12 @@ const upload = multer({ storage: storage });
                     email:responseData?.data?.student?.nickname
                   }
                   let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
+                  console.log(taoTerminateTest.data)
                 }
                 // console.log(payload,'payload...............')
                 let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody)
                 
-                console.log(taoTerminateTest.data)
+                
               } else {
                 res.send({ success: false, message: "response not found" })
               }
