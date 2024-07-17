@@ -1248,6 +1248,9 @@ const upload = multer({ storage: storage });
         s.post("/next", async (req, res, E) => {
           try {
             if (req && req.headers && req.headers.authorization) {
+              if(req.body&&req.body.approve){
+                req.body.approvalRequest=false
+              }
               var jsonData = {
                 authorization: req.headers.authorization,
                 body:req.body
