@@ -619,6 +619,8 @@ const upload = multer({ storage: storage });
                       responseData.data.tenantId = req.query.tenantId
                       let response = invoke.makeHttpCall("post", '/api/broadcast/sendToAll', responseData.data);
                     }
+                    console.log('room id=',responseData.data.room)
+                    console.log('room details=',responseData.data)
                     g.send(String(responseData.data.room), "chat:message", responseData.data);
                     let msgreport = {
                       message: responseData.data.message,
