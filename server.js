@@ -1205,21 +1205,21 @@ const upload = multer({ storage: storage });
               let responseData = await invoke.makeHttpCall("post", '/api/room/submit?id=' + req.query.id, req.body);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
-                let memberId=[]
-                memberId=responseData.data.members
-                console.log(memberId,'member id ')
-                let A=memberId.push(responseData.data.student)
-                console.log(A,'member id after',responseData.data)
-                memberId.length && I.send(memberId, "room:stop", responseData.data);
-                let reportbody = {
-                  submittime: responseData.data.stoppedAt,
-                  room: responseData.data.id,
-                  student: responseData.data.student.id,
-                  status: responseData.data.status,
-                  comment: responseData.data.comment,
-                  authorization: req.headers.authorization
-                }
-                console.log("==========>>>>>>>>",responseData.data.status)
+                // let memberId=[]
+                // memberId=responseData.data.members
+                // console.log(memberId,'member id ')
+                // let A=memberId.push(responseData.data.student)
+                // console.log(A,'member id after',responseData.data)
+                // memberId.length && I.send(memberId, "room:stop", responseData.data);
+                // let reportbody = {
+                //   submittime: responseData.data.stoppedAt,
+                //   room: responseData.data.id,
+                //   student: responseData.data.student.id,
+                //   status: responseData.data.status,
+                //   comment: responseData.data.comment,
+                //   authorization: req.headers.authorization
+                // }
+                // console.log("==========>>>>>>>>",responseData.data.status)
                 if(responseData.data.status == "stopped"){
                   let payload={
                     Delivery_Id:responseData?.data?.rdfRef.concat(responseData?.data?.deliveryId),
