@@ -136,7 +136,7 @@ const upload = multer({ storage: storage });
           };
         return (
           process.on("message", function (A) {
-            // console.log('message received=',A)
+            console.log('message received=',A)
             "socket:emit" === A.id &&
               [].concat(A.room).forEach(function (B) {
                 //    console.log('To=',B,' message data...',A.data.room)
