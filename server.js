@@ -1126,7 +1126,8 @@ const upload = multer({ storage: storage });
               authorization: req.headers.authorization,
               "roomid":req.body.roomId,
               "status":req.body.status,
-              "verified":req.body.verified
+              "verified":req.body.verified,
+              "rejectLog":req.body.rejectLog
             }
             let responseData = await invoke.makeHttpCall("post", "approvecandidate" , jsonData);
             console.log(responseData.data,'response .................')
@@ -1139,7 +1140,7 @@ const upload = multer({ storage: storage });
                 console.log(A,'mermber id after')
                 memberId.length && I.send(memberId, "approval", responseData.data.data);
               
-                res.status(200).send({success:true,message:'Candidate approved successfully.'});
+                res.status(200).send({success:true,message: responseData.data.data});
               }else{
                 res.status(200).send({success:false,message:'Candidate approved failed.'});
               }
