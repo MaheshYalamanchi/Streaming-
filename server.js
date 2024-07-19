@@ -1206,9 +1206,9 @@ const upload = multer({ storage: storage });
                 res.status(200).send(responseData.data);
                 let memberId=[]
                 memberId=responseData.data.members
-                // console.log(memberId,'member id ')
+                console.log(memberId,'member id ')
                 let A=memberId.push(responseData.data.student)
-                // console.log(A,'member id after',responseData.data)
+                console.log(A,'member id after',responseData.data)
                 memberId.length && I.send(memberId, "room:stop", responseData.data);
                 let reportbody = {
                   submittime: responseData.data.stoppedAt,
