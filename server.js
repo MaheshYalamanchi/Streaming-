@@ -1227,7 +1227,7 @@ const upload = multer({ storage: storage });
                     Delivery_Id:responseData?.data?.rdfRef.concat(responseData?.data?.deliveryId),
                     email:responseData?.data?.student?.nickname
                   }
-                  console.log(payload,'payload for report engine')
+                  console.log(JSON.stringify(payload),'payload for report engine')
                   let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
                   console.log(taoTerminateTest.data,'stop api call to report engine')
                 }
