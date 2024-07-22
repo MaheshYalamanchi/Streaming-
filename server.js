@@ -136,7 +136,7 @@ const upload = multer({ storage: storage });
           };
         return (
           process.on("message", function (A) {
-            console.log('message received=',A)
+            // console.log('message received=',A)
             "socket:emit" === A.id &&
               [].concat(A.room).forEach(function (B) {
                 //    console.log('To=',B,' message data...',A.data.room)
@@ -1228,7 +1228,7 @@ const upload = multer({ storage: storage });
                     email:responseData?.data?.student?.nickname
                   }
                   let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
-                  console.log(taoTerminateTest.data)
+                  console.log(taoTerminateTest.data,'stop api call to report engine')
                 }
                 // console.log(payload,'payload...............')
                 let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody)
