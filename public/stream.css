@@ -34927,4 +34927,20 @@
   .approve-btn_g:hover {
     background-color: green;
   }
+  .approve-btn_R{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 1%;
+    transition: background-color 0.3s ease;
+    margin-top: 1%;
+  }
+  
+  .approve-btn_R:hover {
+    background-color: red;
+  }
   
