@@ -2393,7 +2393,12 @@
                                 }
                                 return t;
                             },
-                            sync: (e) => (void 0 !== e ? new Promise((t) => t((Be = e))) : f("/api/room/fetch").then((e) => e && (Be = e))),
+                            sync: (e) => (void 0 !== e ? new Promise((t) => t((Be = e))) : f("/api/room/fetch").then((e) => {
+                                e && (Be = e)
+                                if(e && (Be = e)){
+                                    window.localStorage.setItem("Verified",e.verified)
+                                }
+                            })),
                             start: () => (Ke.get("id") ? f("/api/room/start?id=".concat(Ke.get("id"))+'&status='.concat(Ke.get("status")), { method: "POST" ,body :{ipaddress: window.localStorage.getItem("ipaddress")}}).then((e) => (Be = e)) : new Promise((e, t) => t(new Error("Room ID not defined")))),
                             stop: () => (Ke.get("id") ? f("/api/room/stop?id=".concat(Ke.get("id")), { method: "POST" }).then((e) => (Be = e)) : new Promise((e, t) => t(new Error("Room ID not defined")))),
                             next(approve) {
@@ -5133,7 +5138,7 @@
                                     face: He.hasAddon("face") ? Yr : null,
                                     passport: He.hasAddon(["passport", "scan"]) ? Zr : null,
                                     qrcode: He.hasAddon("qrcode") ? Hr : null,
-                                    approve: He.hasAddon("approve") ? Zrr : null,
+                                    approve: He.hasAddon("approve") && (window.localStorage.getItem("Verified") == "false") ? Zrr : null,
                                 },
                                 t = Object.keys(e).filter((t) => !!e[t]);
                             return { views: e, stages: t, getPage: () => t.indexOf(this.state.stage) + 1, total: t.length, complete: !1 };
