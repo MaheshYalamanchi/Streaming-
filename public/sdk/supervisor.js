@@ -3,7 +3,7 @@
 })("undefined" != typeof self ? self : this, function () {
     return (() => {
         console.log("hostname",window.location.hostname);
-        var ii=1;
+        var iii=1;
         var metrics = ["b1","b2","b3","c1","c2","c3","c4","c5","m1","m2","n1","n2","s1","s2","k1","m3"];
         for (const iterator of metrics) {
             window.localStorage.removeItem(iterator)
@@ -5123,8 +5123,9 @@
                                                 
                                                 // Append overlay to body
                                                 document.body.appendChild(overlay);
+                                                iii++
                                             }
-                                            if(ii==1){
+                                            if(iii==1){
                                                 createCustomAlert(ee.student.rejectLog);
                                             }
 
