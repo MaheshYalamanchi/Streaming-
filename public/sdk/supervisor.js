@@ -5112,6 +5112,7 @@
                                                 // Add event listener to OK button
                                                 okButton.addEventListener('click', function() {
                                                     document.body.removeChild(overlay);
+                                                    iii=1
                                                 });
                                                 
                                                 // Append elements to alert box
