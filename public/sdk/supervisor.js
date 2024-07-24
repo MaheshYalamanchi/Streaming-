@@ -5064,7 +5064,8 @@
                                     } else {
                                         aa.innerHTML = '<div class="'.concat(Krr.wrong,'">&#10006;</div>');
                                         if(ee.student.rejectLog){
-                                            alert(ee.student.rejectLog)
+                                            // alert(ee.student.rejectLog)
+                                            sweetAlert("Oops...", ee.student.rejectLog, "error");
                                             console.log("Reject message",ee.student.rejectLog)
                                         }
                                        
