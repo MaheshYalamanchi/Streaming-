@@ -5070,7 +5070,14 @@
                                         aa.innerHTML = '<div class="'.concat(Krr.wrong,'">&#10006;</div>');
                                         if(ee.student.rejectLog){
                                             // alert(ee.student.rejectLog)
-                                            sweetAlert("Oops...", ee.student.rejectLog, "error");
+                                            Swal.fire({
+                                                title: 'Reject!',
+                                                text: ee.student.rejectLog,
+                                                icon: 'warning',
+                                                showConfirmButton: false,
+                                                allowOutsideClick: false
+
+                                              })
                                             console.log("Reject message",ee.student.rejectLog)
                                         }
                                        
