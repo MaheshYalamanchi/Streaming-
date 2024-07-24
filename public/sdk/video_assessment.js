@@ -5069,15 +5069,60 @@
                                     } else {
                                         aa.innerHTML = '<div class="'.concat(Krr.wrong,'">&#10006;</div>');
                                         if(ee.student.rejectLog){
-                                            // alert(ee.student.rejectLog)
-                                            Swal.fire({
-                                                title: 'Reject!',
-                                                text: ee.student.rejectLog,
-                                                icon: 'warning',
-                                                showConfirmButton: false,
-                                                allowOutsideClick: false
+                                            function createCustomAlert(message) {
+                                                // Create overlay
+                                                let overlay = document.createElement('div');
+                                                overlay.style.position = 'fixed';
+                                                overlay.style.top = '0';
+                                                overlay.style.left = '0';
+                                                overlay.style.width = '100%';
+                                                overlay.style.height = '100%';
+                                                overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                                                overlay.style.display = 'flex';
+                                                overlay.style.justifyContent = 'center';
+                                                overlay.style.alignItems = 'center';
+                                                overlay.style.zIndex = '9999';
+                                                
+                                                // Create alert box
+                                                let alertBox = document.createElement('div');
+                                                alertBox.style.backgroundColor = 'white';
+                                                alertBox.style.padding = '20px';
+                                                alertBox.style.borderRadius = '5px';
+                                                alertBox.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                                                alertBox.style.textAlign = 'center';
+                                                
+                                                // Create message paragraph
+                                                let messageParagraph = document.createElement('p');
+                                                messageParagraph.innerText = message;
+                                                
+                                                // Create OK button
+                                                let okButton = document.createElement('button');
+                                                okButton.innerText = 'OK';
+                                                okButton.style.marginTop = '10px';
+                                                okButton.style.padding = '5px 10px';
+                                                okButton.style.border = 'none';
+                                                okButton.style.backgroundColor = '#007bff';
+                                                okButton.style.color = 'white';
+                                                okButton.style.borderRadius = '3px';
+                                                okButton.style.cursor = 'pointer';
+                                                
+                                                // Add event listener to OK button
+                                                okButton.addEventListener('click', function() {
+                                                    document.body.removeChild(overlay);
+                                                });
+                                                
+                                                // Append elements to alert box
+                                                alertBox.appendChild(messageParagraph);
+                                                alertBox.appendChild(okButton);
+                                                
+                                                // Append alert box to overlay
+                                                overlay.appendChild(alertBox);
+                                                
+                                                // Append overlay to body
+                                                document.body.appendChild(overlay);
+                                            }
+                                            createCustomAlert(ee.student.rejectLog);
 
-                                              })
                                             console.log("Reject message",ee.student.rejectLog)
                                         }
                                        
