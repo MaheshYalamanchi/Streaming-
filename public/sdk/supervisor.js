@@ -3,6 +3,7 @@
 })("undefined" != typeof self ? self : this, function () {
     return (() => {
         console.log("hostname",window.location.hostname);
+        var ii=1;
         var metrics = ["b1","b2","b3","c1","c2","c3","c4","c5","m1","m2","n1","n2","s1","s2","k1","m3"];
         for (const iterator of metrics) {
             window.localStorage.removeItem(iterator)
@@ -5070,6 +5071,7 @@
                                         aa.innerHTML = '<div class="'.concat(Krr.wrong,'">&#10006;</div>');
                                         if(ee.student.rejectLog){
                                             // alert(ee.student.rejectLog)
+                                            
                                             function createCustomAlert(message) {
                                                 // Create overlay
                                                 let overlay = document.createElement('div');
@@ -5122,7 +5124,9 @@
                                                 // Append overlay to body
                                                 document.body.appendChild(overlay);
                                             }
-                                            createCustomAlert(ee.student.rejectLog);
+                                            if(ii==1){
+                                                createCustomAlert(ee.student.rejectLog);
+                                            }
 
                                             console.log("Reject message",ee.student.rejectLog)
                                         }
