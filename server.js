@@ -1124,12 +1124,18 @@ const upload = multer({ storage: storage });
         }),
         s.post("/approvecandidate", async (req, res, E) => {
           try {
+           
             var jsonData = {
               authorization: req.headers.authorization,
               "roomid":req.body.roomId,
               "status":req.body.status,
               "verified":req.body.verified,
               "rejectLog":req.body.rejectLog
+            }
+            if((req.body.verified==false)&&req.body.rejectLog){
+              jsonData.color='red'
+            }else{
+              jsonData.color='green'
             }
             let responseData = await invoke.makeHttpCall("post", "approvecandidate" , jsonData);
             console.log(responseData.data,'response .................')
