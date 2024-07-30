@@ -1259,7 +1259,7 @@ const upload = multer({ storage: storage });
           try {
             if (req && req.headers && req.headers.authorization) {
               if(req.body&&req.body.approve){
-                req.body.approvalRequest=false
+                req.body.color='green'
               }
               var jsonData = {
                 authorization: req.headers.authorization,
