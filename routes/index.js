@@ -543,4 +543,25 @@ router.post('/scheduleInfo', async(req, res, next) => {
     }
     }
 });
+
+router.post('/broadcastMessages', async(req, res, next) => {
+  try {
+    if(req && req.headers && req.headers.authorization){
+      req.body.authorization = req.headers.authorization
+    }
+    let responseData = await invoke.makeHttpCallUser_service("post", "/user/broadcastMessages",req.body);
+    if (responseData && responseData.data&&responseData.data.success) {
+      res.status(200).send({ success :true ,message:responseData.data.message});
+    } else {
+      res.status(200).send({ success :false ,message:responseData.data.message});
+    }
+  
+    }catch (error) {
+    if (error && error.message) {
+        res.status(400).send(error);
+    } else {
+        res.status(400).send(error);
+    }
+    }
+});
 module.exports = router;
