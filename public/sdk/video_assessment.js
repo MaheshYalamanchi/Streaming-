@@ -4486,184 +4486,365 @@
                         Or = { insert: "head", singleton: !1 };
                     Ot()(kr.Z, Or);
                     const Rr = kr.Z.locals || {};
+                    // class Yr extends hr {
+                    //     constructor() {
+                    //         let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                    //         super(e), this.mount(e.el);
+                    //     }
+                    //     render(imageStatus,counter) {
+                    //         var e = document.createElement("DIV");
+                    //        // var imageStatus = localStorage.getItem('checkImageStatus')
+                    //         /*
+                    //         function generateSunLights(imageStatus) {
+                    //             var sunLightsHTML = '<div class="scan">';
+                    //             var sunLightClass = imageStatus == 'true' ? 'b' : 'b-1';
+                    //             var sClass = imageStatus == 'true' ? 's' : 's-1';
+                            
+                    //             // Generate 30 sun-light divs
+                    //             var count=31;
+                    //             for (var i = 0; i < 30; i++) {
+                    //                 sunLightsHTML += '<div class="sun-light">';
+                    //                 sunLightsHTML += '<b id="'+i+'" class="' + sunLightClass + '"></b>';
+                    //                 sunLightsHTML += '<s id="'+count+'" class="' + sClass + '"></s>';
+                    //                 sunLightsHTML += '</div>';
+                    //                 const element = document.getElementById(i);
+                    //                 if(element&& (imageStatus=='false')){
+                    //                     element.classList.remove("b");  // Remove mystyle class
+                    //                     element.classList.add("b-1");  // Add newone class
+                    //                     element.classList.remove("s"); 
+                    //                     element.classList.add("s-1"); 
+                    //                 }else if(element&& (imageStatus=='true')){
+                    //                     element.classList.remove("b-1");  // Remove mystyle class
+                    //                     element.classList.add("b");  // Add newone class
+                    //                     element.classList.remove("s-1"); 
+                    //                     element.classList.add("s"); 
+                    //                 }
+                    //                 const element_s = document.getElementById(count);
+                    //                 if(element_s&& (imageStatus=='false')){
+                    //                     element_s.classList.remove("b");  // Remove mystyle class
+                    //                     element_s.classList.add("b-1");  // Add newone class
+                    //                     element_s.classList.remove("s"); 
+                    //                     element_s.classList.add("s-1"); 
+                    //                 }else if(element_s&& (imageStatus=='true')){
+                    //                     element_s.classList.remove("b-1");  // Remove mystyle class
+                    //                     element_s.classList.add("b");  // Add newone class
+                    //                     element_s.classList.remove("s-1"); 
+                    //                     element_s.classList.add("s"); 
+                    //                 }
+                    //                 count++
+                    //             }
+                    //             sunLightsHTML += '</div>'; // Close the scan div
+                    //             return sunLightsHTML;
+                    //         }
+                            
+                    //         var generatedHTML = generateSunLights(imageStatus);*/
+                    //         function generateSunLights(imageStatus,counter) {
+                    //             var sunLightsHTML = '<div class="scan">';
+                    //             var count=31;
+                    //             // Generate 30 sun-light divs
+                    //             for (var i = 0; i < 30; i++) {
+                    //                 var imageStatus='false' //= i === /* index where you want imageStatus to be true */ ? true : false;
+                    //                 var sunLightClass = imageStatus ? 'b' : 'b-1';
+                    //                 var sClass = imageStatus ? 's' : 's-1';
+                    //                 sunLightsHTML += '<div class="sun-light">';
+                    //                 sunLightsHTML += '<b id="' + i + '" class="' + sunLightClass + '"></b>';
+                    //                 sunLightsHTML += '<s id="' + (i + 31) + '" class="' + sClass + '"></s>';
+                    //                 sunLightsHTML += '</div>';
+                    //                 const element = document.getElementById(i);
+                    //                 if(element&& (imageStatus=='false')){
+                    //                     element.classList.remove("b");  // Remove mystyle class
+                    //                     element.classList.add("b-1");  // Add newone class
+                    //                     element.classList.remove("s"); 
+                    //                     element.classList.add("s-1"); 
+                    //                 }else if(element&& (imageStatus=='true')){
+                    //                     element.classList.remove("b-1");  // Remove mystyle class
+                    //                     element.classList.add("b");  // Add newone class
+                    //                     element.classList.remove("s-1"); 
+                    //                     element.classList.add("s"); 
+                    //                 }
+                    //                 const element_s = document.getElementById(count);
+                    //                 if(element_s&& (imageStatus=='false')){
+                    //                     element_s.classList.remove("b");  // Remove mystyle class
+                    //                     element_s.classList.add("b-1");  // Add newone class
+                    //                     element_s.classList.remove("s"); 
+                    //                     element_s.classList.add("s-1"); 
+                    //                 }else if(element_s&& (imageStatus=='true')){
+                    //                     element_s.classList.remove("b-1");  // Remove mystyle class
+                    //                     element_s.classList.add("b");  // Add newone class
+                    //                     element_s.classList.remove("s-1"); 
+                    //                     element_s.classList.add("s"); 
+                    //                 }
+                    //                 count++
+                    //             }
+                    //             sunLightsHTML += '</div>'; // Close the scan div
+                    //             return sunLightsHTML;
+                    //         }
+                    //         var generatedHTML
+                    //         if(window.localStorage.getItem('build')=='true'){
+                    //             generatedHTML = generateSunLights(imageStatus,counter);
+                    //             window.localStorage.setItem('build',false)
+                    //         }else if(window.localStorage.getItem('build')=='false'){
+                    //             function generateSunLights(imageStatus,counter) {
+                    //                 var sunLightsHTML = '<div class="scan">';
+                    //                 // Generate 30 sun-light divs
+                    //                 // for (var i = 0; i < 30; i++) {
+                    //                     var imageStatus='false' //'true' === imageStatus ? 'true' : 'false';
+                    //                     var sunLightClass = imageStatus ? 'b' : 'b-1';
+                    //                     var sClass = imageStatus ? 's' : 's-1';
+                    //                     sunLightsHTML += '<div class="sun-light">';
+                    //                     sunLightsHTML += '<b id="' + counter + '" class="' + sunLightClass + '"></b>';
+                    //                     sunLightsHTML += '<s id="' + (parseInt(counter) + 31) + '" class="' + sClass + '"></s>';
+                    //                     sunLightsHTML += '</div>';
+                    //                     const element = document.getElementById(counter=="30"?"0":counter);
+                    //                     if(element&& (imageStatus=='false')){
+                    //                         element.classList.remove("b");  // Remove mystyle class
+                    //                         element.classList.add("b-1");  // Add newone class
+                    //                         element.classList.remove("s"); 
+                    //                         element.classList.add("s-1"); 
+                    //                     }else if(element&& (imageStatus=='true')){
+                    //                         element.classList.remove("b-1");  // Remove mystyle class
+                    //                         element.classList.add("b");  // Add newone class
+                    //                         element.classList.remove("s-1"); 
+                    //                         element.classList.add("s"); 
+                    //                     }
+                    //                     const element_s = document.getElementById(parseInt(counter)+31);
+                    //                     if(element_s&& (imageStatus=='false')){
+                    //                         element_s.classList.remove("b");  // Remove mystyle class
+                    //                         element_s.classList.add("b-1");  // Add newone class
+                    //                         element_s.classList.remove("s"); 
+                    //                         element_s.classList.add("s-1"); 
+                    //                     }else if(element_s&& (imageStatus=='true')){
+                    //                         element_s.classList.remove("b");  // Remove mystyle class
+                    //                         element_s.classList.add("b-1");  // Add newone class
+                    //                         element_s.classList.remove("s"); 
+                    //                         element_s.classList.add("s-1"); 
+                    //                     }
+                    //                 // }
+                    //                 sunLightsHTML += '</div>'; // Close the scan div
+                    //                 return sunLightsHTML;
+                    //             }
+                    //             generatedHTML = generateSunLights(imageStatus,counter);
+                    //         }
+                    //         e.className = Rr.face;
+                    //         e.innerHTML = '\n    <div  dataafser="test014" class="'
+                    //         .concat(Rr.body, '">\n      <div dataafser="test015" class="')
+                    //         .concat(Rr.preview, '">\n  <video class="')
+                    //         .concat(Rr.webcam, '"\n          autoplay playsinline muted data-mirror="true"></video>\n        <div datatest="test016" class="')
+                    //         .concat(Rr.overlay, '"></div>\n</div>')
+                    //         //.concat('<div class="scan"><div class="sun-light" id="b_sec"><b  id="b_sec1" class="'+(imageStatus == 'true' ? 'b' : 'b-1')+'"></b><s id="s_sec1" class="'+(imageStatus == 'true' ? 's' : 's-1')+'"></s></div></div>')
+                    //         .concat(generatedHTML)
+                    //         .concat('\n      <div dataafser="test017" class="')
+                    //         .concat(Rr.buttons, '">\n<button class="')
+                    //         .concat(Rr.take_btn, '">\n<span class="')
+                    //         .concat(Rr.label, '">')
+                    //         .concat(Ht("face.button.take"), '</span>\n        </button>\n        <button class="')
+                    //         .concat(Rr.retry_btn, " ")
+                    //         .concat(Rr.hidden, '">\n          <span class="')
+                    //         .concat(Rr.label, '">')
+                    //         .concat(Ht("face.button.retry"), "</span>\n        </button>\n      </div>\n    </div>\n    ")
+                    //         .concat('<div class="rightcam"><p>Capture your snapshot below following instructions</p>')
+                    //         .concat('<div class="wrapbox"><div><div class="imageplace blur"><span class="check warn"></span>')
+                    //         .concat('</div><span>Blurred image</span></div><div><div class="imageplace face"><span class="check warn"></span>')
+                    //         .concat('</div><span>Face cut</span></div><div><div class="imageplace uneven"><span class="check warn"></span>')
+                    //         .concat('</div><span>Uneven light face</span></div><div><div class="imageplace looking">')
+                    //         .concat('<span class="check warn"></span></div><span>Looking away from camera</span>')
+                    //         .concat('</div><div><div class="imageplace correct"><span class="check done"></span>')
+                    //         .concat('</div><span>Correct image</span></div></div></div>')
+                    //         let brandingCss = JSON.parse(window.localStorage.getItem("branding"))
+                    //         if(brandingCss) {
+                    //             const buttonElement = e.querySelector('._3mjdGihOhejEnKd4cHfxeL');
+                    //             if(buttonElement){
+                    //                 buttonElement.setAttribute('style', 'background: '+brandingCss.branding.styles[1].buttons.background+' !important;');
+                    //             }
+                    //             let retryButtonElement = e.querySelector('_33I29_jIipZoMXMAZcokiE');
+                    //             if(retryButtonElement){
+                    //                 retryButtonElement.setAttribute('style', 'background: '+brandingCss.branding.styles[1].buttons.background+' !important;');
+                    //             }
+                    //         }
+                    //         return (e)
+
+                           
+                    //     }
+                    //     on() {
+                    //         return {
+                    //             click: {
+                    //                 [Rr.take_btn]: (e, t) => {
+                    //                     t.disabled || this.takePhoto();
+                    //                 },
+                    //                 [Rr.retry_btn]: (e, t) => {
+                    //                     t.disabled || this.retry();
+                    //                 },
+                    //             },
+                    //         };
+                    //     }
+                    //     updated(e, t) {
+                    //         if ("stage" === e) {
+                    //             const e = this.$(Rr.overlay),
+                    //                 r = this.$(Rr.take_btn),
+                    //                 n = this.$(Rr.retry_btn);
+                    //             switch ((r.removeAttribute("disabled"), r.classList.add(Rr.hidden), n.classList.add(Rr.hidden), t)) {
+                    //                 case "ready":
+                    //                     r.classList.remove(Rr.hidden), (e.innerHTML = "");
+                    //                     break;
+                    //                 case "nocamera":
+                    //                     n.classList.remove(Rr.hidden), (e.innerHTML = Ht("face.msg.nocamera"));
+                    //                     break;
+                    //                 case "noface":
+                    //                     n.classList.remove(Rr.hidden), (e.innerHTML = Ht("face.msg.noface"));
+                    //                     break;
+                    //                 case "nonunique":
+                    //                     n.classList.remove(Rr.hidden), (e.innerHTML = Ht("face.msg.nonunique"));
+                    //                     break;
+                    //                 case "unverified":
+                    //                     n.classList.remove(Rr.hidden), (e.innerHTML = Ht("face.msg.unverified"));
+                    //                     break;
+                    //                 case "loading":
+                    //                     r.setAttribute("disabled", !0), r.classList.remove(Rr.hidden), (e.innerHTML = Ht("face.msg.loading"));
+                    //                     break;
+                    //                 case "done":
+                    //                     n.classList.remove(Rr.hidden), (e.innerHTML = Ht("face.msg.done"));
+                    //             }
+                    //         }
+                    //     }
+                    //     mounted() {
+                    //         this.retry();
+                    //     }
+                    //     removed() {
+                    //         this._mediaStream && (this._mediaStream.getTracks().forEach((e) => e.stop()), delete this._mediaStream), this._url && (URL.revokeObjectURL(this._url), delete this._url);
+                    //     }
+                    //     retry() {
+                    //         this.params.onComplete(!1);
+                    //         const e = this.$(Rr.webcam);
+                    //         this._mediaStream
+                    //             ? (e.play(), this.setState("stage", "ready"))
+                    //             : (this.setState("stage", "loading"),
+                    //               delete e.dataset.off,
+                    //               (e.dataset.spinner = !0),
+                    //               Oe({ audio: !1 })
+                    //                   .then((t) => {
+                    //                       (this._mediaStream = t),
+                    //                           void 0 !== e.srcObject ? (e.srcObject = t) : ((this._url = URL.createObjectURL(t)), (e.src = this._url)),
+                    //                           e.play(),
+                    //                           (e.onplaying = () => {
+                    //                             delete e.dataset.spinner, this.setState("stage", "ready");
+                    //                             // var counter=0;
+                    //                             // this.capturePhoto(counter,e);
+                    //                           });
+                    //                   })
+                    //                   .catch((t) => {
+                    //                       this.params.onError(t), delete e.dataset.spinner, (e.dataset.off = !0), this.setState("stage", "nocamera");
+                    //                   }));
+                    //     }
+                    //     capturePhoto(counter,e) {
+                    //         counter=window.localStorage.getItem('counter')
+                    //         counter++
+                    //         if(counter<=31){
+                    //             if(window.localStorage.getItem('facevalid')=="true"){
+                    //                 window.localStorage.setItem('checkImageStatus',true)
+                    //                 setTimeout(() => {
+                    //                     const canvas = document.createElement('canvas');
+                    //                     canvas.width = 640;
+                    //                     canvas.height = 480;
+                    //                     const context = canvas.getContext('2d');
+                    //                     context.drawImage(e, 0, 0, canvas.width, canvas.height);
+                    //                     const image = canvas.toDataURL("image/png", 0.8);
+                    //                     att(image,counter).then((ee)=>{
+                    //                             window.localStorage.setItem('counter',ee.counter)
+                    //                                 if(counter==31){
+                    //                                     window.localStorage.setItem('counter',31)
+                    //                                 }
+                    //                             this.capturePhoto(parseInt(counter),e)
+                    //                             this.takePhoto();
+                    //                             this.render('true',ee.counter)
+                    //                     })
+                                        
+                                        
+                    //                 }, 500);
+                    //                 return counter
+                    //             }else{
+                    //                 window.localStorage.setItem('checkImageStatus',false)
+                    //                 this.retry()
+                    //                 setTimeout(() => {
+                    //                     counter++
+                    //                     this.render('false','none')
+                    //                     this.takePhoto();
+                    //                     this.capturePhoto(parseInt(counter),e);
+                    //                 }, 500);
+                                    
+                    //                 return counter
+                    //             }
+                    //         }
+                    //     }
+                    //     takePhoto() {
+                    //         this.setState("stage", "loading");
+                    //         var e = this.$(Rr.webcam);
+                    //         var t = Ke.get("addons") || [];
+                    //         var O = t.find(item => item === "FVC")
+                    //         e.paused
+                    //             ? e.play()
+                    //             : (e.pause(),
+                    //               this.recognize(e)
+                    //                   .then((e) => {
+                    //                       if (L.get("secure") && !e.verified) {
+                    //                           const e = new Error("Unidentified face in front of the camera");
+                    //                           return this.params.onError(e), this.setState("stage", "unverified");
+                    //                       }
+                    //                     if (e.verified == false) {
+                    //                         if(O=="FVC"){
+                    //                             const e = new Error("Face does not match the profile");
+                    //                             return this.params.onError(e),
+                    //                             this.setState("stage", "unverified");
+                    //                         }
+                    //                       }
+                    //                       return L.update({ face: e.id })
+                    //                           .then(() => {
+                    //                               this.setState("stage", "done"), this.params.onComplete(!0);
+                    //                           })
+                    //                           .catch((e) => {
+                    //                               this.params.onError(e), this.setState("stage", "noface");
+                    //                           });
+                    //                   })
+                    //                   .catch((e) => {
+                    //                       this.params.onError(e), this.setState("stage", "noface");
+                    //                   }));
+                    //     }
+                    //     recognize(e, t) {
+                    //         return (t = Object.assign({}, y.get("tracker.camera") || {}, t || {})), ct.recognize(e, t);
+                    //     }
+                    // }
                     class Yr extends hr {
                         constructor() {
                             let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
                             super(e), this.mount(e.el);
                         }
-                        render(imageStatus,counter) {
+                        render() {
                             var e = document.createElement("DIV");
-                           // var imageStatus = localStorage.getItem('checkImageStatus')
-                            /*
-                            function generateSunLights(imageStatus) {
-                                var sunLightsHTML = '<div class="scan">';
-                                var sunLightClass = imageStatus == 'true' ? 'b' : 'b-1';
-                                var sClass = imageStatus == 'true' ? 's' : 's-1';
-                            
-                                // Generate 30 sun-light divs
-                                var count=31;
-                                for (var i = 0; i < 30; i++) {
-                                    sunLightsHTML += '<div class="sun-light">';
-                                    sunLightsHTML += '<b id="'+i+'" class="' + sunLightClass + '"></b>';
-                                    sunLightsHTML += '<s id="'+count+'" class="' + sClass + '"></s>';
-                                    sunLightsHTML += '</div>';
-                                    const element = document.getElementById(i);
-                                    if(element&& (imageStatus=='false')){
-                                        element.classList.remove("b");  // Remove mystyle class
-                                        element.classList.add("b-1");  // Add newone class
-                                        element.classList.remove("s"); 
-                                        element.classList.add("s-1"); 
-                                    }else if(element&& (imageStatus=='true')){
-                                        element.classList.remove("b-1");  // Remove mystyle class
-                                        element.classList.add("b");  // Add newone class
-                                        element.classList.remove("s-1"); 
-                                        element.classList.add("s"); 
-                                    }
-                                    const element_s = document.getElementById(count);
-                                    if(element_s&& (imageStatus=='false')){
-                                        element_s.classList.remove("b");  // Remove mystyle class
-                                        element_s.classList.add("b-1");  // Add newone class
-                                        element_s.classList.remove("s"); 
-                                        element_s.classList.add("s-1"); 
-                                    }else if(element_s&& (imageStatus=='true')){
-                                        element_s.classList.remove("b-1");  // Remove mystyle class
-                                        element_s.classList.add("b");  // Add newone class
-                                        element_s.classList.remove("s-1"); 
-                                        element_s.classList.add("s"); 
-                                    }
-                                    count++
-                                }
-                                sunLightsHTML += '</div>'; // Close the scan div
-                                return sunLightsHTML;
-                            }
-                            
-                            var generatedHTML = generateSunLights(imageStatus);*/
-                            function generateSunLights(imageStatus,counter) {
-                                var sunLightsHTML = '<div class="scan">';
-                                var count=31;
-                                // Generate 30 sun-light divs
-                                for (var i = 0; i < 30; i++) {
-                                    var imageStatus='false' //= i === /* index where you want imageStatus to be true */ ? true : false;
-                                    var sunLightClass = imageStatus ? 'b' : 'b-1';
-                                    var sClass = imageStatus ? 's' : 's-1';
-                                    sunLightsHTML += '<div class="sun-light">';
-                                    sunLightsHTML += '<b id="' + i + '" class="' + sunLightClass + '"></b>';
-                                    sunLightsHTML += '<s id="' + (i + 31) + '" class="' + sClass + '"></s>';
-                                    sunLightsHTML += '</div>';
-                                    const element = document.getElementById(i);
-                                    if(element&& (imageStatus=='false')){
-                                        element.classList.remove("b");  // Remove mystyle class
-                                        element.classList.add("b-1");  // Add newone class
-                                        element.classList.remove("s"); 
-                                        element.classList.add("s-1"); 
-                                    }else if(element&& (imageStatus=='true')){
-                                        element.classList.remove("b-1");  // Remove mystyle class
-                                        element.classList.add("b");  // Add newone class
-                                        element.classList.remove("s-1"); 
-                                        element.classList.add("s"); 
-                                    }
-                                    const element_s = document.getElementById(count);
-                                    if(element_s&& (imageStatus=='false')){
-                                        element_s.classList.remove("b");  // Remove mystyle class
-                                        element_s.classList.add("b-1");  // Add newone class
-                                        element_s.classList.remove("s"); 
-                                        element_s.classList.add("s-1"); 
-                                    }else if(element_s&& (imageStatus=='true')){
-                                        element_s.classList.remove("b-1");  // Remove mystyle class
-                                        element_s.classList.add("b");  // Add newone class
-                                        element_s.classList.remove("s-1"); 
-                                        element_s.classList.add("s"); 
-                                    }
-                                    count++
-                                }
-                                sunLightsHTML += '</div>'; // Close the scan div
-                                return sunLightsHTML;
-                            }
-                            var generatedHTML
-                            if(window.localStorage.getItem('build')=='true'){
-                                generatedHTML = generateSunLights(imageStatus,counter);
-                                window.localStorage.setItem('build',false)
-                            }else if(window.localStorage.getItem('build')=='false'){
-                                function generateSunLights(imageStatus,counter) {
-                                    var sunLightsHTML = '<div class="scan">';
-                                    // Generate 30 sun-light divs
-                                    // for (var i = 0; i < 30; i++) {
-                                        var imageStatus='false' //'true' === imageStatus ? 'true' : 'false';
-                                        var sunLightClass = imageStatus ? 'b' : 'b-1';
-                                        var sClass = imageStatus ? 's' : 's-1';
-                                        sunLightsHTML += '<div class="sun-light">';
-                                        sunLightsHTML += '<b id="' + counter + '" class="' + sunLightClass + '"></b>';
-                                        sunLightsHTML += '<s id="' + (parseInt(counter) + 31) + '" class="' + sClass + '"></s>';
-                                        sunLightsHTML += '</div>';
-                                        const element = document.getElementById(counter=="30"?"0":counter);
-                                        if(element&& (imageStatus=='false')){
-                                            element.classList.remove("b");  // Remove mystyle class
-                                            element.classList.add("b-1");  // Add newone class
-                                            element.classList.remove("s"); 
-                                            element.classList.add("s-1"); 
-                                        }else if(element&& (imageStatus=='true')){
-                                            element.classList.remove("b-1");  // Remove mystyle class
-                                            element.classList.add("b");  // Add newone class
-                                            element.classList.remove("s-1"); 
-                                            element.classList.add("s"); 
-                                        }
-                                        const element_s = document.getElementById(parseInt(counter)+31);
-                                        if(element_s&& (imageStatus=='false')){
-                                            element_s.classList.remove("b");  // Remove mystyle class
-                                            element_s.classList.add("b-1");  // Add newone class
-                                            element_s.classList.remove("s"); 
-                                            element_s.classList.add("s-1"); 
-                                        }else if(element_s&& (imageStatus=='true')){
-                                            element_s.classList.remove("b");  // Remove mystyle class
-                                            element_s.classList.add("b-1");  // Add newone class
-                                            element_s.classList.remove("s"); 
-                                            element_s.classList.add("s-1"); 
-                                        }
-                                    // }
-                                    sunLightsHTML += '</div>'; // Close the scan div
-                                    return sunLightsHTML;
-                                }
-                                generatedHTML = generateSunLights(imageStatus,counter);
-                            }
-                            e.className = Rr.face;
-                            e.innerHTML = '\n    <div  dataafser="test014" class="'
-                            .concat(Rr.body, '">\n      <div dataafser="test015" class="')
-                            .concat(Rr.preview, '">\n  <video class="')
-                            .concat(Rr.webcam, '"\n          autoplay playsinline muted data-mirror="true"></video>\n        <div datatest="test016" class="')
-                            .concat(Rr.overlay, '"></div>\n</div>')
-                            //.concat('<div class="scan"><div class="sun-light" id="b_sec"><b  id="b_sec1" class="'+(imageStatus == 'true' ? 'b' : 'b-1')+'"></b><s id="s_sec1" class="'+(imageStatus == 'true' ? 's' : 's-1')+'"></s></div></div>')
-                            .concat(generatedHTML)
-                            .concat('\n      <div dataafser="test017" class="')
-                            .concat(Rr.buttons, '">\n<button class="')
-                            .concat(Rr.take_btn, '">\n<span class="')
-                            .concat(Rr.label, '">')
-                            .concat(Ht("face.button.take"), '</span>\n        </button>\n        <button class="')
-                            .concat(Rr.retry_btn, " ")
-                            .concat(Rr.hidden, '">\n          <span class="')
-                            .concat(Rr.label, '">')
-                            .concat(Ht("face.button.retry"), "</span>\n        </button>\n      </div>\n    </div>\n    ")
-                            .concat('<div class="rightcam"><p>Capture your snapshot below following instructions</p>')
-                            .concat('<div class="wrapbox"><div><div class="imageplace blur"><span class="check warn"></span>')
-                            .concat('</div><span>Blurred image</span></div><div><div class="imageplace face"><span class="check warn"></span>')
-                            .concat('</div><span>Face cut</span></div><div><div class="imageplace uneven"><span class="check warn"></span>')
-                            .concat('</div><span>Uneven light face</span></div><div><div class="imageplace looking">')
-                            .concat('<span class="check warn"></span></div><span>Looking away from camera</span>')
-                            .concat('</div><div><div class="imageplace correct"><span class="check done"></span>')
-                            .concat('</div><span>Correct image</span></div></div></div>')
-                            let brandingCss = JSON.parse(window.localStorage.getItem("branding"))
-                            if(brandingCss) {
-                                const buttonElement = e.querySelector('._3mjdGihOhejEnKd4cHfxeL');
-                                if(buttonElement){
-                                    buttonElement.setAttribute('style', 'background: '+brandingCss.branding.styles[1].buttons.background+' !important;');
-                                }
-                                let retryButtonElement = e.querySelector('_33I29_jIipZoMXMAZcokiE');
-                                if(retryButtonElement){
-                                    retryButtonElement.setAttribute('style', 'background: '+brandingCss.branding.styles[1].buttons.background+' !important;');
-                                }
-                            }
-                            return (e)
-
-                           
+                            return (
+                                (e.className = Rr.face),
+                                (e.innerHTML = '\n    <div  dataafser="test014" class="'
+                                    .concat(Rr.body, '">\n      <div dataafser="test015" class="')
+                                    .concat(Rr.preview, '">\n        <video class="')
+                                    .concat(Rr.webcam, '"\n          autoplay playsinline muted data-mirror="true"></video>\n        <div datatest="test016" class="')
+                                    .concat(Rr.overlay, '"></div>\n      </div>\n      <div dataafser="test017" class="')
+                                    .concat(Rr.buttons, '">\n        <button class="')
+                                    .concat(Rr.take_btn, '">\n          <span class="')
+                                    .concat(Rr.label, '">')
+                                    .concat(Ht("face.button.take"), '</span>\n        </button>\n        <button class="')
+                                    .concat(Rr.retry_btn, " ")
+                                    .concat(Rr.hidden, '">\n          <span class="')
+                                    .concat(Rr.label, '">')
+                                    .concat(Ht("face.button.retry"), "</span>\n        </button>\n      </div>\n    </div>\n    ")
+                                    .concat('<div class="rightcam"><p>Capture your snapshot below following instructions</p>')
+                                    .concat('<div class="wrapbox"><div><div class="imageplace blur"><span class="check warn"></span>')
+                                    .concat('</div><span>Blurred image</span></div><div><div class="imageplace face"><span class="check warn"></span>')
+                                    .concat('</div><span>Face cut</span></div><div><div class="imageplace uneven"><span class="check warn"></span>')
+                                    .concat('</div><span>Uneven light face</span></div><div><div class="imageplace looking">')
+                                    .concat('<span class="check warn"></span></div><span>Looking away from camera</span>')
+                                    .concat('</div><div><div class="imageplace correct"><span class="check done"></span>')
+                                    .concat('</div><span>Correct image</span></div></div></div>')
+                                    ),
+                                e
+                            );
                         }
                         on() {
                             return {
@@ -4727,61 +4908,21 @@
                                               e.play(),
                                               (e.onplaying = () => {
                                                 delete e.dataset.spinner, this.setState("stage", "ready");
-                                                var counter=0;
-                                                this.capturePhoto(counter,e);
+                                               
                                               });
                                       })
                                       .catch((t) => {
                                           this.params.onError(t), delete e.dataset.spinner, (e.dataset.off = !0), this.setState("stage", "nocamera");
                                       }));
                         }
-                        capturePhoto(counter,e) {
-                            counter=window.localStorage.getItem('counter')
-                            counter++
-                            if(counter<=31){
-                                if(window.localStorage.getItem('facevalid')=="true"){
-                                    window.localStorage.setItem('checkImageStatus',true)
-                                    setTimeout(() => {
-                                        const canvas = document.createElement('canvas');
-                                        canvas.width = 640;
-                                        canvas.height = 480;
-                                        const context = canvas.getContext('2d');
-                                        context.drawImage(e, 0, 0, canvas.width, canvas.height);
-                                        const image = canvas.toDataURL("image/png", 0.8);
-                                        att(image,counter).then((ee)=>{
-                                                window.localStorage.setItem('counter',ee.counter)
-                                                    if(counter==31){
-                                                        window.localStorage.setItem('counter',31)
-                                                    }
-                                                this.capturePhoto(parseInt(counter),e)
-                                                this.takePhoto();
-                                                this.render('true',ee.counter)
-                                        })
-                                        
-                                        
-                                    }, 500);
-                                    return counter
-                                }else{
-                                    window.localStorage.setItem('checkImageStatus',false)
-                                    this.retry()
-                                    setTimeout(() => {
-                                        counter++
-                                        this.render('false','none')
-                                        this.takePhoto();
-                                        this.capturePhoto(parseInt(counter),e);
-                                    }, 500);
-                                    
-                                    return counter
-                                }
-                            }
-                        }
                         takePhoto() {
-                            // this.setState("stage", "loading");
+                            this.setState("stage", "loading");
                             var e = this.$(Rr.webcam);
                             var t = Ke.get("addons") || [];
                             var O = t.find(item => item === "FVC")
-                            e.play();
-                            (
+                            e.paused
+                                ? e.play()
+                                : (e.pause(),
                                   this.recognize(e)
                                       .then((e) => {
                                           if (L.get("secure") && !e.verified) {
@@ -4797,17 +4938,13 @@
                                           }
                                           return L.update({ face: e.id })
                                               .then(() => {
-                                                //   this.setState("stage", "done"), 
-                                                window.localStorage.setItem("facevalid",true)
-                                                this.params.onComplete(!0);
+                                                  this.setState("stage", "done"), this.params.onComplete(!0);
                                               })
                                               .catch((e) => {
-                                                window.localStorage.setItem("facevalid",false)
-                                                this.params.onError(e), this.setState("stage", "noface");
+                                                  this.params.onError(e), this.setState("stage", "noface");
                                               });
                                       })
                                       .catch((e) => {
-                                        window.localStorage.setItem("facevalid",false)
                                           this.params.onError(e), this.setState("stage", "noface");
                                       }));
                         }
@@ -6730,7 +6867,7 @@
                         d = s()(a.Z);
                         c.push([
                             e.id,
-                            "._3XHE83nqA1ZLPuO7GiCmaw{display:flex;/*padding:20px*/;height:100%}._3z4mu4CR7orxxv1y1QyAir{width:40%;}._3z4mu4CR7orxxv1y1QyAir>div{display:block;padding-right:20px;color:var(--background-color);-webkit-filter:grayscale(1) invert(1) brightness(2);filter:grayscale(1) invert(1) brightness(2)}._2i8oyyBVS8HsUDnq2lrMJF{flex:0.8;position:relative;display:flex;flex-direction:column; height: 100%;}._2i8oyyBVS8HsUDnq2lrMJF ._1Y7ZxT1H0zIt9fPCae6jwz{position:relative;flex:1;overflow:hidden;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#000}._2i8oyyBVS8HsUDnq2lrMJF .p7gOYbmPlwgKhmClgrS_h{width:72%;height:72%;margin-left:auto;margin-right:auto;object-fit:cover;margin-top:15%;border-radius:50%}._2i8oyyBVS8HsUDnq2lrMJF ._3GoSYRhbDNJfXImcEtvxxu,._2i8oyyBVS8HsUDnq2lrMJF .p7gOYbmPlwgKhmClgrS_h{position:absolute;top:0;left:0;right:0;bottom:0}._3GoSYRhbDNJfXImcEtvxxu p {color:#fff;}._2i8oyyBVS8HsUDnq2lrMJF ._3GoSYRhbDNJfXImcEtvxxu:empty{}._2i8oyyBVS8HsUDnq2lrMJF ._3GoSYRhbDNJfXImcEtvxxu:not(:empty){background-color:rgba(0,0,0,.5);color:#fff;font-size:.8em;overflow-x:auto;padding:10px}._2i8oyyBVS8HsUDnq2lrMJF ._3GoSYRhbDNJfXImcEtvxxu p{display:block;padding:5px;    color: #fff !important;}._2i8oyyBVS8HsUDnq2lrMJF ._3GoSYRhbDNJfXImcEtvxxu b{font-weight:700}._2i8oyyBVS8HsUDnq2lrMJF ._3GoSYRhbDNJfXImcEtvxxu li{display:list-item;margin-left:20px}._2i8oyyBVS8HsUDnq2lrMJF ._1TeyVtZKMp4l95bjVh7-Ew{display:flex;border-radius:3px;border-top-left-radius:0;margin: auto;border-top-right-radius:0;overflow:hidden}._2i8oyyBVS8HsUDnq2lrMJF ._1TeyVtZKMp4l95bjVh7-Ew ._33I29_jIipZoMXMAZcokiE,._2i8oyyBVS8HsUDnq2lrMJF ._1TeyVtZKMp4l95bjVh7-Ew ._3mjdGihOhejEnKd4cHfxeL{color:#000;background:#fff;text-transform:uppercase;white-space:nowrap;border-radius:22px;margin: 2px;border:1px solid #333 !important!}._2i8oyyBVS8HsUDnq2lrMJF ._1TeyVtZKMp4l95bjVh7-Ew ._1O0bPLQNaUHqWdTD2Wh2X5{-webkit-filter:none;text-shadow: none !important;color: #000 !important;filter:none;color:var(--primary-color);font-weight:700}._2i8oyyBVS8HsUDnq2lrMJF ._10kauREeMUk8KFvVu4ZzfG{display:none}@media only screen and (orientation:portrait){._3z4mu4CR7orxxv1y1QyAir{display:none}}",
+                            "._3XHE83nqA1ZLPuO7GiCmaw{display:flex;/*padding:20px*/;height:100%}._3z4mu4CR7orxxv1y1QyAir{width:40%;}._3z4mu4CR7orxxv1y1QyAir>div{display:block;padding-right:20px;color:var(--background-color);-webkit-filter:grayscale(1) invert(1) brightness(2);filter:grayscale(1) invert(1) brightness(2)}._2i8oyyBVS8HsUDnq2lrMJF{flex:0.8;position:relative;display:flex;flex-direction:column; height: 100%;}._2i8oyyBVS8HsUDnq2lrMJF ._1Y7ZxT1H0zIt9fPCae6jwz{position:relative;flex:1;overflow:hidden;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#000}._2i8oyyBVS8HsUDnq2lrMJF .p7gOYbmPlwgKhmClgrS_h{width:90%;height:80%;margin-left:auto;margin-right:auto;object-fit:cover;margin-top:10%;border-radius:50%}._2i8oyyBVS8HsUDnq2lrMJF ._3GoSYRhbDNJfXImcEtvxxu,._2i8oyyBVS8HsUDnq2lrMJF .p7gOYbmPlwgKhmClgrS_h{position:absolute;top:0;left:0;right:0;bottom:0}._3GoSYRhbDNJfXImcEtvxxu p {color:#fff;}._2i8oyyBVS8HsUDnq2lrMJF ._3GoSYRhbDNJfXImcEtvxxu:empty{}._2i8oyyBVS8HsUDnq2lrMJF ._3GoSYRhbDNJfXImcEtvxxu:not(:empty){background-color:rgba(0,0,0,.5);color:#fff;font-size:.8em;overflow-x:auto;padding:10px}._2i8oyyBVS8HsUDnq2lrMJF ._3GoSYRhbDNJfXImcEtvxxu p{display:block;padding:5px;    color: #fff !important;}._2i8oyyBVS8HsUDnq2lrMJF ._3GoSYRhbDNJfXImcEtvxxu b{font-weight:700}._2i8oyyBVS8HsUDnq2lrMJF ._3GoSYRhbDNJfXImcEtvxxu li{display:list-item;margin-left:20px}._2i8oyyBVS8HsUDnq2lrMJF ._1TeyVtZKMp4l95bjVh7-Ew{display:flex;border-radius:3px;border-top-left-radius:0;margin: auto;border-top-right-radius:0;overflow:hidden}._2i8oyyBVS8HsUDnq2lrMJF ._1TeyVtZKMp4l95bjVh7-Ew ._33I29_jIipZoMXMAZcokiE,._2i8oyyBVS8HsUDnq2lrMJF ._1TeyVtZKMp4l95bjVh7-Ew ._3mjdGihOhejEnKd4cHfxeL{color:#000;background:#fff;text-transform:uppercase;white-space:nowrap;border-radius:22px;margin: 2px;border:1px solid #333 !important!}._2i8oyyBVS8HsUDnq2lrMJF ._1TeyVtZKMp4l95bjVh7-Ew ._1O0bPLQNaUHqWdTD2Wh2X5{-webkit-filter:none;text-shadow: none !important;color: #000 !important;filter:none;color:var(--primary-color);font-weight:700}._2i8oyyBVS8HsUDnq2lrMJF ._10kauREeMUk8KFvVu4ZzfG{display:none}@media only screen and (orientation:portrait){._3z4mu4CR7orxxv1y1QyAir{display:none}}",
                             "",
                         ]),
                         (c.locals = {
