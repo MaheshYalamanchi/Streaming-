@@ -5361,7 +5361,10 @@
                                 ? (this._view = new e({
                                       el: this.setBody(),
                                       onComplete: (e) => {
-                                        if(this.state.stage=='face'&& (window.localStorage.getItem('counter')=='31')){
+                                        // if(this.state.stage=='face'&& (window.localStorage.getItem('counter')=='31')){
+                                        //     He.next(approvedata).then(() => this.setState("complete", e));
+                                        // }
+                                        if(this.state.stage=='face'){
                                             He.next(approvedata).then(() => this.setState("complete", e));
                                         }else if(this.state.stage=='passport'){
                                             He.next(approvedata).then(() => this.setState("complete", e));
