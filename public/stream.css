@@ -331,6 +331,7 @@
     background: #262626;
     width: 100% !important;
     height: 100% !important;
+    display: none;
   }
   .webix_overlay {
     -moz-box-sizing: border-box;
@@ -34864,7 +34865,7 @@
     border-width: 0px;
     margin-top: 2px;
     margin-left: 4px;
-    width: 345px !important;
+    width: 300px !important;
     height: 38px;
   }
   
