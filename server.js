@@ -1138,14 +1138,11 @@ const upload = multer({ storage: storage });
               jsonData.color='green'
             }
             let responseData = await invoke.makeHttpCall("post", "approvecandidate" , jsonData);
-            console.log(responseData.data,'response .................')
             if (responseData && responseData.data) {
               if(responseData&&responseData.data.success){
                 let memberId=[]
                 memberId=responseData.data.data.members
-                console.log(memberId,'member id ')
                 let A=memberId.push(responseData.data.data.student)
-                console.log(A,'mermber id after')
                 memberId.length && I.send(memberId, "approval", responseData.data.data);
               
                 res.status(200).send({success:true,message: responseData.data.data});
@@ -1191,9 +1188,7 @@ const upload = multer({ storage: storage });
               res.status(200).send(responseData.data);
               let memberId=[]
               memberId=responseData.data.members
-              console.log(memberId,'member id')
               let A=memberId.push(responseData.data.student)
-              console.log(memberId,'member id after push')
               memberId.length && I.send(memberId, "room:stop", responseData.data);
             } else {
               res.send("response not found")
