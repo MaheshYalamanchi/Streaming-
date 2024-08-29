@@ -346,7 +346,7 @@ const upload = multer({ storage: storage });
             var jsonData = {
               authorization: req.headers.authorization,
             }
-            let responseData = await invoke.makeHttpCall("post", "/api/auth", jsonData);
+            let responseData = await invoke.makeHttpCallUser_service("post", "/api/auth", jsonData);
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
             } else {
