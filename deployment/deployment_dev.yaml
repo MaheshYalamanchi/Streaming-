@@ -98,6 +98,11 @@ spec:
               secretKeyRef:
                 name: proctor-dev-env
                 key: Tao_SERVICE
+          - name: UAP_SERVICE
+            valueFrom:
+              secretKeyRef:
+                name: proctor-dev-env
+                key: UAP_SERVICE
           ports:
           - containerPort: 8000
       imagePullSecrets:
