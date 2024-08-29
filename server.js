@@ -1894,7 +1894,7 @@ const upload = multer({ storage: storage });
                 if (secondResponse && secondResponse.data.success) {
                   if (responseData && responseData.data && responseData.data.message && responseData.data.message.id) {
                     res.status(200).send(responseData.data.message);
-                    //validate photo
+                    /*//validate photo
                     let validatePhto = await validatePhoto(responseData.data.message.user,req.file.buffer)
                     // console.log(JSON.stringify(validatePhto))
                     if(validatePhto.message.length){
@@ -1917,7 +1917,7 @@ const upload = multer({ storage: storage });
                       }
                       let sendDataToBackend = await invoke.makeHttpCall('post', 'updatephotostatus', jsonData)
                      // console.log(sendDataToBackend)
-                    }
+                    }*/
                     minioClient.putObject("storage", responseData.data.message.id, req.file.buffer, req.file.size, async function (err3, etag) {
                       if (err3) {
                         return res.status(500).send(err3);
