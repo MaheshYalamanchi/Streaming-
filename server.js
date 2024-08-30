@@ -2085,7 +2085,7 @@ const upload = multer({ storage: storage });
           try {
             if (req.body.face) {
               req.body.authorization = req.headers.authorization;
-              let responseData = await invoke.makeHttpCall("put", "/api/user/me1", req.body);
+              let responseData = await invoke.makeHttpCallsync("put", "/api/user/me1", req.body);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
@@ -2093,7 +2093,7 @@ const upload = multer({ storage: storage });
               }
             } else if (req.body.passport) {
               req.body.authorization = req.headers.authorization;
-              let responseData = await invoke.makeHttpCall("put", "/api/user/me2", req.body);
+              let responseData = await invoke.makeHttpCallsync("put", "/api/user/me2", req.body);
               if (responseData && responseData.data) {
                 res.status(200).send(responseData.data);
               } else {
