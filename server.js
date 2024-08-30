@@ -1890,10 +1890,11 @@ const upload = multer({ storage: storage });
               }
               let responseData = await invoke.makeHttpCallai_service('post', '/api/storage/passport1?format=' + req.query.format, jsonData)
               if (responseData && responseData.data.success) {
+                res.status(200).send(responseData.data.message);
                 let secondResponse = await invoke.makeHttpCallai_service('post', '/api/storage/passport2', responseData.data)
                 if (secondResponse && secondResponse.data.success) {
                   if (responseData && responseData.data && responseData.data.message && responseData.data.message.id) {
-                    res.status(200).send(responseData.data.message);
+                    // res.status(200).send(responseData.data.message);
                     /*//validate photo
                     let validatePhto = await validatePhoto(responseData.data.message.user,req.file.buffer)
                     // console.log(JSON.stringify(validatePhto))
