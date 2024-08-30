@@ -1275,7 +1275,7 @@ const upload = multer({ storage: storage });
                 authorization: req.headers.authorization,
                 body:req.body
               }
-              let responseData = await invoke.makeHttpCall("post", '/api/room/next?id=' + req.query.id + '', jsonData);
+              let responseData = await invoke.makeHttpCallUser_service("post", '/api/room/next?id=' + req.query.id + '', jsonData);
               if (responseData && responseData.data) {
                 if(req && req.body && req.body.approve == true){
                   responseData.data.approve = req.body.approve
