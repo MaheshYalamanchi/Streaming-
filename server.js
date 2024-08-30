@@ -1888,9 +1888,9 @@ const upload = multer({ storage: storage });
                 authorization: req.headers.authorization,
                 myfile: req.file
               }
-              let responseData = await invoke.makeHttpCall('post', '/api/storage/passport1?format=' + req.query.format, jsonData)
+              let responseData = await invoke.makeHttpCallai_service('post', '/api/storage/passport1?format=' + req.query.format, jsonData)
               if (responseData && responseData.data.success) {
-                let secondResponse = await invoke.makeHttpCall('post', '/api/storage/passport2', responseData.data)
+                let secondResponse = await invoke.makeHttpCallai_service('post', '/api/storage/passport2', responseData.data)
                 if (secondResponse && secondResponse.data.success) {
                   if (responseData && responseData.data && responseData.data.message && responseData.data.message.id) {
                     res.status(200).send(responseData.data.message);
