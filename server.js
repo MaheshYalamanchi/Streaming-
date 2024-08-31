@@ -619,8 +619,8 @@ const upload = multer({ storage: storage });
                       responseData.data.tenantId = req.query.tenantId
                       let response = invoke.makeHttpCall("post", '/api/broadcast/sendToAll', responseData.data);
                     }
-                    console.log('room id=',responseData.data.room)
-                    console.log('room details=',responseData.data)
+                    // console.log('room id=',responseData.data.room)
+                    // console.log('room details=',responseData.data)
                     g.send(String(responseData.data.room), "chat:message", responseData.data);
                     let msgreport = {
                       message: responseData.data.message,
@@ -1233,17 +1233,17 @@ const upload = multer({ storage: storage });
                     "email":responseData.data.student.id.replace('_', '@').replace('_', '.'),
                     "roomId":responseData.data.id
                 }
-                console.log(JSON.stringify(uapPayload),'UAP PAYLOAD')
+                // console.log(JSON.stringify(uapPayload),'UAP PAYLOAD')
                   let getTestStatusCall = await invoke.makeHttpUAP_service("post", "fetchRoomTestDetails", uapPayload)
-                  console.log(getTestStatusCall,'UAP output.............')
-                  if(getTestStatusCall&&getTestStatusCall.data&&getTestStatusCall.data.data){
+                  // console.log(getTestStatusCall,'UAP output.............')
+                  if(getTestStatusCall&&getTestStatusCall.data&&getTestStatusCall.data.data.length){
                     let findAssessmentStatus=_.find(getTestStatusCall.data.data,{status:'InProgress'})
                     if(findAssessmentStatus){
                       let payload={
                         Delivery_Id:findAssessmentStatus?.deliveryId,
                         email:responseData?.data?.student?.nickname
                       }
-                      console.log(JSON.stringify(payload),'payload for report engine')
+                      // console.log(JSON.stringify(payload),'payload for report engine')
                       let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
                       console.log(taoTerminateTest.data,'stop api call to report engine')
                     }
