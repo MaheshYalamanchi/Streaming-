@@ -1228,7 +1228,7 @@ const upload = multer({ storage: storage });
                 //   authorization: req.headers.authorization
                 // }
                 // console.log("==========>>>>>>>>",responseData.data.status)
-                if(responseData.data.status == "stopped"){
+                if(responseData.data.status == "rejected"){
                   let uapPayload={
                     "email":responseData.data.student.id.replace('_', '@').replace('_', '.'),
                     "roomId":responseData.data.id
