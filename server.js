@@ -1246,6 +1246,8 @@ const upload = multer({ storage: storage });
                       // console.log(JSON.stringify(payload),'payload for report engine')
                       let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
                       console.log(taoTerminateTest.data,'stop api call to report engine')
+                    }else{
+                       console.log(getTestStatusCall.data,'UAP assessment status.............')
                     }
                   }else{
                     console.log(getTestStatusCall,'UAP logs.......')
