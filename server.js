@@ -1214,14 +1214,14 @@ const upload = multer({ storage: storage });
                 // let A=memberId.push(responseData.data.student)
                 // console.log(A,'member id after',responseData.data)
                 // memberId.length && I.send(memberId, "room:stop", responseData.data);
-                // let reportbody = {
-                //   submittime: responseData.data.stoppedAt,
-                //   room: responseData.data.id,
-                //   student: responseData.data.student.id,
-                //   status: responseData.data.status,
-                //   comment: responseData.data.comment,
-                //   authorization: req.headers.authorization
-                // }
+                let reportbody = {
+                  submittime: responseData.data.stoppedAt,
+                  room: responseData.data.id,
+                  student: responseData.data.student.id,
+                  status: responseData.data.status,
+                  comment: responseData.data.comment,
+                  authorization: req.headers.authorization
+                }
                 // console.log("==========>>>>>>>>",responseData.data.status)
                 if(responseData.data.status == "rejected"){
                   let uapPayload={
@@ -1232,15 +1232,20 @@ const upload = multer({ storage: storage });
                   let getTestStatusCall = await invoke.makeHttpUAP_service("post", "fetchRoomTestDetails", uapPayload)
                   // console.log(getTestStatusCall,'UAP output.............')
                   if(getTestStatusCall&&getTestStatusCall.data&&getTestStatusCall.data.data.length){
-                    let findAssessmentStatus=_.find(getTestStatusCall.data.data,{status:'InProgress'})
+                    let findAssessmentStatus=_.filter(getTestStatusCall.data.data,{status:'InProgress'})
                     if(findAssessmentStatus){
-                      let payload={
-                        Delivery_Id:findAssessmentStatus?.deliveryId,
-                        email:responseData?.data?.student?.nickname
-                      }
+                     
                       // console.log(JSON.stringify(payload),'payload for report engine')
-                      let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
-                      console.log(taoTerminateTest.data,'stop api call to report engine')
+                      for (const element of findAssessmentStatus) {
+                        let payload={
+                          Delivery_Id:element?.deliveryId,
+                          email:responseData?.data?.student?.nickname
+                        }
+                        console.log(payload,'paload send to report engine to stop the test')
+                        let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
+                        console.log(taoTerminateTest.data,'stop api call to report engine')  
+                      }
+                      
                     }
                   }else{
                     console.log(getTestStatusCall,'UAP logs.......')
