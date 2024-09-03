@@ -1239,13 +1239,18 @@ const upload = multer({ storage: storage });
                   if(getTestStatusCall&&getTestStatusCall.data&&getTestStatusCall.data.data.length){
                     let findAssessmentStatus=_.find(getTestStatusCall.data.data,{status:'InProgress'})
                     if(findAssessmentStatus){
+                      const payloadArray=[];
                       let payload={
                         Delivery_Id:findAssessmentStatus?.deliveryId,
                         email:responseData?.data?.student?.nickname
                       }
+                      payloadArray.push(payload)
                       // console.log(JSON.stringify(payload),'payload for report engine')
-                      let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
-                      console.log(taoTerminateTest.data,'stop api call to report engine')
+                      for (const element of payloadArray) {
+                        console.log(element,'paload send to report engine to stop the test')
+                        let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", element)
+                        console.log(taoTerminateTest.data,'stop api call to report engine')  
+                      }
                     }else{
                        console.log(getTestStatusCall.data,'UAP assessment status.............')
                     }
