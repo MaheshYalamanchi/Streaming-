@@ -1219,14 +1219,14 @@ const upload = multer({ storage: storage });
                 // let A=memberId.push(responseData.data.student)
                 // console.log(A,'member id after',responseData.data)
                 // memberId.length && I.send(memberId, "room:stop", responseData.data);
-                // let reportbody = {
-                //   submittime: responseData.data.stoppedAt,
-                //   room: responseData.data.id,
-                //   student: responseData.data.student.id,
-                //   status: responseData.data.status,
-                //   comment: responseData.data.comment,
-                //   authorization: req.headers.authorization
-                // }
+                let reportbody = {
+                  submittime: responseData.data.stoppedAt,
+                  room: responseData.data.id,
+                  student: responseData.data.student.id,
+                  status: responseData.data.status,
+                  comment: responseData.data.comment,
+                  authorization: req.headers.authorization
+                }
                 // console.log("==========>>>>>>>>",responseData.data.status)
                    if(responseData.data.status == "rejected"){
                   let uapPayload={
