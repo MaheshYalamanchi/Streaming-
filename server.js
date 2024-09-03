@@ -1228,7 +1228,7 @@ const upload = multer({ storage: storage });
                 //   authorization: req.headers.authorization
                 // }
                 // console.log("==========>>>>>>>>",responseData.data.status)
-                if(responseData.data.status == "rejected"){
+                   if(responseData.data.status == "rejected"){
                   let uapPayload={
                     "email":responseData.data.student.id.replace('_', '@').replace('_', '.'),
                     "roomId":responseData.data.id
@@ -1237,8 +1237,9 @@ const upload = multer({ storage: storage });
                   let getTestStatusCall = await invoke.makeHttpUAP_service("post", "fetchRoomTestDetails", uapPayload)
                   // console.log(getTestStatusCall,'UAP output.............')
                   if(getTestStatusCall&&getTestStatusCall.data&&getTestStatusCall.data.data.length){
-                    let findAssessmentStatus=_.find(getTestStatusCall.data.data,{status:'InProgress'})
+                    let findAssessmentStatus=_.filter(getTestStatusCall.data.data,{status:'InProgress'})
                     if(findAssessmentStatus){
+                     
                       // console.log(JSON.stringify(payload),'payload for report engine')
                       for (const element of findAssessmentStatus) {
                         let payload={
@@ -1247,14 +1248,15 @@ const upload = multer({ storage: storage });
                         }
                         console.log(payload,'paload send to report engine to stop the test')
                         let taoTerminateTest = await invoke.makeHttpTao_service("post", "userBatchCloserapi", payload)
-                        console.log(taoTerminateTest.data,'stop api call to report engine') 
+                        console.log(taoTerminateTest.data,'stop api call to report engine')  
+                      }
+                      
                     }
                   }else{
                     console.log(getTestStatusCall,'UAP logs.......')
                   }
                   
                 }
-                // console.log(payload,'payload...............')
                 let report = await invoke.makeHttpCallUser_service("post", "/api/reportlog", reportbody)
                 
                 
