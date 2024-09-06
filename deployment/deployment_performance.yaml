@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node
+  name: streaming
   namespace: proctor-prod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: node
+      app: streaming
   template:
     metadata:
       labels:
-        app: node
+        app: streaming
     spec:
       containers:
-        - name: node
-          image: proctorprod.azurecr.io/node:$tag
+        - name: streaming
+          image: proctorprod.azurecr.io/streaming:$tag
           imagePullPolicy: Always
           env:
           - name: MONGO_URI
@@ -99,6 +99,11 @@ spec:
               secretKeyRef:
                 name: proctor-prod-env
                 key: Tao_SERVICE
+          - name: UAP_SERVICE
+            valueFrom:
+              secretKeyRef:
+                name: proctor-prod-env
+                key: UAP_SERVICE
           ports:
           - containerPort: 8000
       imagePullSecrets:
