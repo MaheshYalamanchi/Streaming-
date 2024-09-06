@@ -5967,14 +5967,36 @@
                                 .then(() =>
                                     He.start().then((e) => {
                                         if(e&&(e.status=='paused')){
-                                            Swal.fire({
+                                            /*Swal.fire({
                                                 title: 'Exam paused!',
                                                 text: 'The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
                                                 icon: 'warning',
                                                 showConfirmButton: false,
                                                 allowOutsideClick: false
 
-                                              })
+                                              })*/
+                                                function createCustomAlert() {
+                                                    let overlay = document.createElement('div');
+                                                    overlay.innerHTML = `
+                                                        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+                                                            <div  style="background-color: #fff;padding: 20px;border-radius: 8px;text-align: center;width: 400px;box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);">
+                                                                <div  style="display: flex;flex-direction: column;align-items: center;margin-bottom: 15px;">
+                                                                    <img src="https://assets.lntedutech.com/cancel.png" alt="Rejected Icon"  style="width: 70px;height: 70px;position: relative;bottom: 40px;">
+                                                                    <h2 style="color: black;margin: 0;">Exam paused!</h2>
+                                                                </div>
+                                                                <p  style="color: #333;margin: 20px 0; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;">The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor</p>
+                                                                <button id="customAlertOkButton" style="padding: 10px 20px;background-color: tomato;color: #fff;border: none;border-radius: 5px;cursor: pointer;transition: background-color 0.3s ease;">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    `;
+                                                    overlay.querySelector('#customAlertOkButton').addEventListener('click', function() {
+                                                        document.body.removeChild(overlay);
+                                                     
+                                                    });
+                                                    document.body.appendChild(overlay);
+                                                  
+                                                }
+                                                createCustomAlert()
                                         }else{
                                             this._started = !0;
                                             const t = (this._conference = new Pr({ hidden: !0, restart: !0 })),
