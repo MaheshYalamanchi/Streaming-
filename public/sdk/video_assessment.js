@@ -5989,10 +5989,7 @@
                                                             </div>
                                                         </div>
                                                     `;
-                                                    overlay.querySelector('#customAlertOkButton').addEventListener('click', function() {
-                                                        document.body.removeChild(overlay);
-                                                     
-                                                    });
+                                                  
                                                     document.body.appendChild(overlay);
                                                   
                                                 }
