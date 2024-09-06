@@ -5985,7 +5985,7 @@
                                                                     <h2 style="color: black;margin: 0;">Exam paused!</h2>
                                                                 </div>
                                                                 <p  style="color: #333;margin: 20px 0; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;">The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor</p>
-                                                                <button id="customAlertOkButton" style="padding: 10px 20px;background-color: tomato;color: #fff;border: none;border-radius: 5px;cursor: pointer;transition: background-color 0.3s ease;">Close</button>
+                                                               
                                                             </div>
                                                         </div>
                                                     `;
