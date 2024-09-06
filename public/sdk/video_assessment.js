@@ -2445,7 +2445,15 @@
                                     .then(() => He.sync(e.room).then((responseOfRoom)=>{
                                         // console.log(responseOfRoom,'llllllllllllllllll')
                                         if(responseOfRoom&&(responseOfRoom.status=='paused')){
-                                            function createCustomAlert() {
+                                            Swal.fire({
+                                                title: 'Exam paused!',
+                                                text: 'The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
+                                                icon: 'warning',
+                                                showConfirmButton: false,
+                                                allowOutsideClick: false
+
+                                              })
+                                            /*function createCustomAlert() {
                                                 let overlay = document.createElement('div');
                                                 overlay.innerHTML = `
                                                     <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 9999;">
@@ -2463,7 +2471,7 @@
                                                 document.body.appendChild(overlay);
                                               
                                             }
-                                            createCustomAlert()
+                                            createCustomAlert()*/
                                         }
                                     })) 
                                     .then(() => y.sync(e.config))
@@ -5978,15 +5986,15 @@
                                 .then(() =>
                                     He.start().then((e) => {
                                         if(e&&(e.status=='paused')){
-                                            /*Swal.fire({
+                                            Swal.fire({
                                                 title: 'Exam paused!',
                                                 text: 'The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
                                                 icon: 'warning',
                                                 showConfirmButton: false,
                                                 allowOutsideClick: false
 
-                                              })*/
-                                                function createCustomAlert() {
+                                              })
+                                                /*function createCustomAlert() {
                                                     let overlay = document.createElement('div');
                                                     overlay.innerHTML = `
                                                         <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 9999;">
@@ -6004,7 +6012,7 @@
                                                     document.body.appendChild(overlay);
                                                   
                                                 }
-                                                createCustomAlert()
+                                                createCustomAlert()*/
                                         }else{
                                             this._started = !0;
                                             const t = (this._conference = new Pr({ hidden: !0, restart: !0 })),
@@ -7632,15 +7640,16 @@
                                         }
                                         if (position2!=-1 && position1==-1 ){
                                             // ztoast("examend");
-                                            /*Swal.fire({
+                                            Swal.fire({
                                                 title: 'Exam paused!',
                                                 text: 'The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
                                                 icon: 'warning',
                                                 showConfirmButton: false,
                                                 allowOutsideClick: false
 
-                                              })*/
-                                                function createCustomAlert() {
+                                              })
+
+                                                /*function createCustomAlert() {
                                                     let overlay = document.createElement('div');
                                                     overlay.innerHTML = `
                                                         <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 9999;">
@@ -7658,7 +7667,7 @@
                                                     document.body.appendChild(overlay);
                                                   
                                                 }
-                                                createCustomAlert()
+                                                createCustomAlert()*/
                                         }
                                         if ((position3!=-1 && position1==-1)||(position3==69 && position1==3) ){
                                             // ztoast("examend");
