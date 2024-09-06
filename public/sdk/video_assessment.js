@@ -2958,7 +2958,7 @@
                                             )
                                                 return (d = !1), setTimeout(n.bind(null, r, !1), 0);
                                             (c = t.data), u(t);
-                                        }, 200 * 1.1);
+                                        }, 1e3 * i);
                                     })(t, i, e, r),
                                         n();
                                 })
