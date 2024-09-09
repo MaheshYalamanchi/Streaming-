@@ -2400,7 +2400,7 @@
                                     window.localStorage.setItem("Verified",e.verified)
                                 }
                             })),
-                            start: () => (Ke.get("id") ? f("/api/room/start?id=".concat(Ke.get("id"))+'&status='.concat(Ke.get("status")), { method: "POST" ,body :{ipaddress: window.localStorage.getItem("ipaddress")}}).then((e) => (Be = e)) : new Promise((e, t) => t(new Error("Room ID not defined")))),
+                            start: () => (Ke.get("id") ? f("/api/room/start?id=".concat(Ke.get("id"))+'&status='.concat(Ke.get("liveProctoringEnable")?Ke.get("status"):"started"), { method: "POST" ,body :{ipaddress: window.localStorage.getItem("ipaddress")}}).then((e) => (Be = e)) : new Promise((e, t) => t(new Error("Room ID not defined")))),
                             stop: () => (Ke.get("id") ? f("/api/room/stop?id=".concat(Ke.get("id")), { method: "POST" }).then((e) => (Be = e)) : new Promise((e, t) => t(new Error("Room ID not defined")))),
                             next(approve) {
                                 let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
