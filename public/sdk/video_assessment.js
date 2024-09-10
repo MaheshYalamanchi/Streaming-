@@ -5986,7 +5986,6 @@
                                 .then(() =>
                                     He.start().then((e) => {
                                         if(e&&((e.status=='paused') && (e.liveProctoringEnable))){
-                                            window.postMessage({id:e.id,status:e.status,liveProctoringEnable:e.liveProctoringEnable,student:e.student}, '*');
                                             Swal.fire({
                                                 title: 'Exam paused!',
                                                 text: 'The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor',
