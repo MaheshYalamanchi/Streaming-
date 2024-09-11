@@ -5514,33 +5514,65 @@
                             (t.className = "".concat(en.item, " ").concat(L.isMe(e.user && e.user.id) ? en.right : en.left)), e.metadata && e.metadata.incident && (t.className += " ".concat(en.highlight));
                             const r = (e.user && e.user.nickname) || e.user;
                             var n, i, o, s, a, c;
-                            return (
-                                (t.innerHTML = '\n      <div class="'
-                                    .concat(en.caption, '">\n        <div class="')
-                                    .concat(en.user, '">')
-                                    .concat(r || "???", '</div>\n        <div class="')
-                                    .concat(en.time, '">')
-                                    .concat(((o = e.createdAt), (s = new Date(o)), (a = ("0" + s.getHours()).slice(-2)), (c = ("0" + s.getMinutes()).slice(-2)), "".concat(a, ":").concat(c)), '</div>\n      </div>\n      <div class="')
-                                    .concat(en.message, '">\n        ')
-                                    .concat(
-                                        e.message
-                                            ? '<div class="' +
-                                                  en.text +
-                                                  '">' +
-                                                  ((n = e.message),
-                                                  (i = (function (e) {
-                                                      return "string" != typeof e ? "" : e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
-                                                  })(n)),
-                                                  i
-                                                      .replace(/\b(?:https?|ftp):\/\/[a-z0-9-+&@#/%?=~_|!:,.;]*[a-z0-9-+&@#/%=~_|]/gim, '<a target="_blank" href="$&">$&</a>')
-                                                      .replace(/(^|[^/])(www\.[\S]+(\b|$))/gim, '$1<a target="_blank" href="http://$2">$2</a>')
-                                                      .replace(/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+/gim, '<a target="_blank" href="mailto:$&">$&</a>') + "</div>")
-                                            : "",
-                                        "\n        "
-                                    )
-                                    .concat(this.renderAttaches(e.attach), "\n      </div>\n    ")),
-                                t
-                            );
+                            if(e.room == "sendToAll"){
+                                if(e.roomIds.includes(He.get("id"))){
+                                    return (
+                                        (t.innerHTML = '\n      <div class="'
+                                            .concat(en.caption, '">\n        <div class="')
+                                            .concat(en.user, '">')
+                                            .concat(r || "???", '</div>\n        <div class="')
+                                            .concat(en.time, '">')
+                                            .concat(((o = e.createdAt), (s = new Date(o)), (a = ("0" + s.getHours()).slice(-2)), (c = ("0" + s.getMinutes()).slice(-2)), "".concat(a, ":").concat(c)), '</div>\n      </div>\n      <div class="')
+                                            .concat(en.message, '">\n        ')
+                                            .concat(
+                                                e.message
+                                                    ? '<div class="' +
+                                                          en.text +
+                                                          '">' +
+                                                          ((n = e.message),
+                                                          (i = (function (e) {
+                                                              return "string" != typeof e ? "" : e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+                                                          })(n)),
+                                                          i
+                                                              .replace(/\b(?:https?|ftp):\/\/[a-z0-9-+&@#/%?=~_|!:,.;]*[a-z0-9-+&@#/%=~_|]/gim, '<a target="_blank" href="$&">$&</a>')
+                                                              .replace(/(^|[^/])(www\.[\S]+(\b|$))/gim, '$1<a target="_blank" href="http://$2">$2</a>')
+                                                              .replace(/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+/gim, '<a target="_blank" href="mailto:$&">$&</a>') + "</div>")
+                                                    : "",
+                                                "\n        "
+                                            )
+                                            .concat(this.renderAttaches(e.attach), "\n      </div>\n    ")),
+                                        t
+                                    );
+                                }
+                            } else {
+                                return (
+                                    (t.innerHTML = '\n      <div class="'
+                                        .concat(en.caption, '">\n        <div class="')
+                                        .concat(en.user, '">')
+                                        .concat(r || "???", '</div>\n        <div class="')
+                                        .concat(en.time, '">')
+                                        .concat(((o = e.createdAt), (s = new Date(o)), (a = ("0" + s.getHours()).slice(-2)), (c = ("0" + s.getMinutes()).slice(-2)), "".concat(a, ":").concat(c)), '</div>\n      </div>\n      <div class="')
+                                        .concat(en.message, '">\n        ')
+                                        .concat(
+                                            e.message
+                                                ? '<div class="' +
+                                                      en.text +
+                                                      '">' +
+                                                      ((n = e.message),
+                                                      (i = (function (e) {
+                                                          return "string" != typeof e ? "" : e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+                                                      })(n)),
+                                                      i
+                                                          .replace(/\b(?:https?|ftp):\/\/[a-z0-9-+&@#/%?=~_|!:,.;]*[a-z0-9-+&@#/%=~_|]/gim, '<a target="_blank" href="$&">$&</a>')
+                                                          .replace(/(^|[^/])(www\.[\S]+(\b|$))/gim, '$1<a target="_blank" href="http://$2">$2</a>')
+                                                          .replace(/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+/gim, '<a target="_blank" href="mailto:$&">$&</a>') + "</div>")
+                                                : "",
+                                            "\n        "
+                                        )
+                                        .concat(this.renderAttaches(e.attach), "\n      </div>\n    ")),
+                                    t
+                                );
+                            }
                         }
                         renderAttaches(e) {
                             return e
