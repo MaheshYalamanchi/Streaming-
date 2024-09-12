@@ -1,5 +1,5 @@
 var express = require("express");
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 var bodyparser = require("body-parser");
 var cluster = require("cluster");
 var compression = require("compression");
