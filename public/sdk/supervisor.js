@@ -2453,6 +2453,25 @@
                                                 allowOutsideClick: false
 
                                               })
+                                            /*function createCustomAlert() {
+                                                let overlay = document.createElement('div');
+                                                overlay.innerHTML = `
+                                                    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+                                                        <div  style="background-color: #fff;padding: 20px;border-radius: 8px;text-align: center;width: 400px;box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);">
+                                                            <div  style="display: flex;flex-direction: column;align-items: center;margin-bottom: 15px;">
+                                                                <img src="https://assets.lntedutech.com/cancel.png" alt="Rejected Icon"  style="width: 70px;height: 70px;position: relative;bottom: 40px;">
+                                                                <h2 style="color: black;margin: 0;">Exam paused!</h2>
+                                                            </div>
+                                                            <p  style="color: #333;margin: 20px 0; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;">The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor</p>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                `;
+                                              
+                                                document.body.appendChild(overlay);
+                                              
+                                            }
+                                            createCustomAlert()*/
                                         }
                                     })) 
                                     .then(() => y.sync(e.config))
@@ -5495,33 +5514,65 @@
                             (t.className = "".concat(en.item, " ").concat(L.isMe(e.user && e.user.id) ? en.right : en.left)), e.metadata && e.metadata.incident && (t.className += " ".concat(en.highlight));
                             const r = (e.user && e.user.nickname) || e.user;
                             var n, i, o, s, a, c;
-                            return (
-                                (t.innerHTML = '\n      <div class="'
-                                    .concat(en.caption, '">\n        <div class="')
-                                    .concat(en.user, '">')
-                                    .concat(r || "???", '</div>\n        <div class="')
-                                    .concat(en.time, '">')
-                                    .concat(((o = e.createdAt), (s = new Date(o)), (a = ("0" + s.getHours()).slice(-2)), (c = ("0" + s.getMinutes()).slice(-2)), "".concat(a, ":").concat(c)), '</div>\n      </div>\n      <div class="')
-                                    .concat(en.message, '">\n        ')
-                                    .concat(
-                                        e.message
-                                            ? '<div class="' +
-                                                  en.text +
-                                                  '">' +
-                                                  ((n = e.message),
-                                                  (i = (function (e) {
-                                                      return "string" != typeof e ? "" : e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
-                                                  })(n)),
-                                                  i
-                                                      .replace(/\b(?:https?|ftp):\/\/[a-z0-9-+&@#/%?=~_|!:,.;]*[a-z0-9-+&@#/%=~_|]/gim, '<a target="_blank" href="$&">$&</a>')
-                                                      .replace(/(^|[^/])(www\.[\S]+(\b|$))/gim, '$1<a target="_blank" href="http://$2">$2</a>')
-                                                      .replace(/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+/gim, '<a target="_blank" href="mailto:$&">$&</a>') + "</div>")
-                                            : "",
-                                        "\n        "
-                                    )
-                                    .concat(this.renderAttaches(e.attach), "\n      </div>\n    ")),
-                                t
-                            );
+                            if(e.room == "sendToAll"){
+                                if(e.roomIds.includes(He.get("id"))){
+                                    return (
+                                        (t.innerHTML = '\n      <div class="'
+                                            .concat(en.caption, '">\n        <div class="')
+                                            .concat(en.user, '">')
+                                            .concat(r || "???", '</div>\n        <div class="')
+                                            .concat(en.time, '">')
+                                            .concat(((o = e.createdAt), (s = new Date(o)), (a = ("0" + s.getHours()).slice(-2)), (c = ("0" + s.getMinutes()).slice(-2)), "".concat(a, ":").concat(c)), '</div>\n      </div>\n      <div class="')
+                                            .concat(en.message, '">\n        ')
+                                            .concat(
+                                                e.message
+                                                    ? '<div class="' +
+                                                          en.text +
+                                                          '">' +
+                                                          ((n = e.message),
+                                                          (i = (function (e) {
+                                                              return "string" != typeof e ? "" : e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+                                                          })(n)),
+                                                          i
+                                                              .replace(/\b(?:https?|ftp):\/\/[a-z0-9-+&@#/%?=~_|!:,.;]*[a-z0-9-+&@#/%=~_|]/gim, '<a target="_blank" href="$&">$&</a>')
+                                                              .replace(/(^|[^/])(www\.[\S]+(\b|$))/gim, '$1<a target="_blank" href="http://$2">$2</a>')
+                                                              .replace(/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+/gim, '<a target="_blank" href="mailto:$&">$&</a>') + "</div>")
+                                                    : "",
+                                                "\n        "
+                                            )
+                                            .concat(this.renderAttaches(e.attach), "\n      </div>\n    ")),
+                                        t
+                                    );
+                                }
+                            } else {
+                                return (
+                                    (t.innerHTML = '\n      <div class="'
+                                        .concat(en.caption, '">\n        <div class="')
+                                        .concat(en.user, '">')
+                                        .concat(r || "???", '</div>\n        <div class="')
+                                        .concat(en.time, '">')
+                                        .concat(((o = e.createdAt), (s = new Date(o)), (a = ("0" + s.getHours()).slice(-2)), (c = ("0" + s.getMinutes()).slice(-2)), "".concat(a, ":").concat(c)), '</div>\n      </div>\n      <div class="')
+                                        .concat(en.message, '">\n        ')
+                                        .concat(
+                                            e.message
+                                                ? '<div class="' +
+                                                      en.text +
+                                                      '">' +
+                                                      ((n = e.message),
+                                                      (i = (function (e) {
+                                                          return "string" != typeof e ? "" : e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+                                                      })(n)),
+                                                      i
+                                                          .replace(/\b(?:https?|ftp):\/\/[a-z0-9-+&@#/%?=~_|!:,.;]*[a-z0-9-+&@#/%=~_|]/gim, '<a target="_blank" href="$&">$&</a>')
+                                                          .replace(/(^|[^/])(www\.[\S]+(\b|$))/gim, '$1<a target="_blank" href="http://$2">$2</a>')
+                                                          .replace(/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+/gim, '<a target="_blank" href="mailto:$&">$&</a>') + "</div>")
+                                                : "",
+                                            "\n        "
+                                        )
+                                        .concat(this.renderAttaches(e.attach), "\n      </div>\n    ")),
+                                    t
+                                );
+                            }
                         }
                         renderAttaches(e) {
                             return e
@@ -5975,6 +6026,25 @@
                                                 allowOutsideClick: false
 
                                               })
+                                                /*function createCustomAlert() {
+                                                    let overlay = document.createElement('div');
+                                                    overlay.innerHTML = `
+                                                        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+                                                            <div  style="background-color: #fff;padding: 20px;border-radius: 8px;text-align: center;width: 400px;box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);">
+                                                                <div  style="display: flex;flex-direction: column;align-items: center;margin-bottom: 15px;">
+                                                                    <img src="https://assets.lntedutech.com/cancel.png" alt="Rejected Icon"  style="width: 70px;height: 70px;position: relative;bottom: 40px;">
+                                                                    <h2 style="color: black;margin: 0;">Exam paused!</h2>
+                                                                </div>
+                                                                <p  style="color: #333;margin: 20px 0; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;">The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor</p>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                    `;
+                                                  
+                                                    document.body.appendChild(overlay);
+                                                  
+                                                }
+                                                createCustomAlert()*/
                                         }else{
                                             this._started = !0;
                                             const t = (this._conference = new Pr({ hidden: !0, restart: !0 })),
@@ -7610,7 +7680,26 @@
                                                 allowOutsideClick: false
 
                                               })
-                                          
+
+                                                /*function createCustomAlert() {
+                                                    let overlay = document.createElement('div');
+                                                    overlay.innerHTML = `
+                                                        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+                                                            <div  style="background-color: #fff;padding: 20px;border-radius: 8px;text-align: center;width: 400px;box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);">
+                                                                <div  style="display: flex;flex-direction: column;align-items: center;margin-bottom: 15px;">
+                                                                    <img src="https://assets.lntedutech.com/cancel.png" alt="Rejected Icon"  style="width: 70px;height: 70px;position: relative;bottom: 40px;">
+                                                                    <h2 style="color: black;margin: 0;">Exam paused!</h2>
+                                                                </div>
+                                                                <p  style="color: #333;margin: 20px 0; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;">The test has been paused by proctor please connect to our helpdesk to resume the test or use the chat option to connect with the proctor</p>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                    `;
+                                                  
+                                                    document.body.appendChild(overlay);
+                                                  
+                                                }
+                                                createCustomAlert()*/
                                         }
                                         if ((position3!=-1 && position1==-1)||(position3==69 && position1==3) ){
                                             // ztoast("examend");

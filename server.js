@@ -1,5 +1,5 @@
 var express = require("express");
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 var bodyparser = require("body-parser");
 var cluster = require("cluster");
 var compression = require("compression");
@@ -153,6 +153,8 @@ const upload = multer({ storage: storage });
                   C.emit("approval", A.data);
                 } else if(A && A.event && (A.event=="approvalAccess")){
                   C.emit("approvalAccess", A.data);
+                }else if(A && A.event && (A.event=="pauseApproval")){
+                  C.emit("pauseApproval", A.data);
                 }else {
                   // console.log('send to one to one')
                   C.to(B).emit(A.event, A.data);
@@ -1104,6 +1106,9 @@ const upload = multer({ storage: storage });
               memberId=responseData.data.members
               let A=memberId.push(responseData.data.student)
               memberId.length && I.send(memberId, "room:start", responseData.data);
+              if(responseData.data && (responseData.data.status == "paused") && (responseData.data.liveProctoringEnable)){
+                I.send(memberId, "pauseApproval", responseData.data);
+              }
               let reportbody = {
                 starttime: responseData.data.startedAt,
                 room: responseData.data.id,
