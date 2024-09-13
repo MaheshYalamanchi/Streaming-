@@ -7680,7 +7680,7 @@
                                                 allowOutsideClick: false
 
                                               })
-                                              location.reload();
+                                            //   location.reload();
                                                 /*function createCustomAlert() {
                                                     let overlay = document.createElement('div');
                                                     overlay.innerHTML = `
