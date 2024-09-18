@@ -1692,6 +1692,7 @@ const upload = multer({ storage: storage });
                         if (err3) {
                           return res.status(500).send(err3);
                         } else if (etag) {
+                          console.log(etag,'api/storage/face')
                           // res.status(200).send(responseData.data);
                         }
                       })
