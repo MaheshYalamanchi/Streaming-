@@ -496,14 +496,14 @@ const upload = multer({ storage: storage });
       w.get("/:roomId", async (req, res, E) => {
         try {
           if (req.params.roomId && req.query.limit && req.query.skip && req.query.filter && req.query.filter.type) {
-            let responseData = await invoke.makeHttpCall("get", "/api/chat/" + req.params.roomId + "?limit=" + req.query.limit + "&skip=" + req.query.skip + "&filter[type]=" + req.query.filter.type +"");
+            let responseData = await invoke.makeHttpCall("get", "/api/chat/"+req.query.filter.type+"/" + req.params.roomId + "?limit=" + req.query.limit + "&skip=" + req.query.skip + "&filter[type]=" + req.query.filter.type +"");
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
             } else {
               res.send("response not found")
             }
           } else if (req.params.roomId && req.query.limit && req.query.filter && req.query.filter.type) {
-            let responseData = await invoke.makeHttpCall("get", "/api/chat/" + req.params.roomId + "?limit=" + req.query.limit + "&filter[type]=" + req.query.filter.type + "");
+            let responseData = await invoke.makeHttpCall("get", "/api/chat/"+req.query.filter.type+"/" + req.params.roomId + "?limit=" + req.query.limit + "&filter[type]=" + req.query.filter.type + "");
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
             } else {
@@ -534,8 +534,16 @@ const upload = multer({ storage: storage });
                 res.send("response not found")
               }
             }
+            if(req.query.filter.type == "remark"){
+              let responseData = await invoke.makeHttpCall("get", "/api/chat/remark/" + req.params.roomId + "?filter[type]=" + req.query.filter.type + "");
+              if (responseData && responseData.data) {
+                res.status(200).send(responseData.data);
+              } else {
+                res.send("response not found")
+              }
+            }
           } else if (req.query && req.query.sort && req.query.sort.id) {
-            let responseData = await invoke.makeHttpCall("get", "/api/chat/" + req.params.roomId + "?sort[id]=" + req.query.sort.id+"");
+            let responseData = await invoke.makeHttpCall("get", "/api/chat/sort/" + req.params.roomId + "?sort[id]=" + req.query.sort.id+"");
             if (responseData && responseData.data) {
               res.status(200).send(responseData.data);
             } else {
