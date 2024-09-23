@@ -510,11 +510,29 @@ const upload = multer({ storage: storage });
               res.send("response not found")
             }
           } else if (req.query && req.query.filter && req.query.filter.type) {
-            let responseData = await invoke.makeHttpCall("get", "/api/chat/" + req.params.roomId + "?filter[type]=" + req.query.filter.type + "");
-            if (responseData && responseData.data) {
-              res.status(200).send(responseData.data);
-            } else {
-              res.send("response not found")
+            if(req.query.filter.type == "message"){
+              let responseData = await invoke.makeHttpCall("get", "/api/chat/message/" + req.params.roomId + "?filter[type]=" + req.query.filter.type + "");
+              if (responseData && responseData.data) {
+                res.status(200).send(responseData.data);
+              } else {
+                res.send("response not found")
+              }
+            }
+            if(req.query.filter.type == "face"){
+              let responseData = await invoke.makeHttpCall("get", "/api/chat/face/" + req.params.roomId + "?filter[type]=" + req.query.filter.type + "");
+              if (responseData && responseData.data) {
+                res.status(200).send(responseData.data);
+              } else {
+                res.send("response not found")
+              }
+            }
+            if(req.query.filter.type == "event"){
+              let responseData = await invoke.makeHttpCall("get", "/api/chat/event/" + req.params.roomId + "?filter[type]=" + req.query.filter.type + "");
+              if (responseData && responseData.data) {
+                res.status(200).send(responseData.data);
+              } else {
+                res.send("response not found")
+              }
             }
           } else if (req.query && req.query.sort && req.query.sort.id) {
             let responseData = await invoke.makeHttpCall("get", "/api/chat/" + req.params.roomId + "?sort[id]=" + req.query.sort.id+"");
