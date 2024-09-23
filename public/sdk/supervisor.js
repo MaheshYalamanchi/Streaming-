@@ -7721,7 +7721,8 @@
                                                     title: 'Exam started',
                                                     text: 'Test started please press ok and attain the test',
                                                     icon: 'success',
-                                                    confirmButtonText: 'Ok'
+                                                    confirmButtonText: 'Ok',
+                                                    allowOutsideClick: false
                                                 }).then((result) => {
                                                     if (result.isConfirmed) {
                                                         // Reload the page
