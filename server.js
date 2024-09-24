@@ -1212,7 +1212,7 @@ const upload = multer({ storage: storage });
               req.body.authorization = req.headers.authorization;
               let responseData = await invoke.makeHttpCall("post", '/api/room/submit?id=' + req.query.id, req.body);
               if (responseData && responseData.data) {
-                // console.log(responseData.data,'llllllllllllllllllllll')
+                console.log(responseData.data,'llllllllllllllllllllll')
                 res.status(200).send(responseData.data);
                 // let memberId=[]
                 // memberId=responseData.data.members
@@ -1234,9 +1234,9 @@ const upload = multer({ storage: storage });
                     "email":responseData.data.student.id.replace('_', '@').replace('_', '.'),
                     "roomId":responseData.data.id
                 }
-                // console.log(JSON.stringify(uapPayload),'UAP PAYLOAD')
+                console.log(JSON.stringify(uapPayload),'UAP PAYLOAD')
                   let getTestStatusCall = await invoke.makeHttpUAP_service("post", "fetchRoomTestDetails", uapPayload)
-                  // console.log(getTestStatusCall,'UAP output.............')
+                  console.log(getTestStatusCall,'UAP output.............')
                   if(getTestStatusCall&&getTestStatusCall.data&&getTestStatusCall.data.data.length){
                     let findAssessmentStatus=_.filter(getTestStatusCall.data.data,{status:'InProgress'})
                     if(findAssessmentStatus){
