@@ -7680,7 +7680,7 @@
                                                 allowOutsideClick: false
 
                                               })
-
+                                            //   location.reload();
                                                 /*function createCustomAlert() {
                                                     let overlay = document.createElement('div');
                                                     overlay.innerHTML = `
@@ -7721,7 +7721,8 @@
                                                     title: 'Exam started',
                                                     text: 'Test started please press ok and attain the test',
                                                     icon: 'success',
-                                                    confirmButtonText: 'Ok'
+                                                    confirmButtonText: 'Ok',
+                                                    allowOutsideClick: false
                                                 }).then((result) => {
                                                     if (result.isConfirmed) {
                                                         // Reload the page

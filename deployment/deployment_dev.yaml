@@ -107,3 +107,5 @@ spec:
           - containerPort: 8000
       imagePullSecrets:
         - name: mysecret
+      nodeSelector:
+        agentpool: proctordevqa

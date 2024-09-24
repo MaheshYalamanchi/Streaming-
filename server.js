@@ -1212,6 +1212,7 @@ const upload = multer({ storage: storage });
               req.body.authorization = req.headers.authorization;
               let responseData = await invoke.makeHttpCall("post", '/api/room/submit?id=' + req.query.id, req.body);
               if (responseData && responseData.data) {
+                // console.log(responseData.data,'llllllllllllllllllllll')
                 res.status(200).send(responseData.data);
                 // let memberId=[]
                 // memberId=responseData.data.members
@@ -1692,6 +1693,7 @@ const upload = multer({ storage: storage });
                         if (err3) {
                           return res.status(500).send(err3);
                         } else if (etag) {
+                          console.log(etag,'api/storage/face')
                           // res.status(200).send(responseData.data);
                         }
                       })
