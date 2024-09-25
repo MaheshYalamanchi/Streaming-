@@ -1257,7 +1257,7 @@ const upload = multer({ storage: storage });
                 // console.log("==========>>>>>>>>",responseData.data.status)
                 if(responseData.data.status == "rejected"){
                   let uapPayload={
-                    "email":responseData.data.student.id.replace('_', '@').replace('_', '.'),
+                    "email":responseData.data.student.nickname,
                     "roomId":responseData.data.id
                 }
                 // console.log(JSON.stringify(uapPayload),'UAP PAYLOAD')
